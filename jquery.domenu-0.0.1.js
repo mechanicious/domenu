@@ -645,8 +645,8 @@
           };
 
           /**
-           * Works like a proxy to out Plugin prototype.
-           * Separates the API of the developer and the API
+           * Works like a proxy to Plugin prototype.
+           * Separates the API of the developer from the API
            * of the user, so we can change whatever we'd like
            * in the future.
            * @param {Object, Plugin} plugin
