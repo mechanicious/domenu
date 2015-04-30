@@ -682,7 +682,7 @@
             expand: function(cb) {
               this._plugin.expandAll(cb);
               return this;
-            },
+            }, 
             collapse: function(cb) {
               this._plugin.collapseAll(cb);
               return this;
