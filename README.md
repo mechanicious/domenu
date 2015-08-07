@@ -15,7 +15,7 @@ string parseJson(data, override)
 string toJson()
 pPlugin expandAll()
 pPlugin collapseAll()
-pPluginexpand(callback)
+pPlugin expand(callback)
 pPlugin collapse(callback)
 array getListNodes()
 ```
