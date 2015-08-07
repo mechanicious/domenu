@@ -21,4 +21,5 @@ array getListNodes()
 ```
 ### License & Credits 
 Copyright © 2015 Mateusz Zawartka | BSD & MIT license
-Build upon Nestable from [David Bushell](http://dbushell.com/)
+
+Built upon Nestable from [David Bushell](http://dbushell.com/)
