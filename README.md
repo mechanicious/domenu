@@ -2,7 +2,7 @@ DoMenu
 ========
 
 Specialized version of Nestable plugin, for back-end hierahical menu creation.
-Originally created for the Paperclip CMS.
+Originally created for Paperclip CMS.
 
 ### Demo
 [doMenu v0.0.1](http://mechanicious.github.io/domenu/)
@@ -12,12 +12,12 @@ Originally created for the Paperclip CMS.
 Access the public plugin (pPlugin) API with `$('#your-domenu-instance').domenu()`
 ```js
 array getLists([params])
-string parseJson(string data[, bool override])
+string parseJson(string data[, bool override = false])
 string toJson()
 pPlugin expandAll()
 pPlugin collapseAll()
-pPlugin expand([function callback])
-pPlugin collapse([function callback])
+pPlugin expand([function callback([item])])
+pPlugin collapse([function callback([item])])
 array getListNodes()
 ```
 ### License & Credits 
