@@ -1,4 +1,5 @@
-DoMenu
+#doMenu
+![](https://raw.githubusercontent.com/mechanicious/domenu/master/homepage/img/thumbnail-top.png)
 ========
 
 Specialized version of Nestable plugin, for back-end hierahical menu creation.
