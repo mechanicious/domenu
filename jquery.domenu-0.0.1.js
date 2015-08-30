@@ -1,5 +1,5 @@
- /*!
- * Copyright © 2015 Mateusz Zawartka
+ /**
+ * @license Copyright © 2015 Mateusz Zawartka
  * MIT license
  */
 
