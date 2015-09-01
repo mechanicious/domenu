@@ -8,7 +8,7 @@ Originally created for Paperclip CMS.
 ### Demo
 [doMenu v0.0.1](http://mechanicious.github.io/domenu/)
 
-![](https://github.com/mechanicious/domenu/blob/gh-pages/domenu-0.0.1-gif.gif?raw=true)
+[![](https://github.com/mechanicious/domenu/blob/gh-pages/domenu-0.0.1-gif.gif?raw=true)](http://mechanicious.github.io/domenu/)
 ### Quick API Reference
 Access the public plugin (pPlugin) API with `$('#your-domenu-instance').domenu()`
 ```js
