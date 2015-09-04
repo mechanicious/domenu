@@ -384,8 +384,8 @@
     /**
      * @todo unify inputCollection across the code
      * @version-control +0.0.5 support dynamic inputs
-     * @verion-control +0.0.5 support tokenization
-     * @verion-control +0.0.2 support dyanmic titles
+     * @version-control +0.0.5 support tokenization
+     * @version-control +0.0.2 support dyanmic titles
      * @param data
      * @returns {*}
      */
