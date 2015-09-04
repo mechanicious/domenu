@@ -304,8 +304,12 @@
                                 <span>[item_name]</span>
                                 <button class="item-remove">&times;</button>
                                 <div class="dd-edit-box" style="display: none;">
-                                    <input type="text" name="title" placeholder="name">
-                                    <input type="url" name="http" placeholder="http://">
+                                    <!-- data-placeholder has a higher priority than placeholder -->
+                                    <!-- data-placeholder can use token-values; when not present will be set to "" -->
+                                    <!-- data-default-value specifies a default value for the input; when not present will be set to "" -->
+                                    <input type="text" name="title" placeholder="Item" data-placeholder="Item {?increment}" data-default-value="Item {?increment}">
+                                    <input type="text" name="date" placeholder="Date" data-placeholder="Today's date is {?date}" data-default-value="{?date}">
+                                    <input type="url" name="http" placeholder="http://" data-placeholder="The value of this input is {?value}" data-default-value="http://google.com">
                                     <i>&#x270e;</i>
                                 </div>
                             </div>

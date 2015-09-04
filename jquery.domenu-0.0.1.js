@@ -17,6 +17,20 @@
   };
 
   /**
+   * Pad a string with a specified value, till a min length has been reached
+   * @param val
+   * @param minLength
+   * @returns {String}
+   */
+  String.prototype.padLength = function(val, minLength) {
+    var subject = this;
+    while(subject.length < minLength) {
+      subject = val + subject;
+    }
+    return subject;
+  };
+
+  /**
    * Join a sibling string by a delimiter
    * @param sibling
    * @param delimiter
@@ -56,6 +70,7 @@
     rootClass:              'dd',
     listClass:              'dd-list',
     itemClass:              'dd-item',
+    itemBlueprintClass:     'dd-item-blueprint',
     dragClass:              'dd-dragel',
     handleClass:            'dd-handle',
     collapsedClass:         'dd-collapsed',
@@ -207,7 +222,14 @@
 
       var igniteKeypressEnterEndEditEventHandler = function(el) {
         el.each(function(c, item) {
-          item.addEventListener('keypress', _this.keypressEnterEndEditEventHandler.bind(_this));
+          var item                             = $(item),
+              keypressEnterEndEditEventHandler = _this.keypressEnterEndEditEventHandler;
+
+          if(item.data('domenu_keypressEnterEndEditEventHandler')) return;
+
+          item.data('domenu_keypressEnterEndEditEventHandler', true);
+
+          item.on('keypress', keypressEnterEndEditEventHandler.bind(_this));
         });
       };
 
@@ -222,7 +244,7 @@
 
           // Show the edit panel
           edtBox.stop().slideToggle(opt.slideAnimationDuration, function() {
-            edtBox.children().first('input').focus();
+            edtBox.children().first('input').select().focus();
 
             // Be ready to close the edit mode
             igniteKeypressEnterEndEditEventHandler(item);
@@ -231,36 +253,94 @@
       })
     },
     /**
+     * @version-control +0.1.0 support default value tokens and placeholder tokens
+     * @param token
+     * @param input
+     * @returns {*}
+     */
+    resolveToken:                     function(token, input) {
+      if(typeof token !== "string") return;
+
+      var out       = token,
+          tagRegex  = /\{\?[a-z]+\}/ig,
+          tags      = out.match(tagRegex),
+          tagsCount = tags && tags.length || 0;
+
+      // As long as there are tags available
+      for(var currentTag = 0; currentTag < tagsCount; currentTag++) {
+
+        // Process each tag and replace it it in the output string
+        switch(tags[currentTag]) {
+          case "{?date}":
+            var dateTime = new Date(Date.now()),
+                date     = dateTime.getDay().toString().padLength('0', 2) + '/' + dateTime.getMonth().toString().padLength('0', 2) + '/' + dateTime.getFullYear();
+            out          = out.replace('{?date}', date);
+            break;
+
+          case "{?increment}":
+            // We begin with 1 - evaluate to true on check..
+            this.incrementIncrement = this.incrementIncrement || 1;
+            out                     = out.replace('{?increment}', this.incrementIncrement);
+            this.incrementIncrement += 1;
+            break;
+
+          case "{?value}":
+            out = out.replace('{?value}', input.value);
+            break;
+
+          default:
+            out = token;
+            break;
+        }
+      }
+
+      return out;
+    },
+    /**
+     * @version-control +0.0.1 shared way to save input state
+     * @version-control +0.0.5 tokens support
+     * @param inputCollection jQuery Selection
+     */
+    saveEditBoxInput:                 function(inputCollection) {
+      var _this = this,
+          opt   = this.options;
+
+      inputCollection.each(function(c, input) {
+        var itemDataValue     = $(input).parents(opt.itemClass.dot().join(',').join(opt.itemBlueprintClass.dot())).first().data(input.getAttribute('name')),
+            inputDefaultValue = $(input).data('default-value') || '',
+            item              = $(input).parents(opt.itemClass.dot()).first();
+        if(! (itemDataValue || input.value)) var tokenizedDefault  = _this.resolveToken(inputDefaultValue, $(input));
+        item.data(input.getAttribute('name'), input.value || itemDataValue || tokenizedDefault);
+      });
+    },
+    /**
      * @version-control +0.1.0 dynamic inputs
      * @version-control +0.0.1 prevent slide bubbling
      * @version-control +0.0.2 slide animation duration support
      * @param event
      */
     keypressEnterEndEditEventHandler: function(event) {
-      var opt             = this.options,
+      var _this           = this,
+          opt             = this.options,
           item            = $(event.target).parents(opt.itemClass.dot()).first(),
           edtBox          = item.find(opt.editBoxClass.dot()).first(),
-          inputCollection = item.find('input'),
+          inputCollection = item.find('input, textarea, radiobox, checkbox, select'),
           spn             = item.find('span').first(),
           removeBtn       = item.find(opt.removeBtnClass.dot());
 
       // Listen only to the Enter key
       if(event.keyCode !== 13) return;
 
+      // Set title
+      _this.determineAndSetItemTitle(item);
+
+      if(spn.text() === '') spn.text(_this.determineAndSetItemTitle(item));
+
       // Hide the edit box
       edtBox.stop().slideUp(opt.slideAnimationDuration, function() {
 
-        // CLear out the event binding
-        item.get(0).removeEventListener('keypress', this.keypressEnterEndEditEventHandler);
-
-        // Set the span text
-        spn.text(item.find('input[name="title"]').val());
-        if(spn.text() === '') spn.text('no title');
-
         // Save inputs
-        inputCollection.each(function(c, input) {
-          item.data(input.getAttribute('name'), input.value);
-        });
+        _this.saveEditBoxInput(inputCollection);
 
         // Make the remove button visible
         removeBtn.stop().slideDown(opt.slideAnimationDuration);
@@ -271,27 +351,78 @@
 
 
     },
-    createNewListItem:                function(id, title, http) {
-      var id        = typeof id !== 'undefined' ? id : this.getHighestId() + 1,
-          title     = typeof title !== 'undefined' ? title : 'Item ' + id,
-          http      = typeof http !== 'undefined' ? http : '',
-          el        = this.el,
-          opt       = this.options,
-          blueprint = el.find('.dd-item-blueprint').first().clone();
+    resolveInputDataEntryByName:      function(name) {
+      var item = this.el
+      opt = this.options,
 
-      blueprint.data('id', id);
+        item.find(opt.editBoxClass.dot().join('input')).each(function(i, input) {
+          if(input.getAttribute('name') === name) return $(input).data('name');
+        })
+    },
+    setItemTitle:                     function(item, title) {
+      var _this = this,
+          opt   = this.options;
+      item.find(opt.contentClass.dot().join('span')).first().text(title);
+    },
+    determineAndSetItemTitle:         function(item) {
+      var _this                                 = this,
+          opt                                   = this.options,
+          firstInputValue                       = item.find(opt.editBoxClass.dot().join('input')).val(),
+          itemDataValue                         = item.data(item.find('input, radio').first().attr('name')),
+          firstEditBoxInputPlaceholderValue     = item.find(opt.editBoxClass.dot().join('input')).first().attr('placeholder'),
+          firstEditBoxInputDataPlaceholderValue = item.find(opt.editBoxClass.dot().join('input')).first().data('placeholder');
+      var choice                                = firstInputValue || itemDataValue || _this.resolveToken(firstEditBoxInputDataPlaceholderValue) || firstEditBoxInputPlaceholderValue;
+
+      item.find(opt.contentClass.dot().join('span')).first().text(choice);
+    },
+    setInputCollectionPlaceholders:   function(inputCollection) {
+      var _this = this;
+      $(inputCollection).each(function(c, input) {
+        $(input).attr('placeholder', _this.resolveToken($(input).data('placeholder'), $(input)) || $(input).attr('placeholder'));
+      });
+    },
+    /**
+     * @todo unify inputCollection across the code
+     * @version-control +0.0.5 support dynamic inputs
+     * @verion-control +0.0.5 support tokenization
+     * @verion-control +0.0.2 support dyanmic titles
+     * @param data
+     * @returns {*}
+     */
+    createNewListItem:                function(data) {
+      var id              = typeof id !== 'undefined' ? id : this.getHighestId() + 1,
+          el              = this.el,
+          opt             = this.options,
+          blueprint       = el.find(opt.itemBlueprintClass.dot()).first().clone(),
+          inputCollection = blueprint.find(opt.editBoxClass.dot()).find('input, textarea, radiobox, checkbox, select');
+
+      // Use user supplied JSON data to fill the data fields
+      $.each(data || {}, function(key, value) {
+        blueprint.data(key, value);
+      });
+
+      // Rename yourself to the default itemClass
       blueprint.attr('class', opt.itemClass);
-      blueprint.find('span').first().text(title);
-      blueprint.find('input[name="title"]').first().val(title);
-      blueprint.data('title', title);
-      blueprint.find('input[name="http"]').first().val(http);
-      blueprint.data('http', http);
-      blueprint.find('.item-remove').first().on('click', function(e) {
+
+      // Save input state
+      this.saveEditBoxInput(inputCollection);
+
+      // Set title
+      this.determineAndSetItemTitle(blueprint);
+
+      // Parse tokens etc..
+      this.setInputCollectionPlaceholders(inputCollection);
+
+
+      // Set the remove button click event handler
+      blueprint.find(opt.removeBtnClass.dot()).first().on('click', function(e) {
         blueprint.remove();
       });
 
+      // Setup editing
       blueprint.find('span').first().get(0).addEventListener('click', this.clickStartEditEventHandler.bind(this));
 
+      // Give back a ready itemClass element
       return blueprint;
     },
     getHighestId:                     function() {
@@ -306,6 +437,10 @@
 
       return id;
     },
+    /**
+     * @version-control +0.0.2 itemClass li prefix support
+     * @returns {*}
+     */
     serialize:                        function() {
       var data,
           depth = 0,
@@ -314,12 +449,27 @@
         var array = [],
             items = level.children(list.options.itemNodeName);
         items.each(function() {
-          var li   = $(this),
-              item = $.extend({}, li.data()),
-              sub  = li.children(list.options.listNodeName);
+          var li           = $(this),
+              sub          = li.children(list.options.listNodeName),
+              filteredData = {};
+
+
+          // Filter out domenu_ prefixed data values
+          $.each(li.data(), function(key, i) {
+
+            // Skip when the prefix is present
+            if(key.indexOf('domenu_') === 0) return;
+
+            // Include the value if not skipped
+            filteredData[key] = li.data(key);
+          });
+
+          var item = $.extend({}, filteredData);
+
           if(sub.length) {
             item.children = step(sub, depth + 1);
           }
+
           array.push(item);
         });
         return array;
@@ -337,7 +487,7 @@
       var processItem = function(i, pref) {
         if(i.children) {
           var cref = $('<ol class="dd-list"></ol>'),
-              item = _this.createNewListItem(i.id, i.title, i.http);
+              item = _this.createNewListItem(i);
           pref.append(item);
           item.append(cref);
           _this.setParent(item, true);
@@ -345,7 +495,7 @@
             processItem(e, cref);
           })
         } else {
-          var item = _this.createNewListItem(i.id, i.title, i.http);
+          var item = _this.createNewListItem(i);
           pref.append(item);
         }
       }
@@ -494,7 +644,7 @@
         'top':  e.pageY - mouse.offsetY
       });
 
-      // what is the deepest element within dragEl?
+      // What is the deepest element within dragEl?
       var i, depth,
           items = this.dragEl.find(this.options.itemNodeName);
       for(i = 0; i < items.length; i++) {
@@ -610,7 +760,7 @@
         }
         // decrease horizontal level
         if(mouse.distX < 0) {
-          // we can't decrease a level if an item preceeds the current one
+          // we can't decrease a level if an item proceeds the current one
           next = this.placeEl.next(opt.itemNodeName);
           if(next.length) {
             this.placeEl.before(next);
@@ -748,7 +898,7 @@
    * @param params
    * @returns {*|PublicPlugin}
    */
-  // $('#domenu').domenu();
+    // $('#domenu').domenu();
   $.fn.domenu = function(params) {
     // jQuery DOM Element
     // <div class="dd" id="domenu">
