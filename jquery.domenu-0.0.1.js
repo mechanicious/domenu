@@ -17,6 +17,29 @@
   };
 
   /**
+   * For each chunk prepend the current string
+   * @param chunk
+   * @param knife
+   * @param innerGlue
+   * @param outerGlue
+   * @returns {string}
+   */
+  String.prototype.eachHas = function(chunk, knife, innerGlue, outerGlue) {
+    var subject   = this,
+        opt       = [],
+        knife     = knife || ', ',
+        innerGlue = innerGlue || ' ',
+        outerGlue = outerGlue || knife,
+        chunks    = chunk.split(knife);
+
+    chunks.forEach(function(chunk, c) {
+      opt.push(subject + innerGlue + chunk);
+    });
+
+    return opt.join(outerGlue);
+  };
+
+  /**
    * Pad a string with a specified value, till a min length has been reached
    * @param val
    * @param minLength
@@ -79,15 +102,29 @@
     emptyClass:             'dd-empty',
     contentClass:           'dd3-content',
     removeBtnClass:         'item-remove',
+    addBtnClass:            'dd-new-item',
     editBoxClass:           'dd-edit-box',
-    expandBtnHTML:          '<button data-action="expand" type="button">+</button>',
+    inputSelector:          'input, select, textarea',
+    expandBtnHTML:          '<button data-action="expand"   type="button">+</button>',
     collapseBtnHTML:        '<button data-action="collapse" type="button">-</button>',
-    editBtnHTML:            '<button data-action="edit" type="button">edit</button>',
+    editBtnHTML:            '<button data-action="edit"     type="button">edit</button>',
     data:                   '',
     slideAnimationDuration: 0,
     group:                  0,
     maxDepth:               5,
-    threshold:              20
+    threshold:              20,
+    onToJson:               [],
+    onParseJson:             [],
+    onDomenuInitialized:    [],
+    onSaveEditBoxInput:     [],
+    onItemDrag:             [],
+    onItemDrop:             [],
+    onItemAdded:            [],
+    onItemExpand:           [],
+    onItemCollapse:         [],
+    onItemRemoved:          [],
+    onItemStartEdit:        [],
+    onItemEndEdit:          []
   };
 
   function Plugin(element, options) {
@@ -145,12 +182,13 @@
       // Declaring some custom event handlers
       var onStartEvent = function(e) {
             var handle = $(e.target);
+
             // Identify if the object is draggable
             if(!handle.hasClass(list.options.handleClass)) {
-              if(handle.closest('.' + list.options.noDragClass).length) {
+              if(handle.closest(list.options.noDragClass.dot()).length) {
                 return;
               }
-              handle = handle.closest('.' + list.options.handleClass);
+              handle = handle.closest(list.options.handleClass.dot());
             }
 
             // If the element is not draggable, or is while dragging
@@ -198,14 +236,27 @@
       list.w.on('mousemove', onMoveEvent);
       list.w.on('mouseup', onEndEvent);
 
-      this.addNewListItemListener(this.el.find('.dd-new-item'));
+      this.addNewListItemListener(this.el.find(opt.addBtnClass.dot()));
     },
     addNewListItemListener:           function(addBtn, parent) {
       var _this = this,
           opt   = this.options;
       addBtn.on('click', function(e) {
-        $(opt.rootClass.dot()).find(opt.listClass.dot()).first().prepend(_this.createNewListItem());
-      })
+        var list = $(opt.rootClass.dot()).find(opt.listClass.dot()).first(),
+            item = _this.createNewListItem().css('display', 'none');
+        list.prepend(item);
+        item.fadeIn();
+
+        // Call item addition event listeners
+        opt.onItemAdded.forEach(function(cb, i) {
+          cb(item, e);
+        });
+      });
+
+      // Call init event listeners
+      opt.onDomenuInitialized.forEach(function(cb, i) {
+        cb();
+      });
     },
     /**
      * @version-control +0.0.1 lazy keypressEnterEndEditEventHandler binding
@@ -213,12 +264,13 @@
      * @version-control +0.0.2 slide animation duration support
      */
     clickStartEditEventHandler:       function(event) {
-      var opt    = this.options,
-          _this  = this,
-          spn    = $(event.target),
-          item   = spn.parents(opt.itemClass.dot()).first(),
-          rmvBtn = item.find(opt.removeBtnClass.dot()).first(),
-          edtBox = item.find(opt.editBoxClass.dot()).first();
+      var opt        = this.options,
+          _this      = this,
+          spn        = $(event.target),
+          item       = spn.parents(opt.itemClass.dot()).first(),
+          firstInput = item.find(opt.inputSelector).first(),
+          rmvBtn     = item.find(opt.removeBtnClass.dot()).first(),
+          edtBox     = item.find(opt.editBoxClass.dot()).first();
 
       var igniteKeypressEnterEndEditEventHandler = function(el) {
         el.each(function(c, item) {
@@ -236,11 +288,14 @@
       // Hide the span
       spn.stop().slideToggle(opt.slideAnimationDuration, function() {
 
+        // Use either the default title or the user specified title as the value for the input
+        if(firstInput.get(0).nodeName !== 'SELECT')
+          firstInput.val(spn.text());
+        else firstInput.val(firstInput.find('option:contains(' + spn.text() + ')').val());
+
+
         // Hide the remove button
         rmvBtn.stop().slideToggle(opt.slideAnimationDuration, function() {
-
-          // Use either the default title or the user specified title as the value for the input
-          if(spn.text() !== 'no title') edtBox.children('input[name="title"]').first().val(spn.text());
 
           // Show the edit panel
           edtBox.stop().slideToggle(opt.slideAnimationDuration, function() {
@@ -250,7 +305,12 @@
             igniteKeypressEnterEndEditEventHandler(item);
           });
         });
-      })
+      });
+
+      // Call start edit event listeners
+      opt.onItemStartEdit.forEach(function(cb, i) {
+        cb(item, event);
+      });
     },
     /**
      * @version-control +0.1.0 support default value tokens and placeholder tokens
@@ -262,7 +322,7 @@
       if(typeof token !== "string") return;
 
       var out       = token,
-          tagRegex  = /\{\?[a-z]+\}/ig,
+          tagRegex  = /\{\?[a-z\-\.]+\}/ig,
           tags      = out.match(tagRegex),
           tagsCount = tags && tags.length || 0;
 
@@ -271,21 +331,35 @@
 
         // Process each tag and replace it it in the output string
         switch(tags[currentTag]) {
-          case "{?date}":
+          case "{?date.gregorian-slashed-DMY}":
             var dateTime = new Date(Date.now()),
-                date     = dateTime.getDay().toString().padLength('0', 2) + '/' + dateTime.getMonth().toString().padLength('0', 2) + '/' + dateTime.getFullYear();
-            out          = out.replace('{?date}', date);
+                date     = dateTime.getDay().toString().padLength('0', 2) + '/' +
+                  dateTime.getMonth().toString().padLength('0', 2) + '/' +
+                  dateTime.getFullYear();
+
+            out = out.replace(tags[currentTag], date);
             break;
 
-          case "{?increment}":
+          case "{?date.mysql-datetime}":
+            var date = new Date(Date.now());
+            date     = date.getUTCFullYear() + '-' +
+              ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
+              ('00' + date.getUTCDate()).slice(-2) + ' ' +
+              ('00' + date.getUTCHours()).slice(-2) + ':' +
+              ('00' + date.getUTCMinutes()).slice(-2) + ':' +
+              ('00' + date.getUTCSeconds()).slice(-2);
+            out      = out.replace(tags[currentTag], date);
+            break;
+
+          case "{?numeric.increment}":
             // We begin with 1 - evaluate to true on check..
             this.incrementIncrement = this.incrementIncrement || 1;
-            out                     = out.replace('{?increment}', this.incrementIncrement);
+            out                     = out.replace(tags[currentTag], this.incrementIncrement);
             this.incrementIncrement += 1;
             break;
 
           case "{?value}":
-            out = out.replace('{?value}', input.value);
+            out = out.replace(tags[currentTag], input.value);
             break;
 
           default:
@@ -305,11 +379,16 @@
       var _this = this,
           opt   = this.options;
 
+      // Call on save edit box event listeners
+      opt.onSaveEditBoxInput.forEach(function(cb, i) {
+        cb(inputCollection);
+      });
+
       inputCollection.each(function(c, input) {
         var itemDataValue     = $(input).parents(opt.itemClass.dot().join(',').join(opt.itemBlueprintClass.dot())).first().data(input.getAttribute('name')),
             inputDefaultValue = $(input).data('default-value') || '',
             item              = $(input).parents(opt.itemClass.dot()).first();
-        if(! (itemDataValue || input.value)) var tokenizedDefault  = _this.resolveToken(inputDefaultValue, $(input));
+        if(!(itemDataValue || input.value)) var tokenizedDefault = _this.resolveToken(inputDefaultValue, $(input));
         item.data(input.getAttribute('name'), input.value || itemDataValue || tokenizedDefault);
       });
     },
@@ -324,7 +403,7 @@
           opt             = this.options,
           item            = $(event.target).parents(opt.itemClass.dot()).first(),
           edtBox          = item.find(opt.editBoxClass.dot()).first(),
-          inputCollection = item.find('input, textarea, radiobox, checkbox, select'),
+          inputCollection = item.find(opt.inputSelector),
           spn             = item.find('span').first(),
           removeBtn       = item.find(opt.removeBtnClass.dot());
 
@@ -334,6 +413,7 @@
       // Set title
       _this.determineAndSetItemTitle(item);
 
+      // Don't leave empty strings
       if(spn.text() === '') spn.text(_this.determineAndSetItemTitle(item));
 
       // Hide the edit box
@@ -344,6 +424,11 @@
 
         // Make the remove button visible
         removeBtn.stop().slideDown(opt.slideAnimationDuration);
+
+        // Call end edit event listeners
+        opt.onItemEndEdit.forEach(function(cb, i) {
+          cb(item, event);
+        });
 
         // Show the span content
         spn.stop().slideDown(opt.slideAnimationDuration);
@@ -367,11 +452,13 @@
     determineAndSetItemTitle:         function(item) {
       var _this                                 = this,
           opt                                   = this.options,
-          firstInputValue                       = item.find(opt.editBoxClass.dot().join('input')).val(),
-          itemDataValue                         = item.data(item.find('input, radio').first().attr('name')),
-          firstEditBoxInputPlaceholderValue     = item.find(opt.editBoxClass.dot().join('input')).first().attr('placeholder'),
-          firstEditBoxInputDataPlaceholderValue = item.find(opt.editBoxClass.dot().join('input')).first().data('placeholder');
-      var choice                                = firstInputValue || itemDataValue || _this.resolveToken(firstEditBoxInputDataPlaceholderValue) || firstEditBoxInputPlaceholderValue;
+          firstInput                            = item.find(opt.inputSelector).first(),
+          firstInputText                        = firstInput.find('option:selected').first().text() || firstInput.text(),
+          firstInputValue                       = item.find(opt.editBoxClass.dot().eachHas(opt.inputSelector)).first().val(),
+          itemDataValue                         = item.data(item.find(opt.inputSelector).first().attr('name')),
+          firstEditBoxInputPlaceholderValue     = item.find(opt.editBoxClass.dot().eachHas(opt.inputSelector)).first().attr('placeholder'),
+          firstEditBoxInputDataPlaceholderValue = item.find(opt.editBoxClass.dot().eachHas(opt.inputSelector)).first().data('placeholder'),
+          choice                                = firstInputText || firstInputValue || itemDataValue || _this.resolveToken(firstEditBoxInputDataPlaceholderValue) || firstEditBoxInputPlaceholderValue;
 
       item.find(opt.contentClass.dot().join('span')).first().text(choice);
     },
@@ -382,7 +469,6 @@
       });
     },
     /**
-     * @todo unify inputCollection across the code
      * @version-control +0.0.5 support dynamic inputs
      * @version-control +0.0.5 support tokenization
      * @version-control +0.0.2 support dyanmic titles
@@ -394,7 +480,7 @@
           el              = this.el,
           opt             = this.options,
           blueprint       = el.find(opt.itemBlueprintClass.dot()).first().clone(),
-          inputCollection = blueprint.find(opt.editBoxClass.dot()).find('input, textarea, radiobox, checkbox, select');
+          inputCollection = blueprint.find(opt.editBoxClass.dot()).find(opt.inputSelector);
 
       // Use user supplied JSON data to fill the data fields
       $.each(data || {}, function(key, value) {
@@ -413,10 +499,14 @@
       // Parse tokens etc..
       this.setInputCollectionPlaceholders(inputCollection);
 
-
       // Set the remove button click event handler
       blueprint.find(opt.removeBtnClass.dot()).first().on('click', function(e) {
         blueprint.remove();
+
+        // Call item remove event listeners
+        opt.onItemRemoved.forEach(function(cb, i) {
+          cb(blueprint, e);
+        });
       });
 
       // Setup editing
@@ -442,6 +532,11 @@
      * @returns {*}
      */
     serialize:                        function() {
+      // Call toJson event listeners
+      this.options.onToJson.forEach(function(cb, i) {
+        cb();
+      });
+
       var data,
           depth = 0,
           list  = this;
@@ -480,13 +575,19 @@
     deserialize:                      function(data, override) {
       var data  = JSON.parse(data) || JSON.parse(this.options.data),
           _this = this,
-          list  = _this.el.find('.dd-list').first();
+          opt   = this.options,
+          list  = _this.el.find(opt.listClass.dot()).first();
+
+      // Call start edit event listeners
+      this.options.onParseJson.forEach(function(cb, i) {
+        cb();
+      });
 
       if(override) list.children().remove();
 
       var processItem = function(i, pref) {
         if(i.children) {
-          var cref = $('<ol class="dd-list"></ol>'),
+          var cref = $('<ol class="' + opt.listClass + '"></ol>'),
               item = _this.createNewListItem(i);
           pref.append(item);
           item.append(cref);
@@ -542,6 +643,11 @@
       li.children('[data-action="expand"]').hide();
       li.children('[data-action="collapse"]').show();
       li.children(this.options.listNodeName).show();
+
+      // Call start edit event listeners
+      this.options.onItemExpand.forEach(function(cb, i) {
+        cb(li);
+      });
     },
 
     collapseItem: function(li) {
@@ -552,6 +658,11 @@
         li.children('[data-action="expand"]').show();
         li.children(this.options.listNodeName).hide();
       }
+
+      // Call start edit event listeners
+      this.options.onItemCollapse.forEach(function(cb, i) {
+        cb(li);
+      });
     },
 
     expandAll: function(cb) {
@@ -595,8 +706,8 @@
         li.prepend($(this.options.expandBtnHTML));
         li.prepend($(this.options.collapseBtnHTML));
         // make sure handle is the first element
-        var handle = li.find('.' + this.options.handleClass).first().clone();
-        li.find('.' + this.options.handleClass).first().remove();
+        var handle = li.find(this.options.handleClass.dot()).first().clone();
+        li.find(this.options.handleClass.dot()).first().remove();
         li.prepend(handle);
       }
       // If the selector gets targeted within the li element
@@ -614,6 +725,7 @@
       var mouse    = this.mouse,
           target   = $(e.target),
           dragItem = target.closest(this.options.itemNodeName);
+
       this.placeEl.css('height', dragItem.height());
 
       mouse.offsetX = e.offsetX !== undefined ? e.offsetX : e.pageX - target.offset().left;
@@ -653,6 +765,11 @@
           this.dragDepth = depth;
         }
       }
+
+      // Call start drag event listeners
+      this.options.onItemDrag.forEach(function(cb, i) {
+        cb(dragItem, e);
+      });
     },
     dragStop:  function(e) {
       var el = this.dragEl.children(this.options.itemNodeName).first();
@@ -665,6 +782,11 @@
         this.dragRootEl.trigger('change');
       }
       this.reset();
+
+      // Call end drag event listeners
+      this.options.onItemDrop.forEach(function(cb, i) {
+        cb(el, e);
+      });
     },
 
     dragMove: function(e) {
@@ -796,7 +918,7 @@
       }
 
       // find parent list of item under cursor
-      var pointElRoot = this.pointEl.closest('.' + opt.rootClass),
+      var pointElRoot = this.pointEl.closest(opt.rootClass.dot()),
           isNewRoot   = this.dragRootEl.data('domenu-id') !== pointElRoot.data('domenu-id');
 
       /**
@@ -845,10 +967,7 @@
   /**
    * Works like a proxy to Plugin prototype.
    * Separates the API of the developer from the API
-   * of the user, so we can change whatever we'd like
-   * in the future.
-   * @param {Object, Plugin} plugin
-   * @param {????} lists  [????] (don't have time to check, can't recall)
+   * of the user.
    */
   function PublicPlugin(plugin, lists) {
     if(!plugin) throw new TypeError('expected object, got ' + typeof plugin);
@@ -857,42 +976,180 @@
   }
 
   PublicPlugin.prototype = {
-    getLists:     function(params) {
+    getLists:            function(params) {
       return this._lists;
     },
-    parseJson:    function(data, override) {
+    parseJson:           function(data, override) {
       var data = data || null, override = override || false;
       this._plugin.deserialize(data, override);
       return this;
     },
-    toJson:       function() {
+    toJson:              function() {
       var data = this._plugin.serialize();
       return JSON.stringify(data);
     },
-    expandAll:    function() {
+    expandAll:           function() {
       this._plugin.expandAll();
       return this;
     },
-    collapseAll:  function() {
+    collapseAll:         function() {
       this._plugin.collapseAll();
       return this;
     },
-    expand:       function(cb) {
+    expand:              function(cb) {
       this._plugin.expandAll(cb);
       return this;
     },
-    collapse:     function(cb) {
+    collapse:            function(cb) {
       this._plugin.collapseAll(cb);
       return this;
     },
-    getListNodes: function(cb) {
+    /**
+     * @desc  Listen toParse calls
+     * @callback-params
+     * @callback-context PublicPlugin
+     * @param callback
+     * @dev-since 0.0.1
+     * @version-control +0.1.0 feature onParseJson event listener
+     * @returns {PublicPlugin}
+     */
+    onParseJson: function(callback) {
+      var _this = this;
+      _this._plugin.options.onParseJson.push(callback.bind(_this));
+      return _this;
+    },
+    /**
+     * @desc Listen to toJson calls
+     * @callback-params
+     * @callback-context PublicPlugin
+     * @param callback
+     * @dev-since 0.0.1
+     * @version-control +0.1.0 feature listen to toJson calls
+     * @returns {PublicPlugin}
+     */
+    onToJson: function(callback) {
+      var _this = this;
+      _this._plugin.options.onToJson.push(callback.bind(_this));
+      return _this;
+    },
+    /**
+     * @desc Listen for save events
+     * @callback-params jQueryCollection inputCollection
+     * @callback-context PublicPlugin
+     * @param callback
+     * @dev-since 0.0.1
+     * @version-control +0.1.0 feature listen for editBoxSave events
+     * @returns {PublicPlugin}
+     */
+    onSaveEditBoxInput: function(callback) {
+      var _this = this;
+      _this._plugin.options.onSaveEditBoxInput.push(callback.bind(_this));
+      return _this;
+    },
+    /**
+     * @desc Fires when user starts to drag an item
+     * @callback-params jQueryCollection dragItem, MouseEvent event
+     * @callback-context PublicPlugin
+     * @param callback
+     * @dev-since 0.0.1
+     * @version-control +0.1.0 feature listen for itemDrag events
+     * @returns {PublicPlugin}
+     */
+    onItemDrag:          function(callback) {
+      var _this = this;
+      _this._plugin.options.onItemDrag.push(callback.bind(_this));
+      return _this;
+    },
+    /**
+     * @desc Fires when the user stops to drag an item
+     * @callback-params jQueryCollection dragItem, MouseEvent event
+     * @callback-context PublicPlugin
+     * @param callback
+     * @dev-since 0.0.1
+     * @version-control +0.1.0 feature listen from itemDrop events
+     * @returns {PublicPlugin}
+     */
+    onItemDrop:          function(callback) {
+      var _this = this;
+      _this._plugin.options.onItemDrop.push(callback.bind(_this));
+      return _this;
+    },
+    /**
+     * @desc Fires when an item has been added to the list
+     * @callback-params jQueryCollection item, MouseEvent event
+     * @callback-context PublicPlugin
+     * @param callback
+     * @dev-since 0.0.1
+     * @version-control +0.1.0 feature listen for itemAdded events
+     * @returns {PublicPlugin}
+     */
+    onItemAdded:         function(callback) {
+      var _this = this;
+      _this._plugin.options.onItemAdded.push(callback.bind(_this));
+      return _this;
+    },
+    /**
+     * @desc Fires when an item has been removed
+     * @callback-params jQueryCollection item, MouseEvent event
+     * @callback-context PublicPlugin
+     * @param callback
+     * @dev-since 0.0.1
+     * @version-control +0.1.0 feature listen for itemRemoved events
+     * @returns {PublicPlugin}
+     */
+    onItemRemoved:       function(callback) {
+      var _this = this;
+      this._plugin.options.onItemRemoved.push(callback.bind(_this));
+      return _this;
+    },
+    /**
+     * @desc Fires when an item is entering the edit mode
+     * @callback-params jQueryCollection item, MouseEvent event
+     * @callback-context PublicPlugin
+     * @param callback
+     * @dev-since 0.0.1
+     * @version-control +0.1.0 feature listen for itemStartEdit events
+     * @returns {PublicPlugin}
+     */
+    onItemStartEdit:     function(callback) {
+      var _this = this;
+      this._plugin.options.onItemStartEdit.push(callback.bind(_this));
+      return _this;
+    },
+    /**
+     * @desc Fires when an item is exiting the edit mode
+     * @callback-params jQueryCollection item, MouseEvent event
+     * @callback-context PublicPlugin
+     * @param callback
+     * @dev-since 0.0.1
+     * @version-control +0.1.0 feature listen for itemEndEdit events
+     * @returns {PublicPlugin}
+     */
+    onItemEndEdit:       function(callback) {
+      var _this = this;
+      this._plugin.options.onItemEndEdit.push(callback.bind(_this));
+      return _this;
+    },
+
+    getListNodes: function() {
       var opt       = this._plugin.options,
           listNodes = this._plugin.el.find(opt.listNodeName);
       return listNodes;
+    },
+
+    /**
+     * @desc Get the current plugin configuration
+     * @dev-since 0.0.1
+     * @version-control +0.1.0 feature get current plugin configuration
+     * @returns Object
+     */
+    getPluginOptions: function() {
+      return this._plugin.options;
     }
-  }
+  };
 
   /**
+   * @dev-since 0.0.1
    * @version-control +0.0.1 unused variables cleanup
    * @version-control +0.0.1
    * @param params
@@ -908,8 +1165,8 @@
     // $('#example').domenu() jQuery will assign $('#example') to this
     // within this function
 
-    lists      = this.first();
-    var retval = null,
+    var lists  = this.first(),
+        retval = null,
         domenu = $(this),
         plugin, pPlugin;
 
@@ -918,17 +1175,18 @@
       // each sets this, to the current element in iteration
       if(!domenu.data("domenu")) {
         // Binds new Plugin to $('#domenu').data('domenu')... with specified params
-        domenu.data("domenu", new Plugin(this, params));
+        var pl = new Plugin(this, params);
+        domenu.data("domenu", pl);
         domenu.data("domenu-id", new Date().getTime());
       }
       else {
         if(typeof params === 'string') {
           if(typeof pPlugin[params] === 'function') {
             // proxy
-            var retval = pPlugin[params]();
+            retval = pPlugin[params]();
           }
           else if(typeof plugin[params] === 'function') {
-            var retval = plugin[params]();
+            retval = plugin[params]();
           }
         }
       }

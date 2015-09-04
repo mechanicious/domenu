@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a8c1451-f60f-43c7-a726-7d0d7930c8dc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jquery.domenu-0.0.1.js" afterPath="$PROJECT_DIR$/jquery.domenu-0.0.1.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="domenu.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,26 +26,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="jquery.domenu-0.0.1.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="jquery.domenu-0.0.1.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jquery.domenu-0.0.1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="14.041667">
-              <caret line="63" column="75" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="75" />
-              <caret line="210" column="76" selection-start-line="210" selection-start-column="7" selection-end-line="210" selection-end-column="76" />
-              <caret line="211" column="63" selection-start-line="211" selection-start-column="7" selection-end-line="211" selection-end-column="63" />
-              <caret line="212" column="63" selection-start-line="212" selection-start-column="7" selection-end-line="212" selection-end-column="63" />
-              <caret line="255" column="82" selection-start-line="255" selection-start-column="7" selection-end-line="255" selection-end-column="82" />
-              <caret line="299" column="61" selection-start-line="299" selection-start-column="7" selection-end-line="299" selection-end-column="61" />
-              <caret line="300" column="45" selection-start-line="300" selection-start-column="7" selection-end-line="300" selection-end-column="45" />
-              <caret line="316" column="45" selection-start-line="316" selection-start-column="7" selection-end-line="316" selection-end-column="45" />
-              <caret line="317" column="53" selection-start-line="317" selection-start-column="7" selection-end-line="317" selection-end-column="53" />
-              <caret line="318" column="63" selection-start-line="318" selection-start-column="7" selection-end-line="318" selection-end-column="63" />
-              <caret line="385" column="53" selection-start-line="385" selection-start-column="7" selection-end-line="385" selection-end-column="53" />
-              <caret line="386" column="51" selection-start-line="386" selection-start-column="7" selection-end-line="386" selection-end-column="51" />
-              <caret line="387" column="53" selection-start-line="387" selection-start-column="7" selection-end-line="387" selection-end-column="53" />
-              <caret line="440" column="58" selection-start-line="440" selection-start-column="7" selection-end-line="440" selection-end-column="58" />
-              <caret line="895" column="53" selection-start-line="895" selection-start-column="5" selection-end-line="895" selection-end-column="53" />
-              <caret line="896" column="28" selection-start-line="896" selection-start-column="5" selection-end-line="896" selection-end-column="28" />
+            <state vertical-scroll-proportion="-7.3461537">
+              <caret line="247" column="0" selection-start-line="247" selection-start-column="0" selection-end-line="247" selection-end-column="22" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jquery-1.11.3.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jquery-1.11.3.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.3461537">
+              <caret line="2240" column="84" selection-start-line="2240" selection-start-column="81" selection-end-line="2240" selection-end-column="84" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -53,14 +53,31 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.72">
-              <caret line="309" column="161" selection-start-line="309" selection-start-column="161" selection-end-line="309" selection-end-column="161" />
+            <state vertical-scroll-proportion="-19.4">
+              <caret line="55" column="35" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jquery.domenu-0.0.1.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/jquery.domenu-0.0.1.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.725">
+              <caret line="220" column="19" selection-start-line="220" selection-start-column="19" selection-end-line="220" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -70,6 +87,7 @@
       <list>
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/jquery.domenu-0.0.1.js" />
+        <option value="$PROJECT_DIR$/jquery.domenu-0.0.1.css" />
       </list>
     </option>
   </component>
@@ -83,7 +101,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="5" />
     <option name="y" value="114" />
-    <option name="width" value="1421" />
+    <option name="width" value="1426" />
     <option name="height" value="737" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -157,6 +175,7 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -189,6 +208,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
       <method />
     </configuration>
   </component>
@@ -206,25 +231,25 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="5" y="114" width="1421" height="737" extended-state="0" />
+    <frame x="5" y="114" width="1426" height="737" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24626334" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24539007" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24982001" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -244,6 +269,24 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/jquery.domenu-0.0.1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="309" column="161" selection-start-line="309" selection-start-column="161" selection-end-line="309" selection-end-column="161" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33222038">
@@ -252,54 +295,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jquery-1.11.3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36227044">
-          <caret line="2966" column="22" selection-start-line="2966" selection-start-column="21" selection-end-line="2966" selection-end-column="22" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMEvents.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33222038">
           <caret line="168" column="0" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.72">
-          <caret line="309" column="161" selection-start-line="309" selection-start-column="161" selection-end-line="309" selection-end-column="161" />
+        <state vertical-scroll-proportion="-19.4">
+          <caret line="55" column="35" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jquery-1.11.3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.3461537">
+          <caret line="2240" column="84" selection-start-line="2240" selection-start-column="81" selection-end-line="2240" selection-end-column="84" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jquery.domenu-0.0.1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="14.041667">
-          <caret line="63" column="75" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="75" />
-          <caret line="210" column="76" selection-start-line="210" selection-start-column="7" selection-end-line="210" selection-end-column="76" />
-          <caret line="211" column="63" selection-start-line="211" selection-start-column="7" selection-end-line="211" selection-end-column="63" />
-          <caret line="212" column="63" selection-start-line="212" selection-start-column="7" selection-end-line="212" selection-end-column="63" />
-          <caret line="255" column="82" selection-start-line="255" selection-start-column="7" selection-end-line="255" selection-end-column="82" />
-          <caret line="299" column="61" selection-start-line="299" selection-start-column="7" selection-end-line="299" selection-end-column="61" />
-          <caret line="300" column="45" selection-start-line="300" selection-start-column="7" selection-end-line="300" selection-end-column="45" />
-          <caret line="316" column="45" selection-start-line="316" selection-start-column="7" selection-end-line="316" selection-end-column="45" />
-          <caret line="317" column="53" selection-start-line="317" selection-start-column="7" selection-end-line="317" selection-end-column="53" />
-          <caret line="318" column="63" selection-start-line="318" selection-start-column="7" selection-end-line="318" selection-end-column="63" />
-          <caret line="385" column="53" selection-start-line="385" selection-start-column="7" selection-end-line="385" selection-end-column="53" />
-          <caret line="386" column="51" selection-start-line="386" selection-start-column="7" selection-end-line="386" selection-end-column="51" />
-          <caret line="387" column="53" selection-start-line="387" selection-start-column="7" selection-end-line="387" selection-end-column="53" />
-          <caret line="440" column="58" selection-start-line="440" selection-start-column="7" selection-end-line="440" selection-end-column="58" />
-          <caret line="895" column="53" selection-start-line="895" selection-start-column="5" selection-end-line="895" selection-end-column="53" />
-          <caret line="896" column="28" selection-start-line="896" selection-start-column="5" selection-end-line="896" selection-end-column="28" />
+        <state vertical-scroll-proportion="-7.3461537">
+          <caret line="247" column="0" selection-start-line="247" selection-start-column="0" selection-end-line="247" selection-end-column="22" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jquery.domenu-0.0.1.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.725">
+          <caret line="220" column="19" selection-start-line="220" selection-start-column="19" selection-end-line="220" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
