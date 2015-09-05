@@ -1,6 +1,8 @@
 ##doMenu
 Specialized version of Nestable plugin, for back-end hierahical menu creation.
-Originally created for Paperclip CMS.
+
+##### Next ★ milestone 
+Help us reach [★ 80](https://www.javascripting.com/submit) and get applied to the Javascripting family!
 
 ##Quick Overiew
 - [Demo](https://github.com/mechanicious/domenu#demo)
