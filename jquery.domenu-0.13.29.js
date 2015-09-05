@@ -1,6 +1,6 @@
 /**
  * @license Copyright © 2015 Mateusz Zawartka
- * @version 0.0.1
+ * @version 0.13.29
  * MIT license
  */
 
@@ -85,6 +85,7 @@
 
   /**
    * @version-control +0.1.0  slide animation duration option, default is 0
+   * @version-control +0.0.1  max depth default set to 20
    * @type {{listNodeName: string, itemNodeName: string, rootClass: string, listClass: string, itemClass: string, dragClass: string, handleClass: string, collapsedClass: string, placeClass: string, noDragClass: string, emptyClass: string, contentClass: string, removeBtnClass: string, editBoxClass: string, expandBtnHTML: string, collapseBtnHTML: string, editBtnHTML: string, data: string, slideAnimationDuration: number, group: number, maxDepth: number, threshold: number}}
    */
   var defaults = {
@@ -111,10 +112,10 @@
     data:                   '',
     slideAnimationDuration: 0,
     group:                  0,
-    maxDepth:               5,
+    maxDepth:               20,
     threshold:              20,
     onToJson:               [],
-    onParseJson:             [],
+    onParseJson:            [],
     onDomenuInitialized:    [],
     onSaveEditBoxInput:     [],
     onItemDrag:             [],
