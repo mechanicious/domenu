@@ -674,13 +674,16 @@
         else list.expandItem($(this));
       });
     },
-
+    /**
+     * @version-control +0.0.1 collapse all fix
+     * @param cb
+     */
     collapseAll: function(cb) {
       var list = this;
       list.el.find(list.options.itemNodeName).each(function() {
         var item = $(this);
         if(cb && cb(item)) list.collapseItem(item);
-        else list.expandItem(item);
+        else list.collapseItem(item);
       });
     },
 
