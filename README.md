@@ -6,7 +6,7 @@ Originally created for Paperclip CMS.
 - [Demo](https://github.com/mechanicious/domenu#demo)
 - [Quick API Reference](https://github.com/mechanicious/domenu#quick-api-reference)
 - [Options](https://github.com/mechanicious/domenu#options)
-- [Tokens (beta)](https://github.com/mechanicious/domenu/tree/master#tokens-beta-request-a-token)
+- [Tokens (beta)](https://github.com/mechanicious/domenu#tokens-beta-request-a-token)
 - [Attributes](https://github.com/mechanicious/domenu#attributes)
 - [New Features in v0.13.29](https://github.com/mechanicious/domenu#new-features-in-v01329)
 - [Migrating from v0.0.1 to v0.13.19](https://github.com/mechanicious/domenu#migrating-from-v001-to-v01319)
