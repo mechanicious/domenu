@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0a8c1451-f60f-43c7-a726-7d0d7930c8dc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+    </list>
+    <ignored path="domenu.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="domenu" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="jquery.domenu-0.13.29.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="86" column="75" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="75" />
+              <caret line="87" column="57" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="57" />
+              <caret line="262" column="76" selection-start-line="262" selection-start-column="7" selection-end-line="262" selection-end-column="76" />
+              <caret line="263" column="63" selection-start-line="263" selection-start-column="7" selection-end-line="263" selection-end-column="63" />
+              <caret line="264" column="63" selection-start-line="264" selection-start-column="7" selection-end-line="264" selection-end-column="63" />
+              <caret line="316" column="82" selection-start-line="316" selection-start-column="7" selection-end-line="316" selection-end-column="82" />
+              <caret line="374" column="61" selection-start-line="374" selection-start-column="7" selection-end-line="374" selection-end-column="61" />
+              <caret line="375" column="45" selection-start-line="375" selection-start-column="7" selection-end-line="375" selection-end-column="45" />
+              <caret line="396" column="45" selection-start-line="396" selection-start-column="7" selection-end-line="396" selection-end-column="45" />
+              <caret line="397" column="53" selection-start-line="397" selection-start-column="7" selection-end-line="397" selection-end-column="53" />
+              <caret line="398" column="63" selection-start-line="398" selection-start-column="7" selection-end-line="398" selection-end-column="63" />
+              <caret line="472" column="53" selection-start-line="472" selection-start-column="7" selection-end-line="472" selection-end-column="53" />
+              <caret line="473" column="51" selection-start-line="473" selection-start-column="7" selection-end-line="473" selection-end-column="51" />
+              <caret line="474" column="53" selection-start-line="474" selection-start-column="7" selection-end-line="474" selection-end-column="53" />
+              <caret line="531" column="58" selection-start-line="531" selection-start-column="7" selection-end-line="531" selection-end-column="58" />
+              <caret line="1013" column="65" selection-start-line="1013" selection-start-column="7" selection-end-line="1013" selection-end-column="65" />
+              <caret line="1027" column="61" selection-start-line="1027" selection-start-column="7" selection-end-line="1027" selection-end-column="61" />
+              <caret line="1041" column="68" selection-start-line="1041" selection-start-column="7" selection-end-line="1041" selection-end-column="68" />
+              <caret line="1055" column="65" selection-start-line="1055" selection-start-column="7" selection-end-line="1055" selection-end-column="65" />
+              <caret line="1069" column="66" selection-start-line="1069" selection-start-column="7" selection-end-line="1069" selection-end-column="66" />
+              <caret line="1083" column="66" selection-start-line="1083" selection-start-column="7" selection-end-line="1083" selection-end-column="66" />
+              <caret line="1097" column="68" selection-start-line="1097" selection-start-column="7" selection-end-line="1097" selection-end-column="68" />
+              <caret line="1111" column="70" selection-start-line="1111" selection-start-column="7" selection-end-line="1111" selection-end-column="70" />
+              <caret line="1125" column="68" selection-start-line="1125" selection-start-column="7" selection-end-line="1125" selection-end-column="68" />
+              <caret line="1143" column="71" selection-start-line="1143" selection-start-column="7" selection-end-line="1143" selection-end-column="71" />
+              <caret line="1153" column="53" selection-start-line="1153" selection-start-column="5" selection-end-line="1153" selection-end-column="53" />
+              <caret line="1154" column="28" selection-start-line="1154" selection-start-column="5" selection-end-line="1154" selection-end-column="28" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2508711">
+              <caret line="59" column="35" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jquery.domenu-0.13.29.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="220" column="19" selection-start-line="220" selection-start-column="19" selection-end-line="220" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/jquery.domenu-0.0.1.css" />
+        <option value="$PROJECT_DIR$/jquery.domenu-0.0.1.js" />
+        <option value="$PROJECT_DIR$/jquery.domenu-0.13.29.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="5" />
+    <option name="y" value="115" />
+    <option name="width" value="1427" />
+    <option name="height" value="736" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>CSS</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>CoffeeScript</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="domenu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="domenu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="domenu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript.Linters" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="159" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="176" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="183" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="862" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="180" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="169" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="176" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="855" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/jquery-1.11.3.js" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="JsTestDriver-test-runner" factoryName="JsTestDriver">
+      <setting name="configLocationType" value="CONFIG_FILE" />
+      <setting name="settingsFile" value="" />
+      <setting name="serverType" value="INTERNAL" />
+      <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0a8c1451-f60f-43c7-a726-7d0d7930c8dc" name="Default" comment="" />
+      <created>1441213196904</created>
+      <option name="number" value="Default" />
+      <updated>1441213196904</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="5" y="115" width="1427" height="736" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24521616" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32747602" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24982001" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="309" column="161" selection-start-line="309" selection-start-column="161" selection-end-line="309" selection-end-column="161" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33222038">
+          <caret line="4614" column="0" selection-start-line="4614" selection-start-column="0" selection-end-line="4614" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMEvents.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33222038">
+          <caret line="168" column="0" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="220" column="19" selection-start-line="220" selection-start-column="19" selection-end-line="220" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="86" column="75" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="75" />
+          <caret line="87" column="57" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="57" />
+          <caret line="262" column="76" selection-start-line="262" selection-start-column="7" selection-end-line="262" selection-end-column="76" />
+          <caret line="263" column="63" selection-start-line="263" selection-start-column="7" selection-end-line="263" selection-end-column="63" />
+          <caret line="264" column="63" selection-start-line="264" selection-start-column="7" selection-end-line="264" selection-end-column="63" />
+          <caret line="316" column="82" selection-start-line="316" selection-start-column="7" selection-end-line="316" selection-end-column="82" />
+          <caret line="374" column="61" selection-start-line="374" selection-start-column="7" selection-end-line="374" selection-end-column="61" />
+          <caret line="375" column="45" selection-start-line="375" selection-start-column="7" selection-end-line="375" selection-end-column="45" />
+          <caret line="396" column="45" selection-start-line="396" selection-start-column="7" selection-end-line="396" selection-end-column="45" />
+          <caret line="397" column="53" selection-start-line="397" selection-start-column="7" selection-end-line="397" selection-end-column="53" />
+          <caret line="398" column="63" selection-start-line="398" selection-start-column="7" selection-end-line="398" selection-end-column="63" />
+          <caret line="472" column="53" selection-start-line="472" selection-start-column="7" selection-end-line="472" selection-end-column="53" />
+          <caret line="473" column="51" selection-start-line="473" selection-start-column="7" selection-end-line="473" selection-end-column="51" />
+          <caret line="474" column="53" selection-start-line="474" selection-start-column="7" selection-end-line="474" selection-end-column="53" />
+          <caret line="531" column="58" selection-start-line="531" selection-start-column="7" selection-end-line="531" selection-end-column="58" />
+          <caret line="1013" column="65" selection-start-line="1013" selection-start-column="7" selection-end-line="1013" selection-end-column="65" />
+          <caret line="1027" column="61" selection-start-line="1027" selection-start-column="7" selection-end-line="1027" selection-end-column="61" />
+          <caret line="1041" column="68" selection-start-line="1041" selection-start-column="7" selection-end-line="1041" selection-end-column="68" />
+          <caret line="1055" column="65" selection-start-line="1055" selection-start-column="7" selection-end-line="1055" selection-end-column="65" />
+          <caret line="1069" column="66" selection-start-line="1069" selection-start-column="7" selection-end-line="1069" selection-end-column="66" />
+          <caret line="1083" column="66" selection-start-line="1083" selection-start-column="7" selection-end-line="1083" selection-end-column="66" />
+          <caret line="1097" column="68" selection-start-line="1097" selection-start-column="7" selection-end-line="1097" selection-end-column="68" />
+          <caret line="1111" column="70" selection-start-line="1111" selection-start-column="7" selection-end-line="1111" selection-end-column="70" />
+          <caret line="1125" column="68" selection-start-line="1125" selection-start-column="7" selection-end-line="1125" selection-end-column="68" />
+          <caret line="1143" column="71" selection-start-line="1143" selection-start-column="7" selection-end-line="1143" selection-end-column="71" />
+          <caret line="1153" column="53" selection-start-line="1153" selection-start-column="5" selection-end-line="1153" selection-end-column="53" />
+          <caret line="1154" column="28" selection-start-line="1154" selection-start-column="5" selection-end-line="1154" selection-end-column="28" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2508711">
+          <caret line="59" column="35" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
