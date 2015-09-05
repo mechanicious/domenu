@@ -3,14 +3,14 @@ Specialized version of Nestable plugin, for back-end hierahical menu creation.
 Originally created for Paperclip CMS.
 
 ##Quick Overiew
-- [Demo](Demo)
-- [Quick API Reference](Quick API Reference)
-- [Options](Options)
-- [Tokens (beta)](Tokens (beta))
-- [Attributes](Attributes)
-- [New Features in v0.13.29](New Features in v0.13.29)
-- [Migrating from v0.0.1 to v0.13.19](Migrating from v0.0.1 to v0.13.19)
-- [License & Credits](License & Credits)
+- [Demo](/#Demo)
+- [Quick API Reference](/#Quick API Reference)
+- [Options](/#Options)
+- [Tokens (beta)](/#Tokens (beta))
+- [Attributes](/#Attributes)
+- [New Features in v0.13.29](/#New Features in v0.13.29)
+- [Migrating from v0.0.1 to v0.13.19](/#Migrating from v0.0.1 to v0.13.19)
+- [License & Credits](/#License & Credits)
 
 ### Demo
 ---
