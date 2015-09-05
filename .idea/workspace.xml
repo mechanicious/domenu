@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a8c1451-f60f-43c7-a726-7d0d7930c8dc" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery.domenu-0.13.29.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
       <change type="MOVED" beforePath="C:\Users\John\Documents\GitHub\domenu\jquery.domenu-0.0.1.bat" afterPath="$PROJECT_DIR$/jquery.domenu-0.13.29.bat" />
       <change type="MOVED" beforePath="C:\Users\John\Documents\GitHub\domenu\jquery.domenu-0.0.1.css" afterPath="$PROJECT_DIR$/jquery.domenu-0.13.29.css" />
       <change type="MOVED" beforePath="C:\Users\John\Documents\GitHub\domenu\jquery.domenu-0.0.1.js" afterPath="$PROJECT_DIR$/jquery.domenu-0.13.29.js" />
@@ -31,9 +33,37 @@
       <file leaf-file-name="jquery.domenu-0.13.29.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.104712">
-              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-              <folding />
+            <state vertical-scroll-proportion="32.45576">
+              <caret line="86" column="75" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="75" />
+              <caret line="87" column="57" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="57" />
+              <caret line="262" column="76" selection-start-line="262" selection-start-column="7" selection-end-line="262" selection-end-column="76" />
+              <caret line="263" column="63" selection-start-line="263" selection-start-column="7" selection-end-line="263" selection-end-column="63" />
+              <caret line="264" column="63" selection-start-line="264" selection-start-column="7" selection-end-line="264" selection-end-column="63" />
+              <caret line="316" column="82" selection-start-line="316" selection-start-column="7" selection-end-line="316" selection-end-column="82" />
+              <caret line="374" column="61" selection-start-line="374" selection-start-column="7" selection-end-line="374" selection-end-column="61" />
+              <caret line="375" column="45" selection-start-line="375" selection-start-column="7" selection-end-line="375" selection-end-column="45" />
+              <caret line="396" column="45" selection-start-line="396" selection-start-column="7" selection-end-line="396" selection-end-column="45" />
+              <caret line="397" column="53" selection-start-line="397" selection-start-column="7" selection-end-line="397" selection-end-column="53" />
+              <caret line="398" column="63" selection-start-line="398" selection-start-column="7" selection-end-line="398" selection-end-column="63" />
+              <caret line="472" column="53" selection-start-line="472" selection-start-column="7" selection-end-line="472" selection-end-column="53" />
+              <caret line="473" column="51" selection-start-line="473" selection-start-column="7" selection-end-line="473" selection-end-column="51" />
+              <caret line="474" column="53" selection-start-line="474" selection-start-column="7" selection-end-line="474" selection-end-column="53" />
+              <caret line="531" column="58" selection-start-line="531" selection-start-column="7" selection-end-line="531" selection-end-column="58" />
+              <caret line="1013" column="65" selection-start-line="1013" selection-start-column="7" selection-end-line="1013" selection-end-column="65" />
+              <caret line="1027" column="61" selection-start-line="1027" selection-start-column="7" selection-end-line="1027" selection-end-column="61" />
+              <caret line="1041" column="68" selection-start-line="1041" selection-start-column="7" selection-end-line="1041" selection-end-column="68" />
+              <caret line="1055" column="65" selection-start-line="1055" selection-start-column="7" selection-end-line="1055" selection-end-column="65" />
+              <caret line="1069" column="66" selection-start-line="1069" selection-start-column="7" selection-end-line="1069" selection-end-column="66" />
+              <caret line="1083" column="66" selection-start-line="1083" selection-start-column="7" selection-end-line="1083" selection-end-column="66" />
+              <caret line="1097" column="68" selection-start-line="1097" selection-start-column="7" selection-end-line="1097" selection-end-column="68" />
+              <caret line="1111" column="70" selection-start-line="1111" selection-start-column="7" selection-end-line="1111" selection-end-column="70" />
+              <caret line="1125" column="68" selection-start-line="1125" selection-start-column="7" selection-end-line="1125" selection-end-column="68" />
+              <caret line="1143" column="71" selection-start-line="1143" selection-start-column="7" selection-end-line="1143" selection-end-column="71" />
+              <caret line="1153" column="53" selection-start-line="1153" selection-start-column="5" selection-end-line="1153" selection-end-column="53" />
+              <caret line="1154" column="28" selection-start-line="1154" selection-start-column="5" selection-end-line="1154" selection-end-column="28" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -278,7 +308,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -333,9 +365,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.104712">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding />
+        <state vertical-scroll-proportion="32.45576">
+          <caret line="86" column="75" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="75" />
+          <caret line="87" column="57" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="57" />
+          <caret line="262" column="76" selection-start-line="262" selection-start-column="7" selection-end-line="262" selection-end-column="76" />
+          <caret line="263" column="63" selection-start-line="263" selection-start-column="7" selection-end-line="263" selection-end-column="63" />
+          <caret line="264" column="63" selection-start-line="264" selection-start-column="7" selection-end-line="264" selection-end-column="63" />
+          <caret line="316" column="82" selection-start-line="316" selection-start-column="7" selection-end-line="316" selection-end-column="82" />
+          <caret line="374" column="61" selection-start-line="374" selection-start-column="7" selection-end-line="374" selection-end-column="61" />
+          <caret line="375" column="45" selection-start-line="375" selection-start-column="7" selection-end-line="375" selection-end-column="45" />
+          <caret line="396" column="45" selection-start-line="396" selection-start-column="7" selection-end-line="396" selection-end-column="45" />
+          <caret line="397" column="53" selection-start-line="397" selection-start-column="7" selection-end-line="397" selection-end-column="53" />
+          <caret line="398" column="63" selection-start-line="398" selection-start-column="7" selection-end-line="398" selection-end-column="63" />
+          <caret line="472" column="53" selection-start-line="472" selection-start-column="7" selection-end-line="472" selection-end-column="53" />
+          <caret line="473" column="51" selection-start-line="473" selection-start-column="7" selection-end-line="473" selection-end-column="51" />
+          <caret line="474" column="53" selection-start-line="474" selection-start-column="7" selection-end-line="474" selection-end-column="53" />
+          <caret line="531" column="58" selection-start-line="531" selection-start-column="7" selection-end-line="531" selection-end-column="58" />
+          <caret line="1013" column="65" selection-start-line="1013" selection-start-column="7" selection-end-line="1013" selection-end-column="65" />
+          <caret line="1027" column="61" selection-start-line="1027" selection-start-column="7" selection-end-line="1027" selection-end-column="61" />
+          <caret line="1041" column="68" selection-start-line="1041" selection-start-column="7" selection-end-line="1041" selection-end-column="68" />
+          <caret line="1055" column="65" selection-start-line="1055" selection-start-column="7" selection-end-line="1055" selection-end-column="65" />
+          <caret line="1069" column="66" selection-start-line="1069" selection-start-column="7" selection-end-line="1069" selection-end-column="66" />
+          <caret line="1083" column="66" selection-start-line="1083" selection-start-column="7" selection-end-line="1083" selection-end-column="66" />
+          <caret line="1097" column="68" selection-start-line="1097" selection-start-column="7" selection-end-line="1097" selection-end-column="68" />
+          <caret line="1111" column="70" selection-start-line="1111" selection-start-column="7" selection-end-line="1111" selection-end-column="70" />
+          <caret line="1125" column="68" selection-start-line="1125" selection-start-column="7" selection-end-line="1125" selection-end-column="68" />
+          <caret line="1143" column="71" selection-start-line="1143" selection-start-column="7" selection-end-line="1143" selection-end-column="71" />
+          <caret line="1153" column="53" selection-start-line="1153" selection-start-column="5" selection-end-line="1153" selection-end-column="53" />
+          <caret line="1154" column="28" selection-start-line="1154" selection-start-column="5" selection-end-line="1154" selection-end-column="28" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
