@@ -84,8 +84,10 @@
   })();
 
   /**
-   * @version-control +0.1.0  slide animation duration option, default is 0
-   * @version-control +0.0.1  max depth default set to 20
+   * @version-control +0.1.0 slide animation duration option, default is 0
+   * @version-control +0.0.1 max depth default set to 20
+   * @dev-since 0.13.29
+   * @version-control +0.1.0 endItemEditBtnClass option
    * @type {{listNodeName: string, itemNodeName: string, rootClass: string, listClass: string, itemClass: string, dragClass: string, handleClass: string, collapsedClass: string, placeClass: string, noDragClass: string, emptyClass: string, contentClass: string, removeBtnClass: string, editBoxClass: string, expandBtnHTML: string, collapseBtnHTML: string, editBtnHTML: string, data: string, slideAnimationDuration: number, group: number, maxDepth: number, threshold: number}}
    */
   var defaults = {
@@ -103,6 +105,7 @@
     emptyClass:             'dd-empty',
     contentClass:           'dd3-content',
     removeBtnClass:         'item-remove',
+    endEditBtnClass:        'end-edit',
     addBtnClass:            'dd-new-item',
     editBoxClass:           'dd-edit-box',
     inputSelector:          'input, select, textarea',
@@ -260,6 +263,18 @@
       });
     },
     /**
+     * @dev-since 0.13.29
+     * @version-control 0.0.5 support end edit on click
+     * @param event
+     */
+    clickEndEditEventHandler: function(item) {
+      var _this = this,
+          opt = _this.options,
+          endEditBtn = item.find(opt.endEditBtnClass.dot()).first();
+
+      endEditBtn.on('click', _this.keypressEnterEndEditEventHandler.bind($.extend(_this, {forced: true})));
+    },
+    /**
      * @version-control +0.0.1 lazy keypressEnterEndEditEventHandler binding
      * @version-control +0.0.1 prevent slide animation bubbling
      * @version-control +0.0.2 slide animation duration support
@@ -285,6 +300,14 @@
           item.on('keypress', keypressEnterEndEditEventHandler.bind(_this));
         });
       };
+
+
+      // Setup on click endEdit event listener
+      if(item.data('domenu_clickEndEditEventHandler') !== true)
+      {
+        _this.clickEndEditEventHandler(item);
+        item.data('domenu_clickEndEditEventHandler', true);
+      }
 
       // Hide the span
       spn.stop().slideToggle(opt.slideAnimationDuration, function() {
@@ -397,6 +420,8 @@
      * @version-control +0.1.0 dynamic inputs
      * @version-control +0.0.1 prevent slide bubbling
      * @version-control +0.0.2 slide animation duration support
+     * @dev-since 0.13.29
+     * @version-control +0.0.1 removeBtn first
      * @param event
      */
     keypressEnterEndEditEventHandler: function(event) {
@@ -406,10 +431,10 @@
           edtBox          = item.find(opt.editBoxClass.dot()).first(),
           inputCollection = item.find(opt.inputSelector),
           spn             = item.find('span').first(),
-          removeBtn       = item.find(opt.removeBtnClass.dot());
+          removeBtn       = item.find(opt.removeBtnClass.dot()).first();
 
-      // Listen only to the Enter key
-      if(event.keyCode !== 13) return;
+      // Listen only to the Enter key, unless you'll forced otherwise
+      if(event.keyCode !== 13 && ! _this.forced) return;
 
       // Set title
       _this.determineAndSetItemTitle(item);
@@ -510,7 +535,7 @@
         });
       });
 
-      // Setup editing
+      // Setup editing; on every mouse click clickStartEditEventHandler will be called
       blueprint.find('span').first().get(0).addEventListener('click', this.clickStartEditEventHandler.bind(this));
 
       // Give back a ready itemClass element
