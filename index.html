@@ -63,7 +63,12 @@
                         <div class="dd-handle dd3-handle">Drag</div>
                             <div class="dd3-content">
                                 <span>[item_name]</span>
-                                <button class="item-remove">&times;</button>
+                                <!-- @migrating-from 0.13.29 button container-->
+                                <div class="button-container">
+                                    <!-- @migrating-from 0.13.29 add button-->
+                                    <button class="item-add">+</button>
+                                    <button class="item-remove" data-confirm-class="item-remove-confirm">&times;</button>
+                                </div>
                                 <div class="dd-edit-box" style="display: none;">
                                     <!-- data-placeholder has a higher priority than placeholder -->
                                     <!-- data-placeholder can use token-values; when not present will be set to "" -->
@@ -113,6 +118,7 @@
         };
 
         $('#domenu').domenu({
+            slideAnimationDuration: 350,
             onDomenuInitialized: [function() {
                 console.log('event: onDomenuInitialized', 'arguments:', arguments, 'context:', this);
             }],
@@ -144,6 +150,9 @@
                 })
                 .onItemEndEdit(function() {
                     console.log('event: onItemEndEdit', 'arguments:', arguments, 'context:', this);
+                })
+                .onItemAddChildItem(function() {
+                    console.log('event: onItemAddChildItem', 'arguments:', arguments, 'context:', this);
                 });
     });
     </script>

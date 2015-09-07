@@ -106,14 +106,28 @@
     color: black;
 }
 
-.dd-item .item-remove {
+/* @since > 0.13.29 */
+.dd-item .item-remove,
+.dd-item .item-remove-confirm,
+.dd-item .item-add {
+    outline: none;
+    display: inline-block;
+}
+
+.item-remove-confirm {
+    background: #ffce66;
+}
+
+.dd-item .button-container {
     position: absolute;
     right: 7px;
     height: 19px;
     padding: 0 5px;
     top: 6px;
-    overflow: auto;
+    overflow: visible;
 }
+
+/* end @since > 0.13.29 */
 
 .dd3-item > button:first-child {margin-left: 30px;}
 
