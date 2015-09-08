@@ -87,9 +87,10 @@
    * @version-control +0.1.0 slide animation duration option, default is 0
    * @version-control +0.0.1 max depth default set to 20
    * @dev-since 0.13.29
-   * @version-control +0.1.0 endItemEditBtnClass option
-   * @version-control +0.1.0 itemAddBtnClass option
-   * @version-control +0.1.0 refuseConfirmDelay (ms) option, default is 2000ms
+   * @version-control +0.1.0 option endItemEditBtnClass
+   * @version-control +0.1.0 option itemAddBtnClass
+   * @version-control +0.1.0 option refuseConfirmDelay (ms), default is 2000ms
+   * @version-control +0.1.0 option addBtnSelector
    * @type {{listNodeName: string, itemNodeName: string, rootClass: string, listClass: string, itemClass: string, dragClass: string, handleClass: string, collapsedClass: string, placeClass: string, noDragClass: string, emptyClass: string, contentClass: string, removeBtnClass: string, editBoxClass: string, expandBtnHTML: string, collapseBtnHTML: string, editBtnHTML: string, data: string, slideAnimationDuration: number, group: number, maxDepth: number, threshold: number}}
    */
   var defaults = {
@@ -106,9 +107,10 @@
     noDragClass:            'dd-nodrag',
     emptyClass:             'dd-empty',
     contentClass:           'dd3-content',
-    removeBtnClass:         'item-remove',
     itemAddBtnClass:        'item-add',
+    removeBtnClass:         'item-remove',
     endEditBtnClass:        'end-edit',
+    addBtnSelector:         '',
     addBtnClass:            'dd-new-item',
     editBoxClass:           'dd-edit-box',
     inputSelector:          'input, select, textarea',
@@ -245,8 +247,17 @@
       list.w.on('mousemove', onMoveEvent);
       list.w.on('mouseup', onEndEvent);
 
-      this.addNewListItemListener(this.el.find(opt.addBtnClass.dot()));
+      // @dev-since >0.13.29
+      // @version-control +0.1.0 support global add button selector
+      if(opt.addBtnSelector) this.addNewListItemListener($(opt.addBtnSelector));
+      else this.addNewListItemListener(this.el.find(opt.addBtnClass.dot()));
     },
+    /**
+     * @dev-since >0.13.29
+     * @version-control +0.1.0 default add button removed
+     * @param addBtn
+     * @param parent
+     */
     addNewListItemListener:           function(addBtn, parent) {
       var _this = this,
           opt   = this.options;
@@ -277,7 +288,7 @@
           opt = _this.options,
           endEditBtn = item.find(opt.endEditBtnClass.dot()).first();
 
-      endEditBtn.on('click', _this.keypressEnterEndEditEventHandler.bind($.extend(_this, {forced: true})));
+      endEditBtn.on('click', _this.keypressEnterEndEditEventHandler.bind(_this, true));
     },
     /**
      * @version-control +0.0.1 lazy keypressEnterEndEditEventHandler binding
@@ -432,7 +443,7 @@
      * @version-control +0.0.2 support add button
      * @param event
      */
-    keypressEnterEndEditEventHandler: function(event) {
+    keypressEnterEndEditEventHandler: function(event, forced) {
       var _this           = this,
           opt             = this.options,
           item            = $(event.target).parents(opt.itemClass.dot()).first(),
@@ -443,7 +454,7 @@
           addBtn          = item.find(opt.itemAddBtnClass.dot()).first();
 
       // Listen only to the Enter key, unless you'll forced otherwise
-      if(event.keyCode !== 13 && ! _this.forced) return;
+      if(event.keyCode !== 13 && ! forced) return;
 
       // Set title
       _this.determineAndSetItemTitle(item);
@@ -513,6 +524,7 @@
      * @dev-since 0.13.29
      * @version-control +0.1.0 feature confirm item deletion
      * @version-control +0.1.0 feature add a child item
+     * @version-control +0.0.1 support itemAddChildItem onItemAdded events
      * @param data
      * @returns {*}
      */
@@ -558,7 +570,7 @@
 
             // but only for a limited amount of time
             var revertAddClass = setTimeout(function() {
-              rmvBtn.removeClass()
+              rmvBtn.removeClass(confirmClass);
             }, opt.refuseConfirmDelay);
           }
 
@@ -576,6 +588,11 @@
       // Set the add button click event handler
       blueprint.find(opt.itemAddBtnClass.dot()).first().on('click', function(event) {
         _this.itemAddChildItem(blueprint);
+
+        // Call item addition event listeners
+        opt.onItemAdded.forEach(function(cb, i) {
+          cb(blueprint, event);
+        });
 
         // Call item add child item event listeners
         opt.onItemAddChildItem .forEach(function(cb, i) {
@@ -1253,6 +1270,8 @@
    * @dev-since 0.0.1
    * @version-control +0.0.1 unused variables cleanup
    * @version-control +0.0.1
+   * @dev-since >0.13.29
+   * @version-control +0.0.5 random key generation improvements
    * @param params
    * @returns {*|PublicPlugin}
    */
@@ -1276,9 +1295,12 @@
       // each sets this, to the current element in iteration
       if(!domenu.data("domenu")) {
         // Binds new Plugin to $('#domenu').data('domenu')... with specified params
-        var pl = new Plugin(this, params);
+        var pl = new Plugin(this, params),
+
+            // Generate a random float, ..., and strip everything which is not a number
+            pseudoRandomNumericKey = Math.random().toString().replace(/\D/g, '');
         domenu.data("domenu", pl);
-        domenu.data("domenu-id", new Date().getTime());
+        domenu.data("domenu-id", pseudoRandomNumericKey);
       }
       else {
         if(typeof params === 'string') {

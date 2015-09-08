@@ -1,2 +1,2 @@
 // get all version control tags which are preceeded by @dev-since..
-(?<=@dev-since 0.13.29\n).*(@version-control.*)*
+(?<=@dev-since >?0.13.29\n).*(@version-control.*)*

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a8c1451-f60f-43c7-a726-7d0d7930c8dc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/find.regex" afterPath="$PROJECT_DIR$/find.regex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jquery.domenu-0.13.29.css" afterPath="$PROJECT_DIR$/jquery.domenu-0.13.29.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jquery.domenu-0.13.29.js" afterPath="$PROJECT_DIR$/jquery.domenu-0.13.29.js" />
@@ -26,14 +27,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="jquery.domenu-0.13.29.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5644599">
+              <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jquery.domenu-0.13.29.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="13.103506">
-              <caret line="89" column="55" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="55" />
-              <caret line="271" column="55" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="55" />
-              <caret line="430" column="46" selection-start-line="430" selection-start-column="0" selection-end-line="430" selection-end-column="46" />
-              <caret line="513" column="60" selection-start-line="513" selection-start-column="0" selection-end-line="513" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="456" column="35" selection-start-line="456" selection-start-column="35" selection-end-line="456" selection-end-column="35" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -41,31 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="find.regex" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/find.regex">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.2">
-              <caret line="155" column="19" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="jquery.domenu-0.13.29.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.96153843">
-              <caret line="112" column="18" selection-start-line="112" selection-start-column="18" selection-end-line="112" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="108" column="22" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -90,8 +80,8 @@
         <option value="$PROJECT_DIR$/jquery.domenu-0.0.1.js" />
         <option value="$PROJECT_DIR$/find.regex" />
         <option value="$PROJECT_DIR$/jquery.domenu-0.13.29.css" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/jquery.domenu-0.13.29.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -103,9 +93,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="5" />
+    <option name="x" value="6" />
     <option name="y" value="115" />
-    <option name="width" value="1417" />
+    <option name="width" value="1416" />
     <option name="height" value="736" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -150,7 +140,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -171,7 +161,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -265,10 +255,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="5" y="115" width="1417" height="736" extended-state="0" />
+    <frame x="6" y="115" width="1416" height="736" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24696645" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24714285" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -303,6 +293,52 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="91" column="36" selection-start-line="91" selection-start-column="36" selection-end-line="91" selection-end-column="36" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="112" column="18" selection-start-line="112" selection-start-column="18" selection-end-line="112" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="112" column="18" selection-start-line="112" selection-start-column="18" selection-end-line="112" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -319,7 +355,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="48" selection-start-line="1" selection-start-column="48" selection-end-line="1" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -327,7 +362,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="82" column="140" selection-start-line="82" selection-start-column="140" selection-end-line="82" selection-end-column="140" />
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -355,7 +392,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="48" selection-start-line="1" selection-start-column="48" selection-end-line="1" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -363,7 +399,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="82" column="140" selection-start-line="82" selection-start-column="140" selection-end-line="82" selection-end-column="140" />
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -416,7 +454,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -442,7 +482,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -468,7 +510,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="309" column="161" selection-start-line="309" selection-start-column="161" selection-end-line="309" selection-end-column="161" />
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -498,43 +542,40 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6928214">
           <caret line="7629" column="12" selection-start-line="7629" selection-start-column="12" selection-end-line="7629" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.96153843">
-          <caret line="112" column="18" selection-start-line="112" selection-start-column="18" selection-end-line="112" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.2">
-          <caret line="155" column="19" selection-start-line="155" selection-start-column="19" selection-end-line="155" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/find.regex">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.030050084">
+          <caret line="1" column="27" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.css">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="48" />
+          <caret line="108" column="22" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="13.103506">
-          <caret line="89" column="55" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="55" />
-          <caret line="271" column="55" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="55" />
-          <caret line="430" column="46" selection-start-line="430" selection-start-column="0" selection-end-line="430" selection-end-column="46" />
-          <caret line="513" column="60" selection-start-line="513" selection-start-column="0" selection-end-line="513" selection-end-column="60" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="456" column="35" selection-start-line="456" selection-start-column="35" selection-end-line="456" selection-end-column="35" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5644599">
+          <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
