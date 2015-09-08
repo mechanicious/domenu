@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a8c1451-f60f-43c7-a726-7d0d7930c8dc" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blueprint.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flat.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/presentation.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/find.regex" afterPath="$PROJECT_DIR$/find.regex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jquery.domenu-0.13.29.css" afterPath="$PROJECT_DIR$/jquery.domenu-0.13.29.css" />
@@ -27,10 +30,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5644599">
+            <state vertical-scroll-proportion="-12.96">
               <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -39,11 +42,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jquery.domenu-0.13.29.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="jquery.domenu-0.13.29.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="456" column="35" selection-start-line="456" selection-start-column="35" selection-end-line="456" selection-end-column="35" />
+            <state vertical-scroll-proportion="1.293823">
+              <caret line="89" column="55" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="55" />
+              <caret line="250" column="67" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="67" />
+              <caret line="256" column="57" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="57" />
+              <caret line="282" column="55" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="55" />
+              <caret line="441" column="46" selection-start-line="441" selection-start-column="0" selection-end-line="441" selection-end-column="46" />
+              <caret line="524" column="60" selection-start-line="524" selection-start-column="0" selection-end-line="524" selection-end-column="60" />
+              <caret line="1242" column="73" selection-start-line="1242" selection-start-column="0" selection-end-line="1242" selection-end-column="73" />
+              <caret line="1273" column="63" selection-start-line="1273" selection-start-column="0" selection-end-line="1273" selection-end-column="63" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -545,13 +555,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/find.regex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.030050084">
-          <caret line="1" column="27" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -560,22 +563,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="456" column="35" selection-start-line="456" selection-start-column="35" selection-end-line="456" selection-end-column="35" />
+        <state vertical-scroll-proportion="-12.96">
+          <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/find.regex">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5644599">
-          <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.030050084">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.293823">
+          <caret line="89" column="55" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="55" />
+          <caret line="250" column="67" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="67" />
+          <caret line="256" column="57" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="57" />
+          <caret line="282" column="55" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="55" />
+          <caret line="441" column="46" selection-start-line="441" selection-start-column="0" selection-end-line="441" selection-end-column="46" />
+          <caret line="524" column="60" selection-start-line="524" selection-start-column="0" selection-end-line="524" selection-end-column="60" />
+          <caret line="1242" column="73" selection-start-line="1242" selection-start-column="0" selection-end-line="1242" selection-end-column="73" />
+          <caret line="1273" column="63" selection-start-line="1273" selection-start-column="0" selection-end-line="1273" selection-end-column="63" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
