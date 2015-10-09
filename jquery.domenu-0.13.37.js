@@ -1,6 +1,6 @@
 /**
  * @license Copyright © 2015 Mateusz Zawartka
- * @version 0.13.29
+ * @version 0.13.37
  * MIT license
  */
 
@@ -390,7 +390,7 @@
             inputDefaultValue = $(input).data('default-value') || '',
             item              = $(input).parents(opt.itemClass.dot()).first();
         if(!(itemDataValue || input.value)) var tokenizedDefault = _this.resolveToken(inputDefaultValue, $(input));
-        item.data(input.getAttribute('name'), input.value || itemDataValue || tokenizedDefault);
+        item.data(input.getAttribute('name'), $(input).val()|| itemDataValue || tokenizedDefault);
       });
     },
     /**
@@ -441,7 +441,7 @@
       var item = this.el
       opt = this.options,
 
-        item.find(opt.editBoxClass.dot().join('input')).each(function(i, input) {
+        item.find(opt.editBoxClass.dot().join(opt.inputSelector)).each(function(i, input) {
           if(input.getAttribute('name') === name) return $(input).data('name');
         })
     },
@@ -463,9 +463,20 @@
 
       item.find(opt.contentClass.dot().join('span')).first().text(choice);
     },
-    setInputCollectionPlaceholders:   function(inputCollection) {
+    /**
+     * @version-control +0.0.4 fix/enchancement fill inputs with placeholders #3
+     * @param item
+     * @param inputCollection
+     */
+    setInputCollectionPlaceholders:   function(item, inputCollection) {
       var _this = this;
       $(inputCollection).each(function(c, input) {
+        if(input.nodeName === 'SELECT')
+        {
+          $(input).find('option[selected="selected"]').removeAttr('selected');
+          return $(input).find('option[value="' + item.data($(input).attr('name')) + '"]').attr('selected', 'selected');
+        }
+
         $(input).attr('placeholder', _this.resolveToken($(input).data('placeholder'), $(input)) || $(input).attr('placeholder'));
       });
     },
@@ -473,6 +484,7 @@
      * @version-control +0.0.5 support dynamic inputs
      * @version-control +0.0.5 support tokenization
      * @version-control +0.0.2 support dyanmic titles
+     * @version-control +0.0.4 fix/enchancement fill inputs with placeholders #3
      * @param data
      * @returns {*}
      */
@@ -491,6 +503,9 @@
       // Rename yourself to the default itemClass
       blueprint.attr('class', opt.itemClass);
 
+      // Set intial input values (needed on deserialization)
+      this.setInputCollectionPlaceholders(blueprint, inputCollection);
+
       // Save input state
       this.saveEditBoxInput(inputCollection);
 
@@ -498,7 +513,7 @@
       this.determineAndSetItemTitle(blueprint);
 
       // Parse tokens etc..
-      this.setInputCollectionPlaceholders(inputCollection);
+      this.setInputCollectionPlaceholders(blueprint, inputCollection);
 
       // Set the remove button click event handler
       blueprint.find(opt.removeBtnClass.dot()).first().on('click', function(e) {
