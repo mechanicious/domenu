@@ -11,7 +11,7 @@ Help us reach [★ 80](https://www.javascripting.com/submit) and get applied to 
 - [Tokens (beta)](https://github.com/mechanicious/domenu#tokens-beta-request-a-token)
 - [Attributes](https://github.com/mechanicious/domenu#attributes)
 - [New Features in v0.13.29](https://github.com/mechanicious/domenu#new-features-in-v01329)
-- [Migrating from v0.0.1 to v0.13.19](https://github.com/mechanicious/domenu#migrating-from-v001-to-v01319)
+- [Migrating from v0.0.1 to v0.13.29](https://github.com/mechanicious/domenu#migrating-from-v001-to-v01319)
 - [License & Credits](https://github.com/mechanicious/domenu#license--credits)
 
 ### Demo
@@ -106,6 +106,9 @@ Use tokens inside of your `data-placeholder` and `data-default-value` attributes
 - `data-placeholder` works like the `placeholder` attribute but has a higher priority and supports `Tokens`
 - `data-default-value` the value of this attribute will be use by `toJson` as a default `value` when no use supplied `value` is present
 
+### v0.13.37
+- Fix autofill inputs see [#3](https://github.com/mechanicious/domenu/issues/3)
+
 ### New Features in v0.13.29
 ---
 - Dynamic inputs – you can add your own `input` `select` and `textarea` fields of any kind; doMenu will handle them all
@@ -116,7 +119,7 @@ Use tokens inside of your `data-placeholder` and `data-default-value` attributes
 
 [for more technical information see the dev branch...](https://github.com/mechanicious/domenu/tree/dev)
 
-### Migrating from v0.0.1 to v0.13.19
+### Migrating from v0.0.1 to v0.13.29
 ---
 Just replace your old plugin files with v0.13.29 plugin files; and enjoy the new features!
 
