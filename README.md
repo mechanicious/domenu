@@ -16,7 +16,7 @@ Help us reach [★ 80](https://www.javascripting.com/submit) and get applied to 
 
 ### Demo
 ---
-[doMenu v0.13.29](http://mechanicious.github.io/domenu/)
+[demo doMenu](http://mechanicious.github.io/domenu/)
 
 [![](https://github.com/mechanicious/domenu/blob/gh-pages/domenu-0.0.1-gif.gif?raw=true)](http://mechanicious.github.io/domenu/)
 [![](https://raw.githubusercontent.com/mechanicious/domenu/gh-pages/do-menu-events.gif)](http://mechanicious.github.io/domenu/)
