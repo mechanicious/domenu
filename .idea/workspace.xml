@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a8c1451-f60f-43c7-a726-7d0d7930c8dc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jquery.domenu-0.13.29.js" afterPath="$PROJECT_DIR$/jquery.domenu-0.13.29.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="0a8c1451-f60f-43c7-a726-7d0d7930c8dc" name="Default" comment="" />
     <ignored path="domenu.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,10 +21,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-51.12">
+            <state vertical-scroll-proportion="-0.15017667">
               <caret line="92" column="52" selection-start-line="92" selection-start-column="52" selection-end-line="92" selection-end-column="52" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -56,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jquery.domenu-0.13.29.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="jquery.domenu-0.13.29.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.460177">
-              <caret line="445" column="50" selection-start-line="0" selection-start-column="0" selection-end-line="1340" selection-end-column="0" />
+            <state vertical-scroll-proportion="-4.8461537">
+              <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -618,16 +615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-51.12">
-          <caret line="92" column="52" selection-start-line="92" selection-start-column="52" selection-end-line="92" selection-end-column="52" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -646,10 +633,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.460177">
-          <caret line="445" column="50" selection-start-line="0" selection-start-column="0" selection-end-line="1340" selection-end-column="0" />
+        <state vertical-scroll-proportion="-4.8461537">
+          <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.15017667">
+          <caret line="92" column="52" selection-start-line="92" selection-start-column="52" selection-end-line="92" selection-end-column="52" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
