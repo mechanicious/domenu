@@ -9,9 +9,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
         <title>jQuery doMenu Plugin</title>
-        <!--<link rel="stylesheet" type="text/css" href="blueprint.css"/>-->
-        <link rel="stylesheet" type="text/css" href="flat.css"/>
-        <link rel="stylesheet" type="text/css" href="presentation.css"/>
+        <link rel="stylesheet" type="text/css" href="blueprint.css"/>
+        <!-- <link rel="stylesheet" type="text/css" href="flat.css"/>-->
+         <!-- <link rel="stylesheet" type="text/css" href="presentation.css"/>-->
     </head>
     <style>
         .cf:after {
@@ -80,6 +80,8 @@
                             <!-- data-placeholder can use token-values; when not present will be set to "" -->
                             <!-- data-default-value specifies a default value for the input; when not present will be set to "" -->
                             <input type="text" name="title" autocomplete="off" placeholder="Item" data-placeholder="Any nice idea for the title?" data-default-value="Flat Glass no. {?numeric.increment}">
+                            <input type="text" name="tagline" autocomplete="off" placeholder="tagline" data-placeholder="">
+                            <input type="text" name="test" autocomplete="off" placeholder="test" data-placeholder="">
                             <select name="superselect">
                                 <option>select something...</option>
                                 <optgroup label="Pages">
@@ -87,8 +89,8 @@
                                     <option value="2">http://example.com/page/2</option>
                                 </optgroup>
                                 <optgroup label="Categories">
-                                    <option value="1">News</option>
-                                    <option value="2">Stories</option>
+                                    <option value="3">News</option>
+                                    <option value="4">Stories</option>
                                 </optgroup>
                             </select>
                             <!-- @migrating-from 0.13.29 an element ".end-edit" within ".dd-edit-box" exists the edit mode on click -->

@@ -431,7 +431,7 @@
             inputDefaultValue = $(input).data('default-value') || '',
             item              = $(input).parents(opt.itemClass.dot()).first();
         if(!(itemDataValue || input.value)) var tokenizedDefault = _this.resolveToken(inputDefaultValue, $(input));
-        item.data(input.getAttribute('name'), input.value || itemDataValue || tokenizedDefault);
+        item.data(input.getAttribute('name'), $(input).val()|| itemDataValue || tokenizedDefault);
       });
     },
     /**
@@ -489,7 +489,7 @@
       var item = this.el
       opt = this.options,
 
-        item.find(opt.editBoxClass.dot().join('input')).each(function(i, input) {
+        item.find(opt.editBoxClass.dot().join(opt.inputSelector)).each(function(i, input) {
           if(input.getAttribute('name') === name) return $(input).data('name');
         })
     },
@@ -511,10 +511,25 @@
 
       item.find(opt.contentClass.dot().join('span')).first().text(choice);
     },
-    setInputCollectionPlaceholders:   function(inputCollection) {
+    /**
+     * @dev-since 0.13.29
+     * @version-control +0.0.4 fix/enchancement fill inputs with placeholders #3
+     * @version-control +0.1.0 fix/enchancement populate inputs with values whenever possible #5
+     * @param item
+     * @param inputCollection
+     */
+    setInputCollectionPlaceholders:   function(item, inputCollection) {
       var _this = this;
       $(inputCollection).each(function(c, input) {
+        if(input.nodeName === 'SELECT')
+        {
+          $(input).find('option[selected="selected"]').removeAttr('selected');
+          return $(input).find('option[value="' + item.data($(input).attr('name')) + '"]').attr('selected', 'selected');
+        }
+        // Set the placeholder value of the input
         $(input).attr('placeholder', _this.resolveToken($(input).data('placeholder'), $(input)) || $(input).attr('placeholder'));
+        // And set the value of the input
+        $(input).val(item.data($(input).attr('name')));
       });
     },
     /**
@@ -543,6 +558,9 @@
 
       // Rename yourself to the default itemClass
       blueprint.attr('class', opt.itemClass);
+
+      // Set intial input values (needed on deserialization)
+      this.setInputCollectionPlaceholders(blueprint, inputCollection);
 
       // Save input state
       this.saveEditBoxInput(inputCollection);

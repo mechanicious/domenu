@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a8c1451-f60f-43c7-a726-7d0d7930c8dc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blueprint.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flat.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/presentation.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/find.regex" afterPath="$PROJECT_DIR$/find.regex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jquery.domenu-0.13.29.css" afterPath="$PROJECT_DIR$/jquery.domenu-0.13.29.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jquery.domenu-0.13.29.js" afterPath="$PROJECT_DIR$/jquery.domenu-0.13.29.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -33,8 +28,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.96">
-              <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
+            <state vertical-scroll-proportion="-51.12">
+              <caret line="92" column="52" selection-start-line="92" selection-start-column="52" selection-end-line="92" selection-end-column="52" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -42,18 +37,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="blueprint.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blueprint.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flat.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flat.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="jquery.domenu-0.13.29.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.293823">
-              <caret line="89" column="55" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="55" />
-              <caret line="250" column="67" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="67" />
-              <caret line="256" column="57" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="57" />
-              <caret line="282" column="55" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="55" />
-              <caret line="441" column="46" selection-start-line="441" selection-start-column="0" selection-end-line="441" selection-end-column="46" />
-              <caret line="524" column="60" selection-start-line="524" selection-start-column="0" selection-end-line="524" selection-end-column="60" />
-              <caret line="1242" column="73" selection-start-line="1242" selection-start-column="0" selection-end-line="1242" selection-end-column="73" />
-              <caret line="1273" column="63" selection-start-line="1273" selection-start-column="0" selection-end-line="1273" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.17935702">
+              <caret line="514" column="25" selection-start-line="514" selection-start-column="25" selection-end-line="514" selection-end-column="25" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -90,8 +98,8 @@
         <option value="$PROJECT_DIR$/jquery.domenu-0.0.1.js" />
         <option value="$PROJECT_DIR$/find.regex" />
         <option value="$PROJECT_DIR$/jquery.domenu-0.13.29.css" />
-        <option value="$PROJECT_DIR$/jquery.domenu-0.13.29.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/jquery.domenu-0.13.29.js" />
       </list>
     </option>
   </component>
@@ -104,9 +112,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="6" />
-    <option name="y" value="115" />
+    <option name="y" value="123" />
     <option name="width" value="1416" />
-    <option name="height" value="736" />
+    <option name="height" value="728" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -138,7 +146,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -150,7 +158,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -159,14 +166,18 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
           <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="domenu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="domenu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            <PATH_ELEMENT USER_OBJECT="domenu">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -265,13 +276,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="6" y="115" width="1416" height="736" extended-state="0" />
+    <frame x="6" y="123" width="1416" height="728" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24714285" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32686085" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32747602" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24982001" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -283,7 +295,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -303,6 +314,34 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="108" column="22" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -544,7 +583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.51252085">
           <caret line="126" column="18" selection-start-line="126" selection-start-column="18" selection-end-line="126" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -563,10 +601,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/flat.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blueprint.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.96">
-          <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
+        <state vertical-scroll-proportion="-51.12">
+          <caret line="92" column="52" selection-start-line="92" selection-start-column="52" selection-end-line="92" selection-end-column="52" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#1;n#li#0;n#div#1;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -575,7 +629,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/find.regex">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.030050084">
+        <state vertical-scroll-proportion="0.030456852">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="50" />
           <folding />
         </state>
@@ -583,15 +637,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jquery.domenu-0.13.29.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.293823">
-          <caret line="89" column="55" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="55" />
-          <caret line="250" column="67" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="67" />
-          <caret line="256" column="57" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="57" />
-          <caret line="282" column="55" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="55" />
-          <caret line="441" column="46" selection-start-line="441" selection-start-column="0" selection-end-line="441" selection-end-column="46" />
-          <caret line="524" column="60" selection-start-line="524" selection-start-column="0" selection-end-line="524" selection-end-column="60" />
-          <caret line="1242" column="73" selection-start-line="1242" selection-start-column="0" selection-end-line="1242" selection-end-column="73" />
-          <caret line="1273" column="63" selection-start-line="1273" selection-start-column="0" selection-end-line="1273" selection-end-column="63" />
+        <state vertical-scroll-proportion="0.17935702">
+          <caret line="514" column="25" selection-start-line="514" selection-start-column="25" selection-end-line="514" selection-end-column="25" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
