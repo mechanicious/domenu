@@ -512,7 +512,6 @@
       item.find(opt.contentClass.dot().join('span')).first().text(choice);
     },
     /**
-     * @dev-since 0.13.29
      * @version-control +0.0.4 fix/enchancement fill inputs with placeholders #3
      * @version-control +0.1.0 fix/enchancement populate inputs with values whenever possible #5
      * @param item
