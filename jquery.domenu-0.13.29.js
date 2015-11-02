@@ -835,11 +835,17 @@
       // hide it
       li.children('[data-action="expand"]').hide();
     },
-
+    /**
+     * @dev-since >0.13.29
+     * @version-control +0.1.0 fix clean item data when the corresponding unsetting parent #4
+     * @param li
+     */
     unsetParent: function(li) {
       li.removeClass(this.options.collapsedClass);
+      // Clear collapse/expand controls from the parent 
       li.children('[data-action]').remove();
       li.children(this.options.listNodeName).remove();
+      li.removeData('children');
     },
 
     dragStart: function(e) {
