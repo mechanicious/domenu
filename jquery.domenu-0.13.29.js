@@ -1,6 +1,6 @@
 /**
  * @license Copyright © 2015 Mateusz Zawartka
- * @version 0.24.53
+ * @version 0.13.29
  * MIT license
  */
 
@@ -288,7 +288,7 @@
           opt = _this.options,
           endEditBtn = item.find(opt.endEditBtnClass.dot()).first();
 
-      endEditBtn.on('click', null, {forced: true}, _this.keypressEnterEndEditEventHandler.bind(_this));
+      endEditBtn.on('click', _this.keypressEnterEndEditEventHandler.bind(_this, true));
     },
     /**
      * @version-control +0.0.1 lazy keypressEnterEndEditEventHandler binding
@@ -443,7 +443,7 @@
      * @version-control +0.0.2 support add button
      * @param event
      */
-    keypressEnterEndEditEventHandler: function(event) {
+    keypressEnterEndEditEventHandler: function(event, forced) {
       var _this           = this,
           opt             = this.options,
           item            = $(event.target).parents(opt.itemClass.dot()).first(),
@@ -454,7 +454,7 @@
           addBtn          = item.find(opt.itemAddBtnClass.dot()).first();
 
       // Listen only to the Enter key, unless you'll forced otherwise
-      if(event.keyCode !== 13 && !(event.data && event.data.forced && event.data.forced === true)) return;
+      if(event.keyCode !== 13 && ! forced) return;
 
       // Set title
       _this.determineAndSetItemTitle(item);
@@ -1100,8 +1100,7 @@
           this.pointEl.after(this.placeEl);
         }
         if(!parent.children().length) {
-          // play with unsetParent, unsetEmptyParent should be needed here
-          this.unsetEmptyParent(parent.parent());
+          this.unsetParent(parent.parent());
         }
         if(!this.dragRootEl.find(opt.itemNodeName).length) {
           this.dragRootEl.append('<div class="' + opt.emptyClass + '"/>');
