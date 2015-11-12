@@ -22,7 +22,7 @@
     font-size: 13px;
     color: #444;
     text-shadow: 0 1px 0 #fff;
-    width: 45%;
+    width: 32%;
 }
 
 .dd-edit-box {position: relative;}
@@ -106,14 +106,75 @@
     color: black;
 }
 
-.dd-item .item-remove {
+/* @since > 0.13.29 */
+.dd-item .item-remove,
+.dd-item .item-remove-confirm,
+.dd-item .item-add {
+    outline: none;
+}
+
+.dd-item .button-container button {
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.51), rgba(0, 0, 0, 0.14));
+    border: 1px solid #898989;
+    border-radius: 2px;
+    font: normal 12px/18px Helvetica, Lato, Arial sans-serif;
+    cursor: pointer;
+}
+
+.dd-item .button-container .item-add {
+    background-color: #55B3FF;
+    border-color: #376F9C;
+    color: #FFFFFF;
+    text-shadow: 0 1px 0 #2B77B5;
+    box-shadow: inset 0 1px 0 #CFE9FF;
+}
+
+.dd-item .button-container .item-add:active {
+box-shadow: inset 0 1px 3px #376F9C;
+}
+
+.dd-item .button-container .item-remove {
+    background-color: #FF5555;
+    border-color: #A54B4B;
+    color: #5A1111;
+    text-shadow: 0 1px 0 #FFC0C0;
+    box-shadow: inset 0 1px 0 #FFC0C0;
+    transition: background-color 0.35s;
+}
+.dd-item .button-container .item-remove:active {
+    
+box-shadow: inset 0 1px 5px #A54B4B;
+}
+
+.dd-item .button-container .item-remove-confirm {
+    
+background-color: #FFA155;
+    
+transition: background-color 0.35s;
+    
+border-color: #AD7232;
+}
+.dd-item .button-container .item-remove-confirm:active {
+    
+}
+
+.item-remove-confirm {
+    background: #ffce66;
+}
+
+.dd-item .button-container {
     position: absolute;
-    right: 7px;
     height: 19px;
     padding: 0 5px;
-    top: 6px;
-    overflow: auto;
+    top: 4px;
+    overflow: visible;
+    display: none;
+    right: 0;
 }
+
+
+
+/* end @since > 0.13.29 */
 
 .dd3-item > button:first-child {margin-left: 30px;}
 
@@ -236,4 +297,9 @@
     background: -webkit-linear-gradient(top, #C8C8C8 0%, #8C8C8C 100%);
     background: -moz-linear-gradient(top, #C8C8C8 0%, #8C8C8C 100%);
     background: linear-gradient(top, #C8C8C8 0%, #8C8C8C 100%);
+}
+
+.dd3-content:hover .button-container {
+    display: block;
+    transition: display 2s;
 }
