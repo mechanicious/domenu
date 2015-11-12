@@ -1,7 +1,10 @@
 ##doMenu
-Specialized version of Nestable plugin, for back-end hierahical menu creation. Having any suggestions, or just would like to tell what you think? Leave [Feedback](https://github.com/mechanicious/domenu/labels/feedback)!
+Specialized version of Nestable plugin, for back-end hierahical menu creation. 
 
-##### Next ★ milestone 
+#### Feedback
+Are you having any suggestions, awesome ideas, or just would like to share what you think? Leave [Feedback](https://github.com/mechanicious/domenu/labels/feedback)!
+
+#### Next ★ milestone 
 Help us reach [★ 80](https://www.javascripting.com/submit) and get applied to the Javascripting family!
 
 ##Quick Overiew
