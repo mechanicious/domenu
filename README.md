@@ -5,19 +5,20 @@ Specialized version of Nestable plugin, for back-end hierahical menu creation.
 Help us reach [★ 80](https://www.javascripting.com/submit) and get applied to the Javascripting family!
 
 ##Quick Overiew
-- [Demo](http://mechanicious.github.io/domenu/)
-- [Showcase](https://github.com/mechanicious/domenu#showcase)
+- [Demo](https://github.com/mechanicious/domenu#demo)
 - [Quick API Reference](https://github.com/mechanicious/domenu#quick-api-reference)
 - [Options](https://github.com/mechanicious/domenu#options)
 - [Tokens (beta)](https://github.com/mechanicious/domenu#tokens-beta-request-a-token)
 - [Attributes](https://github.com/mechanicious/domenu#attributes)
-- [New Features in v0.24.53](https://github.com/mechanicious/domenu#new-features-in-v02453)
-- [Migrating from v0.13.29 to v0.24.53](https://github.com/mechanicious/domenu#migrating-from-v01329-to-v02453)
+- [New Features in v0.13.29](https://github.com/mechanicious/domenu#new-features-in-v01329)
+- [Migrating from v0.0.1 to v0.13.29](https://github.com/mechanicious/domenu#migrating-from-v001-to-v01319)
 - [License & Credits](https://github.com/mechanicious/domenu#license--credits)
 
-### Showcase
+### Demo
 ---
-[![](https://raw.githubusercontent.com/mechanicious/domenu/gh-pages/jquery.domenu-0.24.53.gif)](http://mechanicious.github.io/domenu/)
+[doMenu v0.13.29](http://mechanicious.github.io/domenu/)
+
+[![](https://github.com/mechanicious/domenu/blob/gh-pages/domenu-0.0.1-gif.gif?raw=true)](http://mechanicious.github.io/domenu/)
 [![](https://raw.githubusercontent.com/mechanicious/domenu/gh-pages/do-menu-events.gif)](http://mechanicious.github.io/domenu/)
 
 
@@ -42,7 +43,6 @@ pPlugin onItemAdded(callback)
 pPlugin onItemRemoved(callback)
 pPlugin onItemStartEdit(callback)
 pPlugin onItemEndEdit(callback)
-pPlugin onItemAddChildItem(callback)
 object getPluginOptions()
 ```
 
@@ -62,10 +62,7 @@ placeClass:             'dd-placeholder',
 noDragClass:            'dd-nodrag',
 emptyClass:             'dd-empty',
 contentClass:           'dd3-content',
-itemAddBtnClass:        'item-add',
 removeBtnClass:         'item-remove',
-endEditBtnClass:        'end-edit',
-addBtnSelector:         '',
 addBtnClass:            'dd-new-item',
 editBoxClass:           'dd-edit-box',
 inputSelector:          'input, select, textarea',
@@ -77,13 +74,11 @@ slideAnimationDuration: 0,
 group:                  0,
 maxDepth:               20,
 threshold:              20,
-refuseConfirmDelay:     2000,
 onToJson:               [],
 onParseJson:            [],
 onDomenuInitialized:    [],
 onSaveEditBoxInput:     [],
 onItemDrag:             [],
-onItemAddChildItem:     [],
 onItemDrop:             [],
 onItemAdded:            [],
 onItemExpand:           [],
@@ -111,19 +106,7 @@ Use tokens inside of your `data-placeholder` and `data-default-value` attributes
 - `data-placeholder` works like the `placeholder` attribute but has a higher priority and supports `Tokens`
 - `data-default-value` the value of this attribute will be use by `toJson` as a default `value` when no use supplied `value` is present
 
-### New Features in v0.24.53
----
-- List-item controls (add and remove)
-- Confirm removing a list-item
-- Global add new list-item button selector (see addBtnSelector option)
-- Parent adds a child event (see onItemAddChildItem option)
-- End edit by pressing the pencil icon (default) (see endEditBtnClass option)
-- Pseudo-randomness generation improvements
-- Fix custom field value retain [#5](https://github.com/mechanicious/domenu/issues/5)
-- Fix item duplication in JSON output [#4](https://github.com/mechanicious/domenu/issues/4)
-
 ### v0.13.37
----
 - Fix autofill inputs see [#3](https://github.com/mechanicious/domenu/issues/3)
 
 ### New Features in v0.13.29
@@ -136,17 +119,12 @@ Use tokens inside of your `data-placeholder` and `data-default-value` attributes
 
 [for more technical information see the dev branch...](https://github.com/mechanicious/domenu/tree/dev)
 
-### Migrating from v0.13.29 to v0.24.53
+### Migrating from v0.0.1 to v0.13.29
 ---
-Your blueprint html template will need customization (see comments in the index.html file)
-
-**For information about migrating from earlier versions see the corresponding branch**
-
+Just replace your old plugin files with v0.13.29 plugin files; and enjoy the new features!
 
 ### License & Credits 
 ---
 Copyright © 2015 Mateusz Zawartka | BSD & MIT license
 
 Built upon Nestable from [David Bushell](http://dbushell.com/)
-
-X
