@@ -1,0 +1,41 @@
+#domenu-1 {
+}
+
+#domenu-1 .dd-item {
+    box-shadow: 0 1px 33px rgba(0, 0, 0, 0.08);
+}
+
+section.mod.mod-flat-glass {
+    background: linear-gradient(to bottom, #FF3DD3, #00EAA6);
+    padding: 10px 50px;
+    font: 300 18px/50px Lato, Helvetica, Lao Ui, sans-serif;
+}
+
+div#domenu-1 {}
+
+h1 {
+color: #fff;text-shadow: 0 0 13px rgba(0, 0, 0, 0.29);border-bottom: 1px solid #fff;}
+
+#domenu-1 {
+    max-width: 800px;
+    margin: auto auto;
+}
+
+.mod > span {
+    color: rgb(250, 255, 253);
+    font-weight: bold;
+    border-bottom: 1px solid #fff;
+}
+
+.mod .desc p {
+    color: rgb(255, 255, 255);
+    font-style: italic;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.32);
+    font-weight: 400;
+    font-family: Georgia, Times New Roman, serif;
+    font-size: 17px;
+}
+
+.mod.mod-flat-glass h1 {
+    font-weight: 100;
+}
