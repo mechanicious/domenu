@@ -1,6 +1,6 @@
 /**
  * @license Copyright © 2015 Mateusz Zawartka
- * @version 0.13.29
+ * @version 0.13.37
  * MIT license
  */
 
@@ -84,13 +84,8 @@
   })();
 
   /**
-   * @version-control +0.1.0 slide animation duration option, default is 0
-   * @version-control +0.0.1 max depth default set to 20
-   * @dev-since 0.13.29
-   * @version-control +0.1.0 option endItemEditBtnClass
-   * @version-control +0.1.0 option itemAddBtnClass
-   * @version-control +0.1.0 option refuseConfirmDelay (ms), default is 2000ms
-   * @version-control +0.1.0 option addBtnSelector
+   * @version-control +0.1.0  slide animation duration option, default is 0
+   * @version-control +0.0.1  max depth default set to 20
    * @type {{listNodeName: string, itemNodeName: string, rootClass: string, listClass: string, itemClass: string, dragClass: string, handleClass: string, collapsedClass: string, placeClass: string, noDragClass: string, emptyClass: string, contentClass: string, removeBtnClass: string, editBoxClass: string, expandBtnHTML: string, collapseBtnHTML: string, editBtnHTML: string, data: string, slideAnimationDuration: number, group: number, maxDepth: number, threshold: number}}
    */
   var defaults = {
@@ -107,10 +102,7 @@
     noDragClass:            'dd-nodrag',
     emptyClass:             'dd-empty',
     contentClass:           'dd3-content',
-    itemAddBtnClass:        'item-add',
     removeBtnClass:         'item-remove',
-    endEditBtnClass:        'end-edit',
-    addBtnSelector:         '',
     addBtnClass:            'dd-new-item',
     editBoxClass:           'dd-edit-box',
     inputSelector:          'input, select, textarea',
@@ -122,13 +114,11 @@
     group:                  0,
     maxDepth:               20,
     threshold:              20,
-    refuseConfirmDelay:     2000,
     onToJson:               [],
     onParseJson:            [],
     onDomenuInitialized:    [],
     onSaveEditBoxInput:     [],
     onItemDrag:             [],
-    onItemAddChildItem:     [],
     onItemDrop:             [],
     onItemAdded:            [],
     onItemExpand:           [],
@@ -247,17 +237,8 @@
       list.w.on('mousemove', onMoveEvent);
       list.w.on('mouseup', onEndEvent);
 
-      // @dev-since >0.13.29
-      // @version-control +0.1.0 support global add button selector
-      if(opt.addBtnSelector) this.addNewListItemListener($(opt.addBtnSelector));
-      else this.addNewListItemListener(this.el.find(opt.addBtnClass.dot()));
+      this.addNewListItemListener(this.el.find(opt.addBtnClass.dot()));
     },
-    /**
-     * @dev-since >0.13.29
-     * @version-control +0.1.0 default add button removed
-     * @param addBtn
-     * @param parent
-     */
     addNewListItemListener:           function(addBtn, parent) {
       var _this = this,
           opt   = this.options;
@@ -279,18 +260,6 @@
       });
     },
     /**
-     * @dev-since 0.13.29
-     * @version-control 0.0.5 support end edit on click
-     * @param event
-     */
-    clickEndEditEventHandler: function(item) {
-      var _this = this,
-          opt = _this.options,
-          endEditBtn = item.find(opt.endEditBtnClass.dot()).first();
-
-      endEditBtn.on('click', _this.keypressEnterEndEditEventHandler.bind(_this, true));
-    },
-    /**
      * @version-control +0.0.1 lazy keypressEnterEndEditEventHandler binding
      * @version-control +0.0.1 prevent slide animation bubbling
      * @version-control +0.0.2 slide animation duration support
@@ -302,7 +271,6 @@
           item       = spn.parents(opt.itemClass.dot()).first(),
           firstInput = item.find(opt.inputSelector).first(),
           rmvBtn     = item.find(opt.removeBtnClass.dot()).first(),
-          addBtn     = item.find(opt.itemAddBtnClass.dot()).first(),
           edtBox     = item.find(opt.editBoxClass.dot()).first();
 
       var igniteKeypressEnterEndEditEventHandler = function(el) {
@@ -318,14 +286,6 @@
         });
       };
 
-
-      // Setup on click endEdit event listener
-      if(item.data('domenu_clickEndEditEventHandler') !== true)
-      {
-        _this.clickEndEditEventHandler(item);
-        item.data('domenu_clickEndEditEventHandler', true);
-      }
-
       // Hide the span
       spn.stop().slideToggle(opt.slideAnimationDuration, function() {
 
@@ -336,8 +296,7 @@
 
 
         // Hide the remove button
-        addBtn.slideToggle(opt.slideAnimationDuration);
-        rmvBtn.slideToggle(opt.slideAnimationDuration, function() {
+        rmvBtn.stop().slideToggle(opt.slideAnimationDuration, function() {
 
           // Show the edit panel
           edtBox.stop().slideToggle(opt.slideAnimationDuration, function() {
@@ -438,23 +397,19 @@
      * @version-control +0.1.0 dynamic inputs
      * @version-control +0.0.1 prevent slide bubbling
      * @version-control +0.0.2 slide animation duration support
-     * @dev-since 0.13.29
-     * @version-control +0.0.1 removeBtn first
-     * @version-control +0.0.2 support add button
      * @param event
      */
-    keypressEnterEndEditEventHandler: function(event, forced) {
+    keypressEnterEndEditEventHandler: function(event) {
       var _this           = this,
           opt             = this.options,
           item            = $(event.target).parents(opt.itemClass.dot()).first(),
           edtBox          = item.find(opt.editBoxClass.dot()).first(),
           inputCollection = item.find(opt.inputSelector),
           spn             = item.find('span').first(),
-          removeBtn       = item.find(opt.removeBtnClass.dot()).first(),
-          addBtn          = item.find(opt.itemAddBtnClass.dot()).first();
+          removeBtn       = item.find(opt.removeBtnClass.dot());
 
-      // Listen only to the Enter key, unless you'll forced otherwise
-      if(event.keyCode !== 13 && ! forced) return;
+      // Listen only to the Enter key
+      if(event.keyCode !== 13) return;
 
       // Set title
       _this.determineAndSetItemTitle(item);
@@ -468,11 +423,8 @@
         // Save inputs
         _this.saveEditBoxInput(inputCollection);
 
-        // Show the remove button
+        // Make the remove button visible
         removeBtn.stop().slideDown(opt.slideAnimationDuration);
-
-        // Show the add button
-        addBtn.stop().slideDown(opt.slideAnimationDuration);
 
         // Call end edit event listeners
         opt.onItemEndEdit.forEach(function(cb, i) {
@@ -513,7 +465,6 @@
     },
     /**
      * @version-control +0.0.4 fix/enchancement fill inputs with placeholders #3
-     * @version-control +0.1.0 fix/enchancement populate inputs with values whenever possible #5
      * @param item
      * @param inputCollection
      */
@@ -525,26 +476,20 @@
           $(input).find('option[selected="selected"]').removeAttr('selected');
           return $(input).find('option[value="' + item.data($(input).attr('name')) + '"]').attr('selected', 'selected');
         }
-        // Set the placeholder value of the input
+
         $(input).attr('placeholder', _this.resolveToken($(input).data('placeholder'), $(input)) || $(input).attr('placeholder'));
-        // And set the value of the input
-        $(input).val(item.data($(input).attr('name')));
       });
     },
     /**
      * @version-control +0.0.5 support dynamic inputs
      * @version-control +0.0.5 support tokenization
      * @version-control +0.0.2 support dyanmic titles
-     * @dev-since 0.13.29
-     * @version-control +0.1.0 feature confirm item deletion
-     * @version-control +0.1.0 feature add a child item
-     * @version-control +0.0.1 support itemAddChildItem onItemAdded events
+     * @version-control +0.0.4 fix/enchancement fill inputs with placeholders #3
      * @param data
      * @returns {*}
      */
     createNewListItem:                function(data) {
       var id              = typeof id !== 'undefined' ? id : this.getHighestId() + 1,
-          _this           = this,
           el              = this.el,
           opt             = this.options,
           blueprint       = el.find(opt.itemBlueprintClass.dot()).first().clone(),
@@ -568,70 +513,23 @@
       this.determineAndSetItemTitle(blueprint);
 
       // Parse tokens etc..
-      this.setInputCollectionPlaceholders(inputCollection);
+      this.setInputCollectionPlaceholders(blueprint, inputCollection);
 
       // Set the remove button click event handler
       blueprint.find(opt.removeBtnClass.dot()).first().on('click', function(e) {
-        var rmvBtn = $(this),
-            confirmClass = rmvBtn.data('confirm-class');
+        blueprint.remove();
 
-        // When there is a confirmation class...
-        if(confirmClass) {
-
-          // And that class has been already applied to the item, then just remove the item
-          if(rmvBtn.hasClass(confirmClass)) blueprint.remove();
-
-          // If the confirmation class hasn't been yet applied to the item, then apply the class...
-          else {
-            rmvBtn.addClass(confirmClass);
-
-            // but only for a limited amount of time
-            var revertAddClass = setTimeout(function() {
-              rmvBtn.removeClass(confirmClass);
-            }, opt.refuseConfirmDelay);
-          }
-
-        // When there is no confirmation class just remove the item
-        } else {
-          blueprint.remove();
-
-          // Call item remove event listeners
-          opt.onItemRemoved.forEach(function(cb, i) {
-            cb(blueprint, e);
-          });
-        }
-      });
-
-      // Set the add button click event handler
-      blueprint.find(opt.itemAddBtnClass.dot()).first().on('click', function(event) {
-        _this.itemAddChildItem(blueprint);
-
-        // Call item addition event listeners
-        opt.onItemAdded.forEach(function(cb, i) {
-          cb(blueprint, event);
-        });
-
-        // Call item add child item event listeners
-        opt.onItemAddChildItem .forEach(function(cb, i) {
-          cb(blueprint, event);
+        // Call item remove event listeners
+        opt.onItemRemoved.forEach(function(cb, i) {
+          cb(blueprint, e);
         });
       });
 
-      // Setup editing; on every mouse click clickStartEditEventHandler will be called
+      // Setup editing
       blueprint.find('span').first().get(0).addEventListener('click', this.clickStartEditEventHandler.bind(this));
 
       // Give back a ready itemClass element
       return blueprint;
-    },
-    itemAddChildItem: function(parentElement) {
-      var _this = this,
-          opt = _this.options,
-          parentElement = $(parentElement),
-          listElement = $('<' + opt.listNodeName + '/>').addClass(opt.listClass),
-          newItem = _this.createNewListItem();
-
-      listElement.append(newItem);
-      parentElement.append(listElement);
     },
     getHighestId:                     function() {
       var opt = this.options,
@@ -792,7 +690,7 @@
       });
     },
     /**
-     * @version-control +0.0.1 collapse all fix
+     * @version-control +0.0.1 collapse fix
      * @param cb
      */
     collapseAll: function(cb) {
@@ -835,17 +733,11 @@
       // hide it
       li.children('[data-action="expand"]').hide();
     },
-    /**
-     * @dev-since >0.13.29
-     * @version-control +0.1.0 fix clean item data when the corresponding unsetting parent #4
-     * @param li
-     */
+
     unsetParent: function(li) {
       li.removeClass(this.options.collapsedClass);
-      // Clear collapse/expand controls from the parent 
       li.children('[data-action]').remove();
       li.children(this.options.listNodeName).remove();
-      li.removeData('children');
     },
 
     dragStart: function(e) {
@@ -1136,7 +1028,7 @@
      * @callback-params
      * @callback-context PublicPlugin
      * @param callback
-     * @dev-since >0.0.1
+     * @dev-since 0.0.1
      * @version-control +0.1.0 feature onParseJson event listener
      * @returns {PublicPlugin}
      */
@@ -1150,7 +1042,7 @@
      * @callback-params
      * @callback-context PublicPlugin
      * @param callback
-     * @dev-since >0.0.1
+     * @dev-since 0.0.1
      * @version-control +0.1.0 feature listen to toJson calls
      * @returns {PublicPlugin}
      */
@@ -1164,7 +1056,7 @@
      * @callback-params jQueryCollection inputCollection
      * @callback-context PublicPlugin
      * @param callback
-     * @dev-since >0.0.1
+     * @dev-since 0.0.1
      * @version-control +0.1.0 feature listen for editBoxSave events
      * @returns {PublicPlugin}
      */
@@ -1178,7 +1070,7 @@
      * @callback-params jQueryCollection dragItem, MouseEvent event
      * @callback-context PublicPlugin
      * @param callback
-     * @dev-since >0.0.1
+     * @dev-since 0.0.1
      * @version-control +0.1.0 feature listen for itemDrag events
      * @returns {PublicPlugin}
      */
@@ -1192,7 +1084,7 @@
      * @callback-params jQueryCollection dragItem, MouseEvent event
      * @callback-context PublicPlugin
      * @param callback
-     * @dev-since >0.0.1
+     * @dev-since 0.0.1
      * @version-control +0.1.0 feature listen from itemDrop events
      * @returns {PublicPlugin}
      */
@@ -1206,7 +1098,7 @@
      * @callback-params jQueryCollection item, MouseEvent event
      * @callback-context PublicPlugin
      * @param callback
-     * @dev-since >0.0.1
+     * @dev-since 0.0.1
      * @version-control +0.1.0 feature listen for itemAdded events
      * @returns {PublicPlugin}
      */
@@ -1220,7 +1112,7 @@
      * @callback-params jQueryCollection item, MouseEvent event
      * @callback-context PublicPlugin
      * @param callback
-     * @dev-since >0.0.1
+     * @dev-since 0.0.1
      * @version-control +0.1.0 feature listen for itemRemoved events
      * @returns {PublicPlugin}
      */
@@ -1234,7 +1126,7 @@
      * @callback-params jQueryCollection item, MouseEvent event
      * @callback-context PublicPlugin
      * @param callback
-     * @dev-since >0.0.1
+     * @dev-since 0.0.1
      * @version-control +0.1.0 feature listen for itemStartEdit events
      * @returns {PublicPlugin}
      */
@@ -1248,27 +1140,13 @@
      * @callback-params jQueryCollection item, MouseEvent event
      * @callback-context PublicPlugin
      * @param callback
-     * @dev-since >0.0.1
+     * @dev-since 0.0.1
      * @version-control +0.1.0 feature listen for itemEndEdit events
      * @returns {PublicPlugin}
      */
     onItemEndEdit:       function(callback) {
       var _this = this;
       this._plugin.options.onItemEndEdit.push(callback.bind(_this));
-      return _this;
-    },
-    /**
-     * @desc Fires when an item adds a child item
-     * @callback-params jQueryCollection item, MouseEvent event
-     * @callback-context PublicPlugin
-     * @param callback
-     * @dev-since >0.13.29
-     * @version-control +0.1.0 feature listen for itemAddChildItem events
-     * @returns {PublicPlugin}
-     */
-    onItemAddChildItem:       function(callback) {
-      var _this = this;
-      this._plugin.options.onItemAddChildItem.push(callback.bind(_this));
       return _this;
     },
 
@@ -1293,8 +1171,6 @@
    * @dev-since 0.0.1
    * @version-control +0.0.1 unused variables cleanup
    * @version-control +0.0.1
-   * @dev-since >0.13.29
-   * @version-control +0.0.5 random key generation improvements
    * @param params
    * @returns {*|PublicPlugin}
    */
@@ -1318,12 +1194,9 @@
       // each sets this, to the current element in iteration
       if(!domenu.data("domenu")) {
         // Binds new Plugin to $('#domenu').data('domenu')... with specified params
-        var pl = new Plugin(this, params),
-
-            // Generate a random float, ..., and strip everything which is not a number
-            pseudoRandomNumericKey = Math.random().toString().replace(/\D/g, '');
+        var pl = new Plugin(this, params);
         domenu.data("domenu", pl);
-        domenu.data("domenu-id", pseudoRandomNumericKey);
+        domenu.data("domenu-id", new Date().getTime());
       }
       else {
         if(typeof params === 'string') {
