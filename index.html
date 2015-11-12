@@ -9,8 +9,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
         <title>jQuery doMenu Plugin</title>
-        <link rel="stylesheet" type="text/css" href="blueprint.css"/>
-<link rel="stylesheet" type="text/css" href="presentation.css"/>
+        <link rel="stylesheet" type="text/css" href="jquery.domenu-0.24.53.css"/>
     </head>
     <style>
         .cf:after {
@@ -33,7 +32,7 @@
 
         body {
             font-size: 100%;
-            margin: 0;
+            margin: 50px;
             font-family: 'Helvetica Neue', Arial, sans-serif;
         }
 
@@ -58,11 +57,12 @@
     <body>
         <section class="mod mod-flat-glass">
             <div class="desc">
-                <h1>Flat Glass</h1>
-                <p>Flat, sharp, elegant and lightweight...</p>
+                <h1>doMenu</h1>
+                <p>Customized version of Nestable for back-end hierarchical menu creation</p>
             </div>
             <div class="dd" id="domenu-1">
-                <button id="domenu-add-item-btn"class="dd-new-item">+</button>
+
+                <button id="domenu-add-item-btn" class="dd-new-item">+</button>
                 <!-- .dd-item-blueprint is a template for all .dd-item's -->
                 <li class="dd-item-blueprint">
                     <div class="dd-handle dd3-handle">Drag</div>
@@ -78,9 +78,8 @@
                             <!-- data-placeholder has a higher priority than placeholder -->
                             <!-- data-placeholder can use token-values; when not present will be set to "" -->
                             <!-- data-default-value specifies a default value for the input; when not present will be set to "" -->
-                            <input type="text" name="title" autocomplete="off" placeholder="Item" data-placeholder="Any nice idea for the title?" data-default-value="Flat Glass no. {?numeric.increment}">
+                            <input type="text" name="title" autocomplete="off" placeholder="Item" data-placeholder="Any nice idea for the title?" data-default-value="doMenu List Item. {?numeric.increment}">
                             <input type="text" name="tagline" autocomplete="off" placeholder="tagline" data-placeholder="">
-                            <input type="text" name="test" autocomplete="off" placeholder="test" data-placeholder="">
                             <select name="superselect">
                                 <option>select something...</option>
                                 <optgroup label="Pages">
@@ -107,7 +106,7 @@
         Build upon Nestable from <a href="http://dbushell.com/">David Bushell</a></p>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="jquery.domenu-0.13.29.js"></script>
+    <script src="jquery.domenu-0.24.53.js"></script>
     <script>
 
     $(document).ready(function()
@@ -129,7 +128,7 @@
             onDomenuInitialized: [function() {
                 console.log('event: onDomenuInitialized', 'arguments:', arguments, 'context:', this);
             }],
-            data: '[{"id":11,"title":"Flat Glass Preview","http":"","superselect":"2"},{"id":10,"title":"News","http":"","superselect":"1"},{"id":9,"title":"Categories","http":"","superselect":"1"},{"id":6,"title":"Shop","http":"","children":[{"id":5,"title":"Glass","http":"","superselect":"1"},{"title":"Other","superselect":"select something..."}],"superselect":"select something..."},{"id":1,"title":"About","http":"","superselect":"select something..."}]'
+            data: '[{"id":11,"title":"doMenu List Item","http":"","superselect":"2"},{"id":10,"title":"News","http":"","superselect":"1"},{"id":9,"title":"Categories","http":"","superselect":"1"},{"id":6,"title":"Shop","http":"","children":[{"id":5,"title":"Glass","http":"","superselect":"1"},{"title":"Other","superselect":"select something..."}],"superselect":"select something..."},{"id":1,"title":"About","http":"","superselect":"select something..."}]'
         }).parseJson()
                 .onParseJson(function() {
                     console.log('event: onFromJson', 'arguments:', arguments, 'context:', this);

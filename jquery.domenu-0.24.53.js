@@ -1,6 +1,6 @@
 /**
  * @license Copyright © 2015 Mateusz Zawartka
- * @version 0.13.29
+ * @version 0.24.53
  * MIT license
  */
 
@@ -247,13 +247,13 @@
       list.w.on('mousemove', onMoveEvent);
       list.w.on('mouseup', onEndEvent);
 
-      // @dev-since >0.13.29
+      // @dev-since 0.13.29
       // @version-control +0.1.0 support global add button selector
       if(opt.addBtnSelector) this.addNewListItemListener($(opt.addBtnSelector));
       else this.addNewListItemListener(this.el.find(opt.addBtnClass.dot()));
     },
     /**
-     * @dev-since >0.13.29
+     * @dev-since 0.13.29
      * @version-control +0.1.0 default add button removed
      * @param addBtn
      * @param parent
@@ -280,7 +280,7 @@
     },
     /**
      * @dev-since 0.13.29
-     * @version-control 0.0.5 support end edit on click
+     * @version-control +0.0.5 support end edit on click
      * @param event
      */
     clickEndEditEventHandler: function(item) {
@@ -512,8 +512,8 @@
       item.find(opt.contentClass.dot().join('span')).first().text(choice);
     },
     /**
-     * @version-control +0.0.4 fix/enchancement fill inputs with placeholders #3
-     * @version-control +0.1.0 fix/enchancement populate inputs with values whenever possible #5
+     * @version-control +0.0.4 fix fill inputs with placeholders #3
+     * @version-control +0.1.0 fix populate inputs with values whenever possible #5
      * @param item
      * @param inputCollection
      */
@@ -549,6 +549,16 @@
           opt             = this.options,
           blueprint       = el.find(opt.itemBlueprintClass.dot()).first().clone(),
           inputCollection = blueprint.find(opt.editBoxClass.dot()).find(opt.inputSelector);
+
+      /**
+       * @dev-since 0.13.29
+       * @version-control +0.1.0 fix ghost parent elements
+       */
+      blueprint.remove = function() {
+        var parent = blueprint.parents(_this.options.itemClass.dot());
+        jQuery(this).remove();
+        _this.unsetEmptyParent(parent);
+      };
 
       // Use user supplied JSON data to fill the data fields
       $.each(data || {}, function(key, value) {
@@ -632,6 +642,7 @@
 
       listElement.append(newItem);
       parentElement.append(listElement);
+      _this.setParent(parentElement);
     },
     getHighestId:                     function() {
       var opt = this.options,
@@ -803,10 +814,15 @@
         else list.collapseItem(item);
       });
     },
-
+    /**
+     * @dev-since 0.13.29
+     * @version-control +0.0.5 prevent setting multiple parents on a parent element
+     * @param li
+     * @param force
+     */
     setParent: function(li, force) {
       // If the specified selector targets any element
-      if(li.children(this.options.listNodeName).length || force) {
+      if(li.children(this.options.listNodeName).length && !li.children('[data-action]').length || force) {
         // LI STRUCTURE
         // <li class="dd-item dd3-item" data-id="15">
         //  <button data-action="collapse" type="button">Collapse</button>
@@ -836,18 +852,26 @@
       li.children('[data-action="expand"]').hide();
     },
     /**
-     * @dev-since >0.13.29
-     * @version-control +0.1.0 fix clean item data when the corresponding unsetting parent #4
-     * @param li
+     * @dev-since 0.13.29
+     * @version-control +0.1.0 fix clean item data when unsetting a parent #4
+     * @param parent
      */
-    unsetParent: function(li) {
-      li.removeClass(this.options.collapsedClass);
+    unsetParent: function(parent) {
+      parent.removeClass(this.options.collapsedClass);
       // Clear collapse/expand controls from the parent 
-      li.children('[data-action]').remove();
-      li.children(this.options.listNodeName).remove();
-      li.removeData('children');
+      parent.children('[data-action]').remove();
+      parent.children(this.options.listNodeName).remove();
+      parent.removeData('children');
     },
-
+    /**
+     * @dev-since 0.13.29
+     * @version-control +0.0.5 unsetEmptyParent
+     * @param parent
+     */
+    unsetEmptyParent: function(parent) {
+      var _this = this;
+      if (parent.find(this.options.itemClass.dot()).length === 0) _this.unsetParent(parent);
+    },
     dragStart: function(e) {
       var mouse    = this.mouse,
           target   = $(e.target),
@@ -1262,7 +1286,7 @@
      * @callback-params jQueryCollection item, MouseEvent event
      * @callback-context PublicPlugin
      * @param callback
-     * @dev-since >0.13.29
+     * @dev-since 0.13.29
      * @version-control +0.1.0 feature listen for itemAddChildItem events
      * @returns {PublicPlugin}
      */
@@ -1293,7 +1317,7 @@
    * @dev-since 0.0.1
    * @version-control +0.0.1 unused variables cleanup
    * @version-control +0.0.1
-   * @dev-since >0.13.29
+   * @dev-since 0.13.29
    * @version-control +0.0.5 random key generation improvements
    * @param params
    * @returns {*|PublicPlugin}
