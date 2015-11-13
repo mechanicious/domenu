@@ -21,8 +21,12 @@ Help us reach [★ 80](https://www.javascripting.com/submit) and get applied to 
 ### Showcase
 ---
 [![](https://raw.githubusercontent.com/mechanicious/domenu/gh-pages/jquery.domenu-0.24.53.gif)](http://mechanicious.github.io/domenu/)
+
+Events at work of doMenu
 [![](https://raw.githubusercontent.com/mechanicious/domenu/gh-pages/do-menu-events.gif)](http://mechanicious.github.io/domenu/)
 
+One of the upcoming themes for doMenu.
+![](https://raw.githubusercontent.com/mechanicious/domenu/gh-pages/domenu-flat-gass-preview.gif)
 
 ### Quick API Reference
 ---
