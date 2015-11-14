@@ -555,7 +555,7 @@
        * @version-control +0.1.0 fix ghost parent elements
        */
       blueprint.remove = function() {
-        var parent = blueprint.parents(_this.options.itemClass.dot());
+        var parent = blueprint.parents(_this.options.itemClass.dot()).first();
         jQuery(this).remove();
         _this.unsetEmptyParent(parent);
       };
