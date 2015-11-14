@@ -22,7 +22,7 @@
     font-size: 13px;
     color: #444;
     text-shadow: 0 1px 0 #fff;
-    width: 45%;
+    width: 32%;
 }
 
 .dd-edit-box {position: relative;}
@@ -130,7 +130,7 @@
 }
 
 .dd-item .button-container .item-add:active {
-box-shadow: inset 0 1px 3px #376F9C;
+box-shadow: inset 0 1px 3px #376F9C;
 }
 
 .dd-item .button-container .item-remove {
@@ -142,13 +142,17 @@
     transition: background-color 0.35s;
 }
 .dd-item .button-container .item-remove:active {
-    box-shadow: inset 0 1px 5px #A54B4B;
+    
+box-shadow: inset 0 1px 5px #A54B4B;
 }
 
 .dd-item .button-container .item-remove-confirm {
-    background-color: #FFA155;
-    transition: background-color 0.35s;
-    border-color: #AD7232;
+    
+background-color: #FFA155;
+    
+transition: background-color 0.35s;
+    
+border-color: #AD7232;
 }
 .dd-item .button-container .item-remove-confirm:active {
     

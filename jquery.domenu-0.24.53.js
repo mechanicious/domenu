@@ -288,7 +288,7 @@
           opt = _this.options,
           endEditBtn = item.find(opt.endEditBtnClass.dot()).first();
 
-      endEditBtn.on('click', _this.keypressEnterEndEditEventHandler.bind(_this, true));
+      endEditBtn.on('click', null, {forced: true}, _this.keypressEnterEndEditEventHandler.bind(_this));
     },
     /**
      * @version-control +0.0.1 lazy keypressEnterEndEditEventHandler binding
@@ -443,7 +443,7 @@
      * @version-control +0.0.2 support add button
      * @param event
      */
-    keypressEnterEndEditEventHandler: function(event, forced) {
+    keypressEnterEndEditEventHandler: function(event) {
       var _this           = this,
           opt             = this.options,
           item            = $(event.target).parents(opt.itemClass.dot()).first(),
@@ -454,7 +454,7 @@
           addBtn          = item.find(opt.itemAddBtnClass.dot()).first();
 
       // Listen only to the Enter key, unless you'll forced otherwise
-      if(event.keyCode !== 13 && ! forced) return;
+      if(event.keyCode !== 13 && !(event.data && event.data.forced && event.data.forced === true)) return;
 
       // Set title
       _this.determineAndSetItemTitle(item);
@@ -555,7 +555,7 @@
        * @version-control +0.1.0 fix ghost parent elements
        */
       blueprint.remove = function() {
-        var parent = blueprint.parents(_this.options.itemClass.dot());
+        var parent = blueprint.parents(_this.options.itemClass.dot()).first();
         jQuery(this).remove();
         _this.unsetEmptyParent(parent);
       };
@@ -1100,7 +1100,8 @@
           this.pointEl.after(this.placeEl);
         }
         if(!parent.children().length) {
-          this.unsetParent(parent.parent());
+          // play with unsetParent, unsetEmptyParent should be needed here
+          this.unsetEmptyParent(parent.parent());
         }
         if(!this.dragRootEl.find(opt.itemNodeName).length) {
           this.dragRootEl.append('<div class="' + opt.emptyClass + '"/>');
