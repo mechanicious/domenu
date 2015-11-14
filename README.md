@@ -56,6 +56,7 @@ object getPluginOptions()
 ### Options
 ---
 ```js
+// Selectors used in your HTML blueprint template
 listNodeName:           'ol',
 itemNodeName:           'li',
 rootClass:              'dd',
@@ -72,19 +73,24 @@ contentClass:           'dd3-content',
 itemAddBtnClass:        'item-add',
 removeBtnClass:         'item-remove',
 endEditBtnClass:        'end-edit',
-addBtnSelector:         '',
 addBtnClass:            'dd-new-item',
 editBoxClass:           'dd-edit-box',
 inputSelector:          'input, select, textarea',
+// If you need add button to be outside the default doMenu DOM, use a global add button selector 
+addBtnSelector:         '',
 expandBtnHTML:          '<button data-action="expand"   type="button">+</button>',
 collapseBtnHTML:        '<button data-action="collapse" type="button">-</button>',
-editBtnHTML:            '<button data-action="edit"     type="button">edit</button>',
+// The JSON data to build a menu list with, see toJson()
 data:                   '',
 slideAnimationDuration: 0,
 group:                  0,
+// Amount of parents(=an item containg a child) an item can contain
 maxDepth:               20,
+// Treshold for snapping when dragging an item 
 threshold:              20,
+// Amount of ms to wait on a confirmation(=second click) from an user to remove an item
 refuseConfirmDelay:     2000,
+// Bags for event handlers
 onToJson:               [],
 onParseJson:            [],
 onDomenuInitialized:    [],
