@@ -148,7 +148,7 @@
                 .onItemAdded(function() {
                     console.log('event: onItemAdded', 'arguments:', arguments, 'context:', this);
                 })
-                .onItemRemoved(function() {
+                .onItemRemoved(function(a, z) {
                     console.log('event: onItemRemoved', 'arguments:', arguments, 'context:', this);
                 })
                 .onItemStartEdit(function() {

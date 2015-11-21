@@ -554,9 +554,13 @@
        * @dev-since 0.13.29
        * @version-control +0.1.0 fix ghost parent elements
        */
-      blueprint.remove = function() {
+      blueprint.remove = function(args) {
         var parent = blueprint.parents(_this.options.itemClass.dot()).first();
         jQuery(this).remove();
+        // Call item remove event listeners
+        opt.onItemRemoved.forEach(function(cb, i) {
+          cb.apply(_this, args);
+        });
         _this.unsetEmptyParent(parent);
       };
 
@@ -603,12 +607,7 @@
 
         // When there is no confirmation class just remove the item
         } else {
-          blueprint.remove();
-
-          // Call item remove event listeners
-          opt.onItemRemoved.forEach(function(cb, i) {
-            cb(blueprint, e);
-          });
+          blueprint.remove([blueprint, e]);
         }
       });
 
