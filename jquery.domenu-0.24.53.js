@@ -1351,10 +1351,17 @@
         domenu.data("domenu-id", pseudoRandomNumericKey);
       }
       else {
+
+        plugin  = domenu.data("domenu");
+        pPlugin = new PublicPlugin(plugin, lists);
+
         if(typeof params === 'string') {
           if(typeof pPlugin[params] === 'function') {
             // proxy
             retval = pPlugin[params]();
+          }
+          else if(typeof pPlugin.getPluginOptions()[params] !== 'undefined') {
+            retval = pPlugin.getPluginOptions()[params];
           }
           else if(typeof plugin[params] === 'function') {
             retval = plugin[params]();
@@ -1363,8 +1370,8 @@
       }
     });
 
-    plugin  = domenu.data("domenu");
-    pPlugin = new PublicPlugin(plugin, lists);
+    plugin  = plugin || domenu.data("domenu");
+    pPlugin = pPlugin || new PublicPlugin(plugin, lists);
     return retval || pPlugin;
   };
 
