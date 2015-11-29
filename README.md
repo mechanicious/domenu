@@ -109,7 +109,7 @@ onItemEndEdit:          []
 
 ### Tokens (beta) [request a token](https://github.com/mechanicious/domenu/labels/token-request)
 ---
-Use tokens inside of your `data-placeholder` and `data-default-value` attributes of your `input`. E.g.
+Use tokens inside of your `data-placeholder` and `data-default-value` [attributes](https://github.com/mechanicious/domenu#attributes) of your `input`. E.g.
 ```html
  <input type="text" name="title" placeholder="Item" data-placeholder="Item {?numeric.increment}" data-default-value="Item {?numeric.increment}">
 ```
@@ -122,7 +122,7 @@ Use tokens inside of your `data-placeholder` and `data-default-value` attributes
 ### Attributes
 ---
 - `data-placeholder` works like the `placeholder` attribute but has a higher priority and supports `Tokens`
-- `data-default-value` the value of this attribute will be use by `toJson` as a default `value` when no use supplied `value` is present
+- `data-default-value` the value of this attribute will be used by `toJson` as a default `value` when no user supplied `value` is present
 
 ### New Features in v0.24.53
 ---
