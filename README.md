@@ -56,6 +56,7 @@ object getPluginOptions()
 ### Options
 ---
 ```js
+// Selectors used in your HTML blueprint template
 listNodeName:           'ol',
 itemNodeName:           'li',
 rootClass:              'dd',
@@ -72,19 +73,24 @@ contentClass:           'dd3-content',
 itemAddBtnClass:        'item-add',
 removeBtnClass:         'item-remove',
 endEditBtnClass:        'end-edit',
-addBtnSelector:         '',
 addBtnClass:            'dd-new-item',
 editBoxClass:           'dd-edit-box',
 inputSelector:          'input, select, textarea',
+// If you need add button to be outside the default doMenu DOM, use a global add button selector 
+addBtnSelector:         '',
 expandBtnHTML:          '<button data-action="expand"   type="button">+</button>',
 collapseBtnHTML:        '<button data-action="collapse" type="button">-</button>',
-editBtnHTML:            '<button data-action="edit"     type="button">edit</button>',
+// The JSON data to build a menu list with, see toJson()
 data:                   '',
 slideAnimationDuration: 0,
 group:                  0,
+// Amount of parents(=an item containg a child) an item can contain
 maxDepth:               20,
+// Treshold for snapping when dragging an item 
 threshold:              20,
+// Amount of ms to wait on a confirmation(=second click) from an user to remove an item
 refuseConfirmDelay:     2000,
+// Bags for event handlers
 onToJson:               [],
 onParseJson:            [],
 onDomenuInitialized:    [],
@@ -103,7 +109,7 @@ onItemEndEdit:          []
 
 ### Tokens (beta) [request a token](https://github.com/mechanicious/domenu/labels/token-request)
 ---
-Use tokens inside of your `data-placeholder` and `data-default-value` attributes of your `input`. E.g.
+Use tokens inside of your `data-placeholder` and `data-default-value` [attributes](https://github.com/mechanicious/domenu#attributes) of your `input`. E.g.
 ```html
  <input type="text" name="title" placeholder="Item" data-placeholder="Item {?numeric.increment}" data-default-value="Item {?numeric.increment}">
 ```
@@ -116,7 +122,7 @@ Use tokens inside of your `data-placeholder` and `data-default-value` attributes
 ### Attributes
 ---
 - `data-placeholder` works like the `placeholder` attribute but has a higher priority and supports `Tokens`
-- `data-default-value` the value of this attribute will be use by `toJson` as a default `value` when no use supplied `value` is present
+- `data-default-value` the value of this attribute will be used by `toJson` as a default `value` when no user supplied `value` is present
 
 ### New Features in v0.24.53
 ---
