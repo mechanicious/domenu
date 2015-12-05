@@ -1,6 +1,6 @@
 /**
  * @license Copyright © 2015 Mateusz Zawartka
- * @version 0.24.53
+ * @version 0.48.53
  * MIT license
  */
 
@@ -118,11 +118,24 @@
     collapseBtnHTML:        '<button data-action="collapse" type="button">-</button>',
     editBtnHTML:            '<button data-action="edit"     type="button">edit</button>',
     data:                   '',
+    /**
+     * @dev-since 0.24.53
+     * @version-control +0.5.0  enchancement select2 support
+     * 
+     * Just include select2 css and js files, doMenu will do the rest
+     */
+    select2: {
+        support: false,
+        // Any CSS-supported value is valid
+        selectWidth: '45%'
+    },
     slideAnimationDuration: 0,
     group:                  0,
     maxDepth:               20,
     threshold:              20,
     refuseConfirmDelay:     2000,
+    // Set 0 for no fadeIn effect
+    newItemFadeIn:          350,
     onToJson:               [],
     onParseJson:            [],
     onDomenuInitialized:    [],
@@ -262,10 +275,10 @@
       var _this = this,
           opt   = this.options;
       addBtn.on('click', function(e) {
-        var list = $(opt.rootClass.dot()).find(opt.listClass.dot()).first(),
+        var list = _this.el.find(opt.listClass.dot()).first(),
             item = _this.createNewListItem().css('display', 'none');
         list.prepend(item);
-        item.fadeIn();
+        item.fadeIn(opt.newItemFadeIn);
 
         // Call item addition event listeners
         opt.onItemAdded.forEach(function(cb, i) {
@@ -514,6 +527,8 @@
     /**
      * @version-control +0.0.4 fix fill inputs with placeholders #3
      * @version-control +0.1.0 fix populate inputs with values whenever possible #5
+     * @dev-since 0.24.53
+     * @version-control +0.5.0 feature create missing options
      * @param item
      * @param inputCollection
      */
@@ -523,7 +538,10 @@
         if(input.nodeName === 'SELECT')
         {
           $(input).find('option[selected="selected"]').removeAttr('selected');
-          return $(input).find('option[value="' + item.data($(input).attr('name')) + '"]').attr('selected', 'selected');
+          var selectedOption = $(input).find('option[value="' + item.data($(input).attr('name')) + '"]');
+           if(selectedOption.length !== 0) selectedOption.attr('selected', 'selected');
+           else if (item.data($(input).attr('name'))) $(input).append('<option value="' + item.data($(input).attr('name')) + '">' + item.data($(input).attr('name')) +'</option>');
+           else return;
         }
         // Set the placeholder value of the input
         $(input).attr('placeholder', _this.resolveToken($(input).data('placeholder'), $(input)) || $(input).attr('placeholder'));
@@ -553,18 +571,19 @@
       /**
        * @dev-since 0.13.29
        * @version-control +0.1.0 fix ghost parent elements
+       * @dev-since 0.24.53
+       * @version-control +0.1.0 fix onItemRemoved event listener
        */
-      blueprint.remove = function(args) {
+      blueprint.remove = function() {
         var parent = blueprint.parents(_this.options.itemClass.dot()).first();
         jQuery(this).remove();
-        // Call item remove event listeners
-        opt.onItemRemoved.forEach(function(cb, i) {
-          cb.apply(_this, args);
-        });
         _this.unsetEmptyParent(parent);
+        jQuery.each(opt.onItemRemoved, function(i, cb) {
+          cb(blueprint);
+        });
       };
 
-      // Use user supplied JSON data to fill the data fields
+        // Use user supplied JSON data to fill the data fields
       $.each(data || {}, function(key, value) {
         blueprint.data(key, value);
       });
@@ -607,7 +626,12 @@
 
         // When there is no confirmation class just remove the item
         } else {
-          blueprint.remove([blueprint, e]);
+          blueprint.remove();
+
+          // Call item remove event listeners
+          opt.onItemRemoved.forEach(function(cb, i) {
+            cb(blueprint, e);
+          });
         }
       });
 
@@ -629,6 +653,11 @@
       // Setup editing; on every mouse click clickStartEditEventHandler will be called
       blueprint.find('span').first().get(0).addEventListener('click', this.clickStartEditEventHandler.bind(this));
 
+        if(_this.options.select2.support) 
+        {
+          blueprint.find('select').css('width', _this.options.select2.selectWidth);        
+          blueprint.find('select').select2();
+        }
       // Give back a ready itemClass element
       return blueprint;
     },
@@ -706,11 +735,6 @@
           opt   = this.options,
           list  = _this.el.find(opt.listClass.dot()).first();
 
-      // Call start edit event listeners
-      this.options.onParseJson.forEach(function(cb, i) {
-        cb();
-      });
-
       if(override) list.children().remove();
 
       var processItem = function(i, pref) {
@@ -732,6 +756,11 @@
       jQuery.each(data, function(i, e) {
         processItem(e, list);
       })
+
+      // Call start edit event listeners
+      this.options.onParseJson.forEach(function(cb, i) {
+        cb();
+      });
     },
     serialise:                        function() {
       return this.serialize();
@@ -939,6 +968,12 @@
       });
     },
 
+
+    /**
+     * @dev-since 0.24.53
+     * @version-control +0.10.0 enchancement of item dragging/repositioning
+     * @version-control +0.3.0  fix unsetting parents
+     */
     dragMove: function(e) {
       var list, parent, prev, next, depth,
           opt   = this.options,
@@ -1002,6 +1037,7 @@
       }
       mouse.dirAx = newAx;
 
+
       /**
        * move horizontal only to right
        */
@@ -1041,7 +1077,7 @@
             parent = this.placeEl.parent();
             this.placeEl.closest(opt.itemNodeName).after(this.placeEl);
             if(!parent.children().length) {
-              this.unsetParent(parent.parent());
+              this.unsetEmptyParent(parent.parent());
             }
           }
         }
@@ -1053,7 +1089,14 @@
       if(!hasPointerEvents) {
         this.dragEl[0].style.visibility = 'hidden';
       }
+      // TODO: include this fix this in the next patch
       this.pointEl = $(document.elementFromPoint(e.pageX - document.body.scrollLeft, e.pageY - (window.pageYOffset || document.documentElement.scrollTop)));
+      
+      if(! this.pointEl.parents(opt.rootClass.dot()).length || this.pointEl.hasClass(opt.listClass) || this.pointEl.hasClass(opt.placeClass)) return;
+
+      if(! this.pointEl.hasClass(opt.itemClass)) this.pointEl = $(this.pointEl).parents(opt.itemClass.dot()).first();
+
+
       if(!hasPointerEvents) {
         this.dragEl[0].style.visibility = 'visible';
       }
@@ -1063,13 +1106,15 @@
       if(this.pointEl.hasClass(opt.emptyClass)) {
         isEmpty = true;
       }
-      else if(!this.pointEl.length || !this.pointEl.hasClass(opt.itemClass)) {
+      // When no pointer element has been found or when the pointer element has no options.itemClass
+      else if(! this.pointEl.length || ! this.pointEl.hasClass(opt.itemClass)) {
         return;
       }
 
       // find parent list of item under cursor
       var pointElRoot = this.pointEl.closest(opt.rootClass.dot()),
           isNewRoot   = this.dragRootEl.data('domenu-id') !== pointElRoot.data('domenu-id');
+
 
       /**
        * move vertical
@@ -1350,10 +1395,17 @@
         domenu.data("domenu-id", pseudoRandomNumericKey);
       }
       else {
+
+        plugin  = domenu.data("domenu");
+        pPlugin = new PublicPlugin(plugin, lists);
+
         if(typeof params === 'string') {
           if(typeof pPlugin[params] === 'function') {
             // proxy
             retval = pPlugin[params]();
+          }
+          else if(typeof pPlugin.getPluginOptions()[params] !== 'undefined') {
+            retval = pPlugin.getPluginOptions()[params];
           }
           else if(typeof plugin[params] === 'function') {
             retval = plugin[params]();
@@ -1362,8 +1414,8 @@
       }
     });
 
-    plugin  = domenu.data("domenu");
-    pPlugin = new PublicPlugin(plugin, lists);
+    plugin  = plugin || domenu.data("domenu");
+    pPlugin = pPlugin || new PublicPlugin(plugin, lists);
     return retval || pPlugin;
   };
 
