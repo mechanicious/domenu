@@ -3,7 +3,7 @@
 <!--[if IE 7]>    <html lang="en" class="lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>    <html lang="en" class="lt-ie9"> <![endif]-->
 <!--[if IE 9]>    <html lang="en" class="ie9"> <![endif]-->
-<!--[if gt IE 9]><!--> 
+<!--[if gt IE 9]><!-->
 <html lang="en"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
@@ -55,7 +55,7 @@
         .large {font-size: 1.25em;}
     </style>
     <body>
-        <section class="mod mod-flat-glass">
+        <section class="mod mod-flat-glass" style="width: 58%; display: inline-block;">
             <div class="desc">
                 <h1>doMenu</h1>
                 <p>Customized version of Nestable for back-end hierarchical menu creation</p>
@@ -100,6 +100,13 @@
             </div>
             </div>
         </section>
+        <section style="width:28%; display: inline-block; vertical-align: top; margin-left: 1%;">
+            <h4>JSON Output Preview</h4>
+            <textarea style="width: 100%; min-height: 300px;" name="domenu-1JsonOutput" id="domenu-1JsonOutput"></textarea>
+            <input type="checkbox" name="domenu-1Keepchages" id="domenu-1KeepChanges" checked> Keep changes after page reload (localStorage)
+        </section>
+
+
 
         <p class="small">Copyright &copy; 2015 Mateusz Zawartka | MIT Licensed <br/>
         Build upon Nestable from <a href="http://dbushell.com/">David Bushell</a></p>
@@ -127,33 +134,59 @@
             onDomenuInitialized: [function() {
                 console.log('event: onDomenuInitialized', 'arguments:', arguments, 'context:', this);
             }],
-            data: '[{"id":11,"title":"doMenu List Item","http":"","superselect":"2"},{"id":10,"title":"News","http":"","superselect":"1"},{"id":9,"title":"Categories","http":"","superselect":"1"},{"id":6,"title":"Shop","http":"","children":[{"id":5,"title":"Glass","http":"","superselect":"1"},{"title":"Other","superselect":"select something..."}],"superselect":"select something..."},{"id":1,"title":"About","http":"","superselect":"select something..."}]'
-        }).parseJson()
-                .onParseJson(function() {
+            data: window.localStorage.getItem('domenu-1Json') || '[{"id":11,"title":"doMenu List Item","http":"","superselect":"2"},{"id":10,"title":"News","http":"","superselect":"1"},{"id":9,"title":"Categories","http":"","superselect":"1"},{"id":6,"title":"Shop","http":"","children":[{"id":5,"title":"Glass","http":"","superselect":"1"},{"title":"Other","superselect":"select something..."}],"superselect":"select something..."},{"id":1,"title":"About","http":"","superselect":"select something..."}]'
+        }).parseJson();
+        var domenu1 = $('#domenu-1').domenu(),
+            $domenu1Textarea = $('#domenu-1JsonOutput'),
+            $domenu1KeepChanges = $('#domenu-1KeepChanges');
+
+        // Init textarea
+        $domenu1Textarea.val(domenu1.toJson());
+        $domenu1KeepChanges.on('click', function() {
+            if(! $domenu1KeepChanges.is(':checked')) window.localStorage.setItem('domenu-1KeepChanges', false);
+            if($domenu1KeepChanges.is(':checked')) window.localStorage.setItem('domenu-1KeepChanges', true);
+            console.log(window.localStorage.getItem('domenu-1KeepChanges'))
+
+        });
+
+        if(window.localStorage.getItem('domenu-1KeepChanges') === "false") $domenu1KeepChanges.attr('checked', false);
+
+
+         domenu1.onParseJson(function() {
                     console.log('event: onFromJson', 'arguments:', arguments, 'context:', this);
                 })
                 .onToJson(function() {
                     console.log('event: onToJson', 'arguments:', arguments, 'context:', this);
                 })
                 .onSaveEditBoxInput(function() {
+                    $domenu1Textarea.val(domenu1.toJson());
+                    if($domenu1KeepChanges.is(':checked')) window.localStorage.setItem('domenu-1Json', domenu1.toJson());
                     console.log('event: onSaveEditBoxInput', 'arguments:', arguments, 'context:', this);
                 })
                 .onItemDrag(function() {
                     console.log('event: onItemDrag', 'arguments:', arguments, 'context:', this);
                 })
                 .onItemDrop(function() {
+                    $domenu1Textarea.val(domenu1.toJson());
+                    if($domenu1KeepChanges.is(':checked')) window.localStorage.setItem('domenu-1Json', domenu1.toJson());
                     console.log('event: onItemDrop', 'arguments:', arguments, 'context:', this);
                 })
                 .onItemAdded(function() {
+                    $domenu1Textarea.val(domenu1.toJson());
+                    if($domenu1KeepChanges.is(':checked')) window.localStorage.setItem('domenu-1Json', domenu1.toJson());
                     console.log('event: onItemAdded', 'arguments:', arguments, 'context:', this);
                 })
                 .onItemRemoved(function() {
+                    $domenu1Textarea.val(domenu1.toJson());
+                    if($domenu1KeepChanges.is(':checked')) window.localStorage.setItem('domenu-1Json', domenu1.toJson());
                     console.log('event: onItemRemoved', 'arguments:', arguments, 'context:', this);
                 })
                 .onItemStartEdit(function() {
                     console.log('event: onItemStartEdit', 'arguments:', arguments, 'context:', this);
                 })
                 .onItemEndEdit(function() {
+                    $domenu1Textarea.val(domenu1.toJson());
+                    if($domenu1KeepChanges.is(':checked')) window.localStorage.setItem('domenu-1Json', domenu1.toJson());
                     console.log('event: onItemEndEdit', 'arguments:', arguments, 'context:', this);
                 })
                 .onItemAddChildItem(function() {
