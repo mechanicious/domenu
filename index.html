@@ -104,6 +104,8 @@
             <h4>JSON Output Preview</h4>
             <textarea style="width: 100%; min-height: 300px;" name="domenu-1JsonOutput" id="domenu-1JsonOutput"></textarea>
             <input type="checkbox" name="domenu-1Keepchages" id="domenu-1KeepChanges" checked> Keep changes after page reload (localStorage)
+            <br><br>
+            <input style="display:none;" type="button" name="domenu-1clearLocalStorage" id="domenu-1clearLocalStorage" value="Reset demo">
         </section>
 
 
@@ -138,14 +140,24 @@
         }).parseJson();
         var domenu1 = $('#domenu-1').domenu(),
             $domenu1Textarea = $('#domenu-1JsonOutput'),
-            $domenu1KeepChanges = $('#domenu-1KeepChanges');
+            $domenu1KeepChanges = $('#domenu-1KeepChanges'),
+            $domenu1clearLocalStorage = $('#domenu-1clearLocalStorage');
+
+        if(window.localStorage.length) $domenu1clearLocalStorage.show();
+
+        $domenu1clearLocalStorage.click(function() {
+            if(true) window.localStorage.clear();
+            if(! window.localStorage.length) $domenu1clearLocalStorage.hide();
+            // Part of the reset demo routine
+            window.location.reload();
+        });
 
         // Init textarea
         $domenu1Textarea.val(domenu1.toJson());
         $domenu1KeepChanges.on('click', function() {
             if(! $domenu1KeepChanges.is(':checked')) window.localStorage.setItem('domenu-1KeepChanges', false);
             if($domenu1KeepChanges.is(':checked')) window.localStorage.setItem('domenu-1KeepChanges', true);
-            console.log(window.localStorage.getItem('domenu-1KeepChanges'))
+            console.log(window.localStorage.getItem('domenu-1KeepChanges'));
 
         });
 
@@ -156,6 +168,7 @@
                     console.log('event: onFromJson', 'arguments:', arguments, 'context:', this);
                 })
                 .onToJson(function() {
+                    if(window.localStorage.length) $domenu1clearLocalStorage.show();
                     console.log('event: onToJson', 'arguments:', arguments, 'context:', this);
                 })
                 .onSaveEditBoxInput(function() {
