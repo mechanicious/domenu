@@ -98,19 +98,19 @@
     outline: none;
 }
 
-.dd-item .button-container button {
+.dd-item .dd-button-container button {
 background-color: transparent;border: none;cursor: pointer;line-height: 26px;}
 
-.dd-item .button-container .item-add {
+.dd-item .dd-button-container .item-add {
     color: #FFFFFF;
 }
 
-.dd-item .button-container .item-add:active {
+.dd-item .dd-button-container .item-add:active {
 
 box-shadow: inset 0 1px 3px #376F9C;
 }
 
-.dd-item .button-container .item-remove {
+.dd-item .dd-button-container .item-remove {
     background-color: #FF5555;
     border-color: #A54B4B;
     color: #5A1111;
@@ -118,12 +118,12 @@ box-shadow: inset 0 1px 3px #376F9C;
     box-shadow: inset 0 1px 0 #FFC0C0;
     transition: background-color 0.35s;
 }
-.dd-item .button-container .item-remove:active {
+.dd-item .dd-button-container .item-remove:active {
     
 box-shadow: inset 0 1px 5px #A54B4B;
 }
 
-.dd-item .button-container .item-remove-confirm {
+.dd-item .dd-button-container .item-remove-confirm {
     
 background-color: #FFA155;
     
@@ -131,7 +131,7 @@ transition: background-color 0.35s;
     
 border-color: #AD7232;
 }
-.dd-item .button-container .item-remove-confirm:active {
+.dd-item .dd-button-container .item-remove-confirm:active {
     
 }
 
@@ -139,7 +139,7 @@ border-color: #AD7232;
     background: #ffce66;
 }
 
-.dd-item .button-container {
+.dd-item .dd-button-container {
     position: absolute;
     height: 18px;
     padding: 0 5px;
@@ -260,7 +260,7 @@ border-color: #AD7232;
 .dd3-handle:hover {
 }
 
-.dd3-content:hover .button-container {
+.dd3-content:hover .dd-button-container {
     display: block;
     transition: display 2s;
 }

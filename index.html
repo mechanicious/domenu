@@ -1,165 +1,324 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html lang="en" class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>    <html lang="en" class="lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>    <html lang="en" class="lt-ie9"> <![endif]-->
-<!--[if IE 9]>    <html lang="en" class="ie9"> <![endif]-->
-<!--[if gt IE 9]><!--> 
 <html lang="en"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-        <title>jQuery doMenu Plugin</title>
-        <link rel="stylesheet" type="text/css" href="jquery.domenu-0.48.53.css"/>
-    </head>
-    <style>
-        .cf:after {
-            visibility: hidden;
-            display: block;
-            font-size: 0;
-            content: " ";
-            clear: both;
-            height: 0;
-        }
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>jQuery doMenu Plugin</title>
+  <link rel="stylesheet" type="text/css" href="jquery.domenu-0.48.53.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-        * html .cf {zoom: 1;}
+</head>
+<body>
+<style scoped>
+  .cf:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
 
-        *:first-child+html .cf {zoom: 1;}
+  * html .cf {
+    zoom: 1;
+  }
 
-        html {
-            margin: 0;
-            padding: 0;
-        }
+  *:first-child + html .cf {
+    zoom: 1;
+  }
 
-        body {
-            font-size: 100%;
-            margin: 50px;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-        }
+  html {
+    margin: 0;
+    padding: 0;
+  }
 
-        h1 {
-            font-size: 1.75em;
-            margin: 0 0 0.6em 0;
-        }
+  body {
+    font-size: 100%;
+    margin: 50px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
 
-        a {color: #2996cc;}
+  h1 {
+    font-size: 1.75em;
+    margin: 0 0 0.6em 0;
+  }
 
-        a:hover {text-decoration: none;}
+  a {
+    color: #2996cc;
+  }
 
-        p {line-height: 1.5em;}
+  a:hover {
+    text-decoration: none;
+  }
 
-        .small {
-            color: #666;
-            font-size: 0.875em;
-        }
+  p {
+    line-height: 1.5em;
+  }
 
-        .large {font-size: 1.25em;}
-    </style>
-    <body>
-        <section class="mod mod-flat-glass">
-            <div class="desc">
-                <h1>doMenu</h1>
-                <p>Customized version of Nestable for back-end hierarchical menu creation</p>
-            </div>
-            <div class="dd" id="domenu-1">
+  .small {
+    color: #666;
+    font-size: 0.875em;
+  }
 
-                <button id="domenu-add-item-btn" class="dd-new-item">+</button>
-                <!-- .dd-item-blueprint is a template for all .dd-item's -->
-                <li class="dd-item-blueprint">
-                    <div class="dd-handle dd3-handle">Drag</div>
-                    <div class="dd3-content">
-                        <span>[item_name]</span>
-                        <!-- @migrating-from 0.13.29 button container-->
-                        <div class="button-container">
-                            <!-- @migrating-from 0.13.29 add button-->
-                            <button class="item-add">+</button>
-                            <button class="item-remove" data-confirm-class="item-remove-confirm">&times;</button>
-                        </div>
-                        <div class="dd-edit-box" style="display: none;">
-                            <!-- data-placeholder has a higher priority than placeholder -->
-                            <!-- data-placeholder can use token-values; when not present will be set to "" -->
-                            <!-- data-default-value specifies a default value for the input; when not present will be set to "" -->
-                            <input type="text" name="title" autocomplete="off" placeholder="Item" data-placeholder="Any nice idea for the title?" data-default-value="doMenu List Item. {?numeric.increment}">
-                            <select name="superselect">
-                                <option>select something...</option>
-                                <optgroup label="Pages">
-                                    <option value="1">http://example.com/page/1</option>
-                                    <option value="2">http://example.com/page/2</option>
-                                </optgroup>
-                                <optgroup label="Categories">
-                                    <option value="3">News</option>
-                                    <option value="4">Stories</option>
-                                </optgroup>
-                            </select>
-                            <!-- @migrating-from 0.13.29 an element ".end-edit" within ".dd-edit-box" exists the edit mode on click -->
-                            <i class="end-edit">&#x270e;</i>
-                        </div>
-                    </div>
-                </li>
+  .large {
+    font-size: 1.25em;
+  }
+</style>
 
-                <ol class="dd-list"></ol>
-            </div>
-            </div>
-        </section>
+<div class="desc">
+  <h1>doMenu</h1>
+  <p>Customized version of Nestable for back-end hierarchical menu creation</p>
+</div>
+<section class="mod mod-flat-glass" style="width: 58%; display: inline-block;">
+  <h2>User menu</h2>
+  <div class="dd" id="domenu-1">
+    <button id="domenu-add-item-btn" class="dd-new-item">+</button>
+    <!-- .dd-item-blueprint is a template for all .dd-item's -->
+    <li class="dd-item-blueprint">
+      <!-- @migrating-from 0.48.59 button container -->
+      <button class="collapse" data-action="collapse" type="button" style="display: none;">–</button>
+      <button class="expand" data-action="expand" type="button" style="display: none;">+</button>
+      <div class="dd-handle dd3-handle">Drag</div>
+      <div class="dd3-content">
+        <span class="item-name">[item_name]</span>
+        <!-- @migrating-from 0.13.29 button container-->
+        <!-- .dd-button-container will hide once an item enters the edit mode -->
+        <div class="dd-button-container">
+          <!-- @migrating-from 0.13.29 add button-->
+          <button class="custom-button-example">&#x270E;</button>
+          <button class="item-add">+</button>
+          <button class="item-remove" data-confirm-class="item-remove-confirm">&times;</button>
+        </div>
+        <!-- Inside of .dd-edit-box you can add your custom input fields -->
+        <div class="dd-edit-box" style="display: none;">
+          <!-- data-placeholder has a higher priority than placeholder -->
+          <!-- data-placeholder can use token-values; when not present will be set to "" -->
+          <!-- data-default-value specifies a default value for the input; when not present will be set to "" -->
+          <input type="text" name="title" autocomplete="off" placeholder="Item"
+                 data-placeholder="Any nice idea for the title?"
+                 data-default-value="doMenu List Item. {?numeric.increment}">
+          <select name="custom-select">
+            <option>select something...</option>
+            <optgroup label="Pages">
+              <option value="1">http://example.com/page/1</option>
+              <option value="2">http://example.com/page/2</option>
+            </optgroup>
+            <optgroup label="Categories">
+              <option value="3">News</option>
+              <option value="4">Stories</option>
+            </optgroup>
+          </select>
+          <!-- @migrating-from 0.13.29 an element ".end-edit" within ".dd-edit-box" exists the edit mode on click -->
+          <i class="end-edit">save</i>
+        </div>
+      </div>
+    </li>
 
-        <p class="small">Copyright &copy; 2015 Mateusz Zawartka | MIT Licensed <br/>
-        Build upon Nestable from <a href="http://dbushell.com/">David Bushell</a></p>
+    <ol class="dd-list"></ol>
+  </div>
+</section>
+<section id="domenu-1-output" style="width:28%; display: inline-block; vertical-align: top; margin-left: 1%;">
+  <h4>JSON Output Preview (User menu)</h4>
+  <textarea style="width: 100%; min-height: 300px;" name="jsonOutput" class="jsonOutput"></textarea>
+  <input type="checkbox" name="keepchages" class="keepChanges" checked> Keep changes after page reload (localStorage)
+  <br><br>
+  <input style="display:none;" type="button" name="clearLocalStorage" class="clearLocalStorage" value="Reset demo">
+</section>
+<script>
+  $(document).ready(function() {
+    var $domenu            = $('#domenu-1'),
+        domenu             = $('#domenu-1').domenu(),
+        $outputContainer   = $('#domenu-1-output'),
+        $jsonOutput        = $outputContainer.find('.jsonOutput'),
+        $keepChanges       = $outputContainer.find('.keepChanges'),
+        $clearLocalStorage = $outputContainer.find('.clearLocalStorage');
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="jquery.domenu-0.48.53.js"></script>
-    <script>
+    $domenu.domenu({
+        slideAnimationDuration: 0,
+        data:                   window.localStorage.getItem('domenu-1Json') || '[{"title":"Account","customSelect":"select something...","children":[{"title":"Settings","customSelect":"select something..."}]},{"title":"Orders","customSelect":"select something...","children":[{"title":"Manage","customSelect":"select something..."},{"title":"Settings","customSelect":"select something..."}]},{"title":"Support","customSelect":"select something...","children":[{"title":"Call","customSelect":"select something..."},{"title":"Email","customSelect":"select something..."}]}]'
+      })
+      // Example: initializing functionality of a custom button #21
+      .onCreateItem(function(blueprint) {
+        // We look with jQuery for our custom button we denoted with class "custom-button-example"
+        // Note 1: blueprint holds a reference of the element which is about to be added the list
+        var customButton = $(blueprint).find('.custom-button-example');
 
-    $(document).ready(function()
-    {
+        // Here we define our custom functionality for the button,
+        // we will forward the click to .dd3-content span and let
+        // doMenu handle the rest
+        customButton.click(function() {
+          blueprint.find('.dd3-content span').click();
+        });
+      })
+      // Now every element which will be parsed will go through our onCreateItem event listener, and therefore
+      // initialize the functionality our custom button
+      .parseJson()
+      .on(['onSaveEditBoxInput', 'onItemDrop', 'onItemAdded', 'onItemRemoved', 'onItemEndEdit'], function(a, b, c) {
+        $jsonOutput.val(domenu.toJson());
+        if($keepChanges.is(':checked')) window.localStorage.setItem('domenu-1Json', domenu.toJson());
+      })
+      .onToJson(function() {
+        if(window.localStorage.length) $clearLocalStorage.show();
+      });
 
-        var updateOutput = function(e)
-        {
-            var list   = e.length ? e : $(e.target),
-                output = list.data('output');
-            if (window.JSON) {
-                output.val(window.JSON.stringify(list.domenu('serialize')));//, null, 2));
-            } else {
-                output.val('JSON browser support required for this demo.');
-            }
-        };
+      // Console event examples
+      domenu.on('*', function(a, b, c) {
+        console.log('event:', '*', 'arguments:', arguments, 'context:', this);
+      })
+      .onParseJson(function() {
+        console.log('event: onFromJson', 'arguments:', arguments, 'context:', this);
+      })
+      .onToJson(function() {
+        console.log('event: onToJson', 'arguments:', arguments, 'context:', this);
+      })
+      .onSaveEditBoxInput(function() {
+        console.log('event: onSaveEditBoxInput', 'arguments:', arguments, 'context:', this);
+      })
+      .onItemDrag(function() {
+        console.log('event: onItemDrag', 'arguments:', arguments, 'context:', this);
+      })
+      .onItemDrop(function() {
+        console.log('event: onItemDrop', 'arguments:', arguments, 'context:', this);
+      })
+      .onItemAdded(function() {
+        console.log('event: onItemAdded', 'arguments:', arguments, 'context:', this);
+      })
+      .onItemCollapsed(function() {
+        console.log('event: onItemCollapsed', 'arguments:', arguments, 'context:', this);
+      })
+      .onItemExpanded(function() {
+        console.log('event: onItemExpanded', 'arguments:', arguments, 'context:', this);
+      })
+      .onItemRemoved(function() {
+        console.log('event: onItemRemoved', 'arguments:', arguments, 'context:', this);
+      })
+      .onItemStartEdit(function() {
+        console.log('event: onItemStartEdit', 'arguments:', arguments, 'context:', this);
+      })
+      .onItemEndEdit(function() {
+        console.log('event: onItemEndEdit', 'arguments:', arguments, 'context:', this);
+      })
+      .onItemAddChildItem(function() {
+        console.log('event: onItemAddChildItem', 'arguments:', arguments, 'context:', this);
+      });
 
-        $('#domenu-1').domenu({
-            slideAnimationDuration: 0,
-            onDomenuInitialized: [function() {
-                console.log('event: onDomenuInitialized', 'arguments:', arguments, 'context:', this);
-            }],
-            data: '[{"id":11,"title":"doMenu List Item","http":"","superselect":"2"},{"id":10,"title":"News","http":"","superselect":"1"},{"id":9,"title":"Categories","http":"","superselect":"1"},{"id":6,"title":"Shop","http":"","children":[{"id":5,"title":"Glass","http":"","superselect":"1"},{"title":"Other","superselect":"select something..."}],"superselect":"select something..."},{"id":1,"title":"About","http":"","superselect":"select something..."}]'
-        }).parseJson()
-                .onParseJson(function() {
-                    console.log('event: onFromJson', 'arguments:', arguments, 'context:', this);
-                })
-                .onToJson(function() {
-                    console.log('event: onToJson', 'arguments:', arguments, 'context:', this);
-                })
-                .onSaveEditBoxInput(function() {
-                    console.log('event: onSaveEditBoxInput', 'arguments:', arguments, 'context:', this);
-                })
-                .onItemDrag(function() {
-                    console.log('event: onItemDrag', 'arguments:', arguments, 'context:', this);
-                })
-                .onItemDrop(function() {
-                    console.log('event: onItemDrop', 'arguments:', arguments, 'context:', this);
-                })
-                .onItemAdded(function() {
-                    console.log('event: onItemAdded', 'arguments:', arguments, 'context:', this);
-                })
-                .onItemRemoved(function() {
-                    console.log('event: onItemRemoved', 'arguments:', arguments, 'context:', this);
-                })
-                .onItemStartEdit(function() {
-                    console.log('event: onItemStartEdit', 'arguments:', arguments, 'context:', this);
-                })
-                .onItemEndEdit(function() {
-                    console.log('event: onItemEndEdit', 'arguments:', arguments, 'context:', this);
-                })
-                .onItemAddChildItem(function() {
-                    console.log('event: onItemAddChildItem', 'arguments:', arguments, 'context:', this);
-                });
+    if(window.localStorage.length) $clearLocalStorage.show();
+
+
+    $clearLocalStorage.click(function() {
+      if(true) window.localStorage.clear();
+      if(!window.localStorage.length) $clearLocalStorage.hide();
+      // Part of the reset demo routine
+      window.location.reload();
     });
-    </script>
-    </body>
+
+    // Init textarea
+    $jsonOutput.val(domenu.toJson());
+    $keepChanges.on('click', function() {
+      if(!$keepChanges.is(':checked')) window.localStorage.setItem('domenu-1KeepChanges', false);
+      if($keepChanges.is(':checked')) window.localStorage.setItem('domenu-1KeepChanges', true);
+    });
+
+    if(window.localStorage.getItem('domenu-1KeepChanges') === "false") $keepChanges.attr('checked', false);
+  });
+</script>
+<section style="width: 58%; display: inline-block;">
+  <h2>Shop menu</h2>
+  <div class="dd" id="domenu-2">
+    <button class="dd-new-item">+</button>
+    <!-- .dd-item-blueprint is a template for all .dd-item's -->
+    <li class="dd-item-blueprint">
+      <!-- @migrating-from 0.48.59 button container -->
+      <button class="collapse" data-action="collapse" type="button" style="display: none;">–</button>
+      <button class="expand" data-action="expand" type="button" style="display: none;">+</button>
+      <div class="dd-handle dd3-handle">Drag</div>
+      <div class="dd3-content">
+        <span class="item-name">[item_name]</span>
+        <!-- @migrating-from 0.13.29 button container-->
+        <!-- .dd-button-container will hide once an item enters the edit mode -->
+        <div class="dd-button-container">
+          <!-- @migrating-from 0.13.29 add button-->
+          <button class="item-add">+</button>
+          <button class="item-remove" data-confirm-class="item-remove-confirm">&times;</button>
+        </div>
+        <!-- Inside of .dd-edit-box you can add your custom input fields -->
+        <div class="dd-edit-box" style="display: none;">
+          <!-- data-placeholder has a higher priority than placeholder -->
+          <!-- data-placeholder can use token-values; when not present will be set to "" -->
+          <!-- data-default-value specifies a default value for the input; when not present will be set to "" -->
+          <input type="text" name="title" autocomplete="off" placeholder="Item"
+                 data-placeholder="Any nice idea for the title?"
+                 data-default-value="doMenu List Item. {?numeric.increment}">
+          <select name="custom-select">
+            <option>select something...</option>
+            <optgroup label="Pages">
+              <option value="1">http://example.com/page/1</option>
+              <option value="2">http://example.com/page/2</option>
+            </optgroup>
+            <optgroup label="Categories">
+              <option value="3">News</option>
+              <option value="4">Stories</option>
+            </optgroup>
+          </select>
+          <!-- @migrating-from 0.13.29 an element ".end-edit" within ".dd-edit-box" exists the edit mode on click -->
+          <i class="end-edit">save</i>
+        </div>
+      </div>
+    </li>
+    <ol class="dd-list"></ol>
+  </div>
+</section>
+<section id="domenu-2-output" style="width:28%; display: inline-block; vertical-align: top; margin-left: 1%;">
+  <h4>JSON Output Preview (Shop menu)</h4>
+  <textarea style="width: 100%; min-height: 300px;" name="jsonOutput" class="jsonOutput"></textarea>
+  <input type="checkbox" name="keepchages" class="keepChanges" checked> Keep changes after page reload (localStorage)
+  <br><br>
+  <input style="display:none;" type="button" name="clearLocalStorage" class="clearLocalStorage" value="Reset demo">
+</section>
+
+<script>
+  $(document).ready(function() {
+    var $domenu            = $('#domenu-2'),
+        domenu             = $('#domenu-2').domenu(),
+        $outputContainer   = $('#domenu-2-output'),
+        $jsonOutput        = $outputContainer.find('.jsonOutput'),
+        $keepChanges       = $outputContainer.find('.keepChanges'),
+        $clearLocalStorage = $outputContainer.find('.clearLocalStorage');
+
+    $('#domenu-2').domenu({
+        slideAnimationDuration: 0,
+        data: window.localStorage.getItem('domenu-2Json') ||'[{"id":11,"title":"Another list","http":"","superselect":"2","customSelect":"select something...","children":[{"id":10,"title":"News","http":"","superselect":"1","customSelect":"select something..."},{"id":9,"title":"Categories","http":"","superselect":"1","customSelect":"2"}]},{"title":"Check","customSelect":"select something..."},{"title":"New","customSelect":"select something..."}]'
+      })
+      .parseJson()
+      .on(['onSaveEditBoxInput', 'onItemDrop', 'onItemAdded', 'onItemRemoved', 'onItemEndEdit'], function(a, b, c) {
+        $jsonOutput.val(domenu.toJson());
+        if($keepChanges.is(':checked')) window.localStorage.setItem('domenu-2Json', domenu.toJson());
+      })
+      .onToJson(function() {
+        if(window.localStorage.length) $clearLocalStorage.show();
+      });
+
+      $clearLocalStorage.click(function() {
+        if(true) window.localStorage.clear();
+        if(!window.localStorage.length) $clearLocalStorage.hide();
+        // Part of the reset demo routine
+        window.location.reload();
+      });
+
+      // Init textarea
+      $jsonOutput.val(domenu.toJson());
+      $keepChanges.on('click', function() {
+        if(!$keepChanges.is(':checked')) window.localStorage.setItem('domenu-2KeepChanges', false);
+        if($keepChanges.is(':checked')) window.localStorage.setItem('domenu-2KeepChanges', true);
+      });
+
+      if(window.localStorage.getItem('domenu-2KeepChanges') === "false") $keepChanges.attr('checked', false);
+  });
+</script>
+
+  <p class="small">Copyright &copy; 2015 Mateusz Zawartka | MIT Licensed <br/>
+                   Build upon Nestable from <a href="http://dbushell.com/">David Bushell</a>
+  </p>
+<script src="jquery.domenu-0.48.53.js"></script>
+</body>
 </html>

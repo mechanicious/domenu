@@ -38,8 +38,11 @@
 .dd-edit-box textarea:focus {
   text-shadow: none;
 }
-
-
+.dd-button-container .custom-button-example {
+  color: #000;
+  text-align: center;
+  padding: 1px 4px;
+}
 
 .dd-edit-box select {
   width: 30%;
@@ -62,6 +65,7 @@
   overflow: hidden;
   cursor:   pointer;
   position: absolute;
+  font-style: normal;
 }
 
 .dd-item-blueprint {
@@ -160,7 +164,7 @@
   outline: none;
 }
 
-.dd-item .button-container button {
+.dd-item .dd-button-container button {
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.51), rgba(0, 0, 0, 0.14));
   border:           1px solid #898989;
   border-radius:    2px;
@@ -168,7 +172,7 @@
   cursor:           pointer;
 }
 
-.dd-item .button-container .item-add {
+.dd-item .dd-button-container .item-add {
   background-color: #55b3ff;
   border-color:     #376f9c;
   color:            #ffffff;
@@ -176,11 +180,11 @@
   box-shadow:       inset 0 1px 0 #cfe9ff;
 }
 
-.dd-item .button-container .item-add:active {
+.dd-item .dd-button-container .item-add:active {
   box-shadow: inset 0 1px 3px #376f9c;
 }
 
-.dd-item .button-container .item-remove {
+.dd-item .dd-button-container .item-remove {
   background-color: #ff5555;
   border-color:     #a54b4b;
   color:            #5a1111;
@@ -189,12 +193,12 @@
   transition:       background-color 0.35s;
 }
 
-.dd-item .button-container .item-remove:active {
+.dd-item .dd-button-container .item-remove:active {
 
   box-shadow: inset 0 1px 5px #a54b4b;
 }
 
-.dd-item .button-container .item-remove-confirm {
+.dd-item .dd-button-container .item-remove-confirm {
 
   background-color: #ffa155;
 
@@ -203,7 +207,7 @@
   border-color:     #ad7232;
 }
 
-.dd-item .button-container .item-remove-confirm:active {
+.dd-item .dd-button-container .item-remove-confirm:active {
 
 }
 
@@ -211,7 +215,7 @@
   background: #ffce66;
 }
 
-.dd-item .button-container {
+.dd-item .dd-button-container {
   position: absolute;
   height:   19px;
   padding:  0 5px;
@@ -352,7 +356,7 @@
   background: linear-gradient(top, #c8c8c8 0%, #8c8c8c 100%);
 }
 
-.dd3-content:hover .button-container {
+.dd3-content:hover .dd-button-container {
   display:    block;
   transition: display 2s;
 }
