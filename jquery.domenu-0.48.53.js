@@ -1473,8 +1473,6 @@
    * @version-control +0.0.1
    * @dev-since 0.13.29
    * @version-control +0.0.5 random key generation improvements
-   * @param params
-   * @returns {*|PublicPlugin}
    */
     // $('#domenu').domenu();
   $.fn.domenu = function(params) {
