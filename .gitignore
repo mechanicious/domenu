@@ -1,1 +1,3 @@
-.regex
+*.psd
+*.regex
+.idea

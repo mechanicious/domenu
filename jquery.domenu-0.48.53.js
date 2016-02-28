@@ -147,7 +147,8 @@
     select2:                {
       support:     false,
       // Any CSS-supported value is valid
-      selectWidth: '45%'
+      selectWidth: '45%',
+      params: {}
     },
     slideAnimationDuration: 0,
     group:                  0,
@@ -683,7 +684,7 @@
 
       if(_this.options.select2.support) {
         blueprint.find('select').css('width', _this.options.select2.selectWidth);
-        blueprint.find('select').select2();
+        blueprint.find('select').select2(_this.options.select2.params);
       }
 
       // Call onCreateItem event listeners
@@ -740,7 +741,6 @@
           var li           = $(this),
               sub          = li.children(list.options.listNodeName),
               filteredData = {};
-
 
           // Filter out domenu_ prefixed data values
           $.each(li.data(), function(key, i) {
@@ -868,8 +868,7 @@
       var list = this;
       list.el.find(list.options.itemNodeName).each(function() {
         var item = $(this);
-        if(cb && cb(item)) list.expandItem($(this));
-        else list.expandItem($(this));
+        if(cb && cb(item)) list.expandItem(item);
       });
     },
     /**
@@ -881,7 +880,6 @@
       list.el.find(list.options.itemNodeName).each(function() {
         var item = $(this);
         if(cb && cb(item)) list.collapseItem(item);
-        else list.collapseItem(item);
       });
     },
     /**
@@ -924,6 +922,8 @@
     /**
      * @dev-since 0.13.29
      * @version-control +0.1.0 fix clean item data when unsetting a parent #4
+     * @dev-since 0.48.53
+     * @version-control +0.1.0 fix disappearing lists on unsetParent with multiple list instances
      * @param parent
      */
     unsetParent:      function(parent) {
@@ -1015,6 +1015,13 @@
       this.options.event.onItemDrop.forEach(function(cb, i) {
         cb(el, e);
       });
+
+
+      if($(el).parents(this.options.rootClass).data('domenu-id') !== $(this.el).data('domenu-id')) {
+        $(el).parents(this.options.rootClass.dot()).domenu()._plugin.options.event.onItemDrop.forEach(function(cb, i) {
+          cb(el, e);
+        });
+      }
     },
 
 
@@ -1138,8 +1145,14 @@
       if(!hasPointerEvents) {
         this.dragEl[0].style.visibility = 'hidden';
       }
-      // TODO: include this fix this in the next patch
+
       this.pointEl = $(document.elementFromPoint(e.pageX - document.body.scrollLeft, e.pageY - (window.pageYOffset || document.documentElement.scrollTop)));
+
+      /**
+       * @dev-since 0.48.59
+       * @version-control +0.1.0 fix snapping items to an empty list  (multiple instances)
+       */
+      if(this.pointEl.hasClass(opt.listClass) && ! this.pointEl.children(opt.itemClass.dot()).length) this.pointEl.append(this.placeEl);
 
       if(!this.pointEl.parents(opt.rootClass.dot()).length || this.pointEl.hasClass(opt.listClass) || this.pointEl.hasClass(opt.placeClass)) return;
 
@@ -1156,7 +1169,7 @@
         isEmpty = true;
       }
       // When no pointer element has been found or when the pointer element has no options.itemClass
-      else if(!this.pointEl.length || !this.pointEl.hasClass(opt.itemClass)) {
+      else if(!this.pointEl.length || ! this.pointEl.hasClass(opt.itemClass)) {
         return;
       }
 
@@ -1221,7 +1234,7 @@
   }
 
   PublicPlugin.prototype = {
-    getLists:           function(params) {
+    getLists:           function() {
       return this._lists;
     },
     parseJson:          function(data, override) {
@@ -1234,19 +1247,19 @@
       return JSON.stringify(data);
     },
     expandAll:          function() {
-      this._plugin.expandAll();
+      this._plugin.expandAll(function() {
+        return true;
+      });
       return this;
     },
     collapseAll:        function() {
-      this._plugin.collapseAll();
+      this._plugin.collapseAll(function() {
+        return true;
+      });
       return this;
     },
     expand:             function(cb) {
       this._plugin.expandAll(cb);
-      return this;
-    },
-    collapse:           function(cb) {
-      this._plugin.collapseAll(cb);
       return this;
     },
     /**
@@ -1262,6 +1275,10 @@
       var _this = this;
       _this._plugin.options.event.onParseJson.push(callback.bind(_this));
       return _this;
+    },
+    collapse:           function(cb) {
+      this._plugin.collapseAll(cb);
+      return this;
     },
     /**
      * @desc Listen to toJson calls
@@ -1434,7 +1451,9 @@
     /**
      * @desc Setup a callback for multiple events
      * @dev-since 0.48.53
-     * @version-control +0.1.0 feature listen for onCreateItem events
+     * @param eventBag array or string containing event names
+     * @version-control +0.1.0 feature listen on many events simultaneously, use '*' to listen for all events
+     * @returns {PublicPlugin}
      */
     on: function(eventBag, callback) {
       var _this = this;
@@ -1446,6 +1465,8 @@
         Object.keys(_this._plugin.options.event).forEach(function(event, c) {
           _this._plugin.options.event[event].push(callback.bind(_this))
         });
+      } else if(typeof eventBag === "string") {
+        _this._plugin.options.event[eventBag].push(callback.bind(_this));
       }
       return _this;
     },
@@ -1474,7 +1495,6 @@
    * @dev-since 0.13.29
    * @version-control +0.0.5 random key generation improvements
    */
-    // $('#domenu').domenu();
   $.fn.domenu = function(params) {
     var lists  = this.first(),
         domenu  = $(this),
@@ -1483,6 +1503,10 @@
 
         if(params) plugin.options = $.extend(true, {}, defaults, params);
         if( ! domenu.data("domenu") || params) domenu.data("domenu", plugin);
+        if( ! domenu.data("domenu-id")) {
+          var pseudoRandomNumericKey = Math.random().toString().replace(/\D/g, '');
+          domenu.data('domenu-id', pseudoRandomNumericKey);
+        }
 
     return pPlugin || plugin;
 

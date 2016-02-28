@@ -2,15 +2,17 @@
  * doMenu
  */
 .dd {
-  position:    relative;
-  display:     block;
-  margin:      0;
-  padding:     0;
-  max-width:   600px;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 60%;
   list-style:  none;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
   font-size:   13px;
   line-height: 20px;
 }
+
 
 .dd-edit-box input,
   /*.dd-edit-box select,*/
@@ -70,6 +72,10 @@
 
 .dd-item-blueprint {
   display: none;
+}
+
+.dd > .dd-list {
+  min-height: 80px;
 }
 
 .dd-list {
