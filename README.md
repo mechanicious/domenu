@@ -1,4 +1,4 @@
-![](https://github.com/mechanicious/domenu/blob/gh-pages/logo-domenu.png?raw=true) doMenu
+[![](https://github.com/mechanicious/domenu/blob/gh-pages/logo-domenu.png?raw=true)](http://mechanicious.github.io/domenu/) doMenu
 
 Specialized version of Nestable plugin, for back-end hierahical menu creation. 
 
