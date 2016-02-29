@@ -1,0 +1,177 @@
+.cf:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+* html .cf {
+    zoom: 1;
+}
+
+*:first-child + html .cf {
+    zoom: 1;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 100%;
+    margin: 50px;
+    font-family: Lato, Helvetica, Arial sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    margin-left: -3%;
+}
+
+h3, h4 {
+    margin-left: -1%;
+}
+
+h1 {
+    font-size: 1.75em;
+    margin: 0 0 0.6em 0;
+    font-weight: 300;
+}
+h3 {
+    font-weight: 600;
+}
+h2, h4 {
+    font-weight: 400;
+}
+
+.output-preview-container textarea {
+    border: none;
+}
+
+.header {
+    padding: 20px 50px;
+    background-color: #fff;
+}
+
+.header h1 sub, .header h1 sup {
+    font-size: 16px;
+}
+
+
+.menu-container {
+    display:block;
+    text-align: left;
+}
+
+.menu-container ul.menu {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-container ul.menu li {
+    list-style: none;
+    display: inline-block;
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+.menu-container ul.menu li:first-child {
+    padding-left: 0;
+}
+
+.menu-container ul.menu li a {
+    text-decoration: none;
+    color: #00AB8D;
+}
+
+.menu-container ul.menu li a:hover {
+    text-decoration: underline;
+}
+
+.header img.logo, .header h1 {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+section {
+    margin: 10px 8%;
+    margin-top: 40px;
+    display: block;
+}
+
+.output-preview-container {
+    width:35%;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 1%;
+}
+
+.output-preview-container h4 {
+    margin-top: 0;
+}
+
+a {
+    color: #2996cc;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+p {
+    line-height: 1.5em;
+}
+
+.small {
+    color: #666;
+    font-size: 0.875em;
+}
+
+.large {
+    font-size: 1.25em;
+}
+
+ul.quick-api {
+    margin: 0;
+    padding: 0;
+}
+
+ul.quick-api li {
+    list-style: none;
+}
+
+ul.quick-api li pre {
+    margin-bottom: 5px;
+}
+
+ul.quick-api li p {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/**
+select2
+*/
+.select2-container--default .select2-selection--single {
+    margin: -5px 0;
+}
+
+code {
+    background-color: #EFECF4;
+    color: #AB0000;
+    padding: 1px 3px;
+    text-shadow: 0 1px 0 #FFF;
+}
+
+span.info {
+    background-color: #DEEFF8;
+    display: block;
+    margin: 5px 0;
+    padding: 5px 10px;
+    color: #022638;
+}
