@@ -5,23 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <title>jQuery doMenu Plugin</title>
   <link rel="stylesheet" type="text/css" href="presentation-style.css"/>
-  <link rel="stylesheet" type="text/css" href="jquery.domenu-0.48.53.css"/>
+  <link rel="stylesheet" type="text/css" href="jquery.domenu-0.87.53.css"/>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css"/>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/atelier-cave-light.min.css"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
 
 </head>
 <body>
 <div class="header">
   <a href="#"><img class="logo" src="logo-domenu.png" alt=""></a>
-  <h1>doMenu <sup>v0.48.53</sup></h1>
-  <p>Customized version of Nestable for back-end hierarchical menu creation</p>
+    <h1>doMenu <sup>v0.87.53</sup></h1>
+    <div><a class="github-button" href="https://github.com/mechanicious/domenu" data-count-href="/mechanicious/domenu/stargazers" data-count-api="/repos/mechanicious/domenu#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star mechanicious/domenu on GitHub">Star</a>
+      <a class="github-button" href="https://github.com/mechanicious/domenu/fork" data-count-href="/mechanicious/domenu/network" data-count-api="/repos/mechanicious/domenu#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork mechanicious/domenu on GitHub">Fork</a></div>
+    <p>Customized version of Nestable for back-end hierarchical menu creation </p>
   <div class="menu-container">
     <ul class="menu">
-      <li><a href="">Github Repository</a></li>
-      <li><a href="">Quick API</a></li>
-      <li><a href="">API</a></li>
-      <li><a href="">Download</a></li>
+      <li><a href="https://github.com/mechanicious/domenu/">Github Repository</a></li>
+      <li><a href="#quick-installation-guide">Quick Installation Guide</a></li>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#options">Options</a></li>
+      <li><a href="#tokens-and-attributes">Tokens & Attributes</a></li>
+      <li><a href="#quick-api">Quick API</a></li>
+      <!--<li><a href="">API</a></li>-->
+      <li><a href="https://github.com/mechanicious/domenu/archive/master.zip">Download (.zip)</a></li>
     </ul>
   </div>
 </div>
@@ -57,11 +81,11 @@ $(document).ready(function() {
 });
 </script>
 <section>
-  <h2>Installation</h2>
+  <h2 id="quick-installation-guide">Quick Installation Guide</h2>
   <ol>
     <li>Download the repository and unpack the <code>.js</code> and <code>.css</code> files.</li>
-    <li>Add tags
-      <pre><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;jquery.domenu-0.48.53.css&quot;/&gt;<br/>&lt;/head&gt;<br/>...<br/>&lt;script src=&quot;jquery.domenu-0.48.53.js&quot;&gt;&lt;/script&gt;<br/>&lt;/body&gt;</code></pre></li>
+    <li>Add tags (make sure they point to your files)
+      <pre><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;jquery.domenu-0.87.53.css&quot;/&gt;<br/>&lt;/head&gt;<br/>...<br/>&lt;script src=&quot;jquery.domenu-0.87.53.js&quot;&gt;&lt;/script&gt;<br/>&lt;/body&gt;</code></pre></li>
     <li>Add the HTML template
       <pre><code>&lt;body&gt;<br/>...<br/>&lt;div class=&quot;dd&quot; id=&quot;domenu-0&quot;&gt;<br/>  &lt;button class=&quot;dd-new-item&quot;&gt;+&lt;/button&gt;<br/>  &lt;li class=&quot;dd-item-blueprint&quot;&gt;<br/>    &lt;button class=&quot;collapse&quot; data-action=&quot;collapse&quot; type=&quot;button&quot; style=&quot;display: none;&quot;&gt;&#x2013;&lt;/button&gt;<br/>    &lt;button class=&quot;expand&quot; data-action=&quot;expand&quot; type=&quot;button&quot; style=&quot;display: none;&quot;&gt;+&lt;/button&gt;<br/>    &lt;div class=&quot;dd-handle dd3-handle&quot;&gt;Drag&lt;/div&gt;<br/>    &lt;div class=&quot;dd3-content&quot;&gt;<br/>      &lt;span class=&quot;item-name&quot;&gt;[item_name]&lt;/span&gt;<br/>      &lt;div class=&quot;dd-button-container&quot;&gt;<br/>        &lt;button class=&quot;item-add&quot;&gt;+&lt;/button&gt;<br/>        &lt;button class=&quot;item-remove&quot; data-confirm-class=&quot;item-remove-confirm&quot;&gt;&amp;times;&lt;/button&gt;<br/>      &lt;/div&gt;<br/>      &lt;div class=&quot;dd-edit-box&quot; style=&quot;display: none;&quot;&gt;<br/>        &lt;input type=&quot;text&quot; name=&quot;title&quot; autocomplete=&quot;off&quot; placeholder=&quot;Item&quot;<br/>               data-placeholder=&quot;Any nice idea for the title?&quot;<br/>               data-default-value=&quot;doMenu List Item. {?numeric.increment}&quot;&gt;<br/>        &lt;i class=&quot;end-edit&quot;&gt;save&lt;/i&gt;<br/>      &lt;/div&gt;<br/>    &lt;/div&gt;<br/>  &lt;/li&gt;<br/>  &lt;ol class=&quot;dd-list&quot;&gt;&lt;/ol&gt;<br/>&lt;/div&gt;<br/>...<br/>&lt;/body&gt;</code></pre>
     </li>
@@ -73,15 +97,15 @@ $(document).ready(function() {
   </ol>
 </section>
 <section>
-  <h2>Introduction</h2>
+  <h2 id="introduction">Introduction</h2>
   <p class="desc">This example represents an integrated <a href="#user-menu">doMenu instance</a> with <code>Select2</code>.
                   This instance of doMenu takes advantage of the robust customization
-                  capabilities of the plugin where we have created a custom edit button.
+                  capabilities of the plugin where we have created a custom edit button, created custom input fields and integrated Select2.
                   Try opening your <code>browser console</code> to see a log of the fired events.
   </p>
   <p>Things to try out:</p>
   <ol>
-    <li>Drag (using gray handle on the left) the second list item named <code>settings</code> horizontally to the right to make it a child of <code>Account</code>
+    <li>Drag (using gray handle on the left) the second list item named <code>Settings</code> horizontally to the right to make it a child of <code>Account</code>
     <span class="info">To unset a child drag it horizontally to the left.</span>
     </li>
     <li>Now you should be able to collapse and expand <code>Account</code> by clicking on <code>–</code> and <code>+</code>
@@ -192,7 +216,7 @@ $(document).ready(function() {
       // Now every element which will be parsed will go through our onCreateItem event listener, and therefore
       // initialize the functionality our custom button
       .parseJson()
-      .on(['onItemAdded', 'onSaveEditBoxInput', 'onItemDrop', 'onItemDrag', 'onItemRemoved', 'onItemEndEdit'], function(a, b, c) {
+      .on(['onItemCollapsed', 'onItemExpanded', 'onItemAdded', 'onSaveEditBoxInput', 'onItemDrop', 'onItemDrag', 'onItemRemoved', 'onItemEndEdit'], function(a, b, c) {
         $jsonOutput.val(domenu.toJson());
         if($keepChanges.is(':checked')) window.localStorage.setItem('domenu-1Json', domenu.toJson());
       })
@@ -330,7 +354,7 @@ $(document).ready(function() {
         data: window.localStorage.getItem('domenu-2Json') ||'[{"id":11,"title":"Another list","http":"","superselect":"2","customSelect":"select something...","children":[{"id":10,"title":"News","http":"","superselect":"1","customSelect":"select something..."},{"id":9,"title":"Categories","http":"","superselect":"1","customSelect":"2"}]},{"title":"Check","customSelect":"select something..."},{"title":"New","customSelect":"select something..."}]'
       })
       .parseJson()
-      .on(['onItemAdded', 'onSaveEditBoxInput', 'onItemDrop', 'onItemDrag', 'onItemRemoved', 'onItemEndEdit'], function(a, b, c) {
+      .on(['onItemCollapsed', 'onItemExpanded', 'onItemAdded', 'onSaveEditBoxInput', 'onItemDrop', 'onItemDrag', 'onItemRemoved', 'onItemEndEdit'], function(a, b, c) {
         $jsonOutput.val(domenu.toJson());
         if($keepChanges.is(':checked')) window.localStorage.setItem('domenu-2Json', domenu.toJson());
       })
@@ -356,54 +380,176 @@ $(document).ready(function() {
   });
 </script>
 <section>
-  <h2>Quick API</h2>
+  <h2>Options</h2>
+  <p>Specify your options to the <code>domenu(options)</code> call e.g.: <pre><code>$('#domenu-0').domenu({<br/>  listNodeName:           'ol',<br/>  itemNodeName:           'li',<br/>  rootClass:              'dd',<br/>  listClass:              'dd-list',<br/>  itemClass:              'dd-item',<br/>  ...<br/>})</code></pre></p>
+  <h3>Default options</h3>
+  <p>Options supplied to a doMenu instance by default.</p>
+  <pre><code>
+    {
+      listNodeName:           'ol',
+      itemNodeName:           'li',
+      rootClass:              'dd',
+      listClass:              'dd-list',
+      itemClass:              'dd-item',
+      itemBlueprintClass:     'dd-item-blueprint',
+      dragClass:              'dd-dragel',
+      handleClass:            'dd-handle',
+      collapsedClass:         'dd-collapsed',
+      placeClass:             'dd-placeholder',
+      noDragClass:            'dd-nodrag',
+      emptyClass:             'dd-empty',
+      contentClass:           'dd3-content',
+      itemAddBtnClass:        'item-add',
+      removeBtnClass:         'item-remove',
+      addBtnSelector:         '',
+      addBtnClass:            'dd-new-item',
+      editBoxClass:           'dd-edit-box',
+      inputSelector:          'input, select, textarea',
+      collapseBtnClass:       'collapse',
+      expandBtnClass:         'expand',
+      endEditBtnClass:        'end-edit',
+      itemBtnContainerClass:  'dd-button-container',
+      itemNameClass:          'item-name',
+      data:                   '',
+      select2:                {
+      support:     false,
+      // Any CSS-supported value is valid
+      selectWidth: '45%',
+      params: {}
+      },
+      slideAnimationDuration: 0,
+      group:                  0,
+      maxDepth:               20,
+      threshold:              20,
+      refuseConfirmDelay:     2000,
+      // Set 0 for no fadeIn effect
+      newItemFadeIn: 350,
+      event:         {
+        onToJson:           [],
+        onParseJson:        [],
+        onSaveEditBoxInput: [],
+        onItemDrag:         [],
+        onItemAddChildItem: [],
+        onItemDrop:         [],
+        onItemAdded:        [],
+        onItemExpanded:     [],
+        onItemCollapsed:    [],
+        onItemRemoved:      [],
+        onItemStartEdit:    [],
+        onItemEndEdit:      [],
+        onCreateItem:       []
+      },
+      // The property under which domenu settings will be serialized
+      paramsDataKey: '__domenu_params'
+    }
+  </code></pre>
+</section>
+<section>
+  <h2 id="tokens-and-attributes">Tokens & Attributes</h2>
+  <p>Tokens and attributes work together to supply you with precomputed variables which you might use with your input fields.</p>
+  <h3>Tokens</h3>
+  <p>Use tokens inside of your attributes e.g. <code>data-placeholder</code> and <code>data-default-value</code>. E.g.:</p>
+  <pre><code>&lt;input type=&quot;text&quot; name=&quot;title&quot; placeholder=&quot;Item&quot; data-placeholder=&quot;Item {?numeric.increment}&quot; data-default-value=&quot;Item {?numeric.increment}&quot;&gt;  </code></pre>
+  <ul>
+    <li><code>{?date.gregorian-slashed-DMY}</code> current date in gregorian DMY format</li>
+    <li><code>{?date.mysql-datetime}</code> valid MySQL datetime format</li>
+    <li><code>{?numeric.increment}</code> increments itself and outputs a number</li>
+    <li><code>{?value}</code> current value of the input</li>
+  </ul>
+  <h3>Attributes</h3>
+  <p>Adding attributes to your input fields allows you to make them more dynamic.</p>
+  <ul>
+    <li><code>data-placeholder</code> works like the <code>placeholder</code> attribute but has a higher priority and supports <code>Tokens</code></li>
+    <li><code>data-default-value</code> the value of this attribute will be used by <code>toJson</code> as a default <code>value</code> when no user supplied <code>value</code> is present</li>
+  </ul>
+</section>
+<section>
+  <h2 id="quick-api">Quick API</h2>
   <p>Access the <code>PublicPlugin</code> API with: <pre><code>$('#your-domenu-element').domenu()</code></pre></p>
-  <p>Usage example:</p>
+  <h3>Usage example</h3>
   <pre><code>$('#domenu-0').domenu().onItemAdded(function() {
   alert('An item has been added');
 });</code></pre>
-  <ul>
-    <li>array getLists()
+  <h3>Quick overview</h3>
+  <ul class="quick-api">
+    <li><pre><code>array getLists()</code></pre>
       <p>Returns the doMenu instance <code>list element</code>.</p></li>
-    <li>string parseJson(string data[, bool override = false])
+    <li><pre><code>string parseJson(string data[, bool override = false])</code></pre>
       <p>Converts JSON output to a doMenu instance.</p></li>
-    <li>string toJson()
-      <p>Serializes the instance and returns it as a JSON output.</p></li>
-    <li>pPlugin expandAll()
-    <p>Expands all items.</p></li>
-    <li>pPlugin collapseAll()
-        <p>Collapses all items.</p></li>
-    <li>expand
-      <p>The callback takes <code>item element</code> as argument.
-         If the callback will return <code>true</code> then the
+    <li><pre><code>string toJson()</code></pre>
+      <p>Serializes the instance and returns it as JSON.</p></li>
+    <li><pre><code>PublicPlugin expandAll()</code></pre>
+    <p>Expands all items in a recursive fashion.</p></li>
+    <li><pre><code>PublicPlugin collapseAll()</code></pre>
+        <p>Collapses all items in a recursive fashion.</p></li>
+    <li><pre><code>PublicPlugin expand(callback)</code></pre>
+      <p>The <code>callback</code> takes <code>item element</code> as argument.
+         If the <code>callback</code> will return <code>true</code> then the
          item will get expanded.</p></li>
-    <li>collapse
-      <p>The callback takes <code>item element</code> as argument.
+    <li><pre><code>PublicPlugin collapse(callback)</code></pre>
+      <p>The <code>callback</code> takes <code>item element</code> as argument.
          If the callback will return <code>true</code> then the
          item will get collapsed.</p></li>
-    <li>onParseJson</li>
-    <li>onToJson</li>
-    <li>onSaveEditBoxInput</li>
-    <li>onItemDrag</li>
-    <li>onItemDrop</li>
-    <li>onItemAdded</li>
-    <li>onItemRemoved</li>
-    <li>onItemStartEdit</li>
-    <li>onItemEndEdit</li>
-    <li>onItemAddChildItem</li>
-    <li>onCreateItem</li>
-    <li>onItemCollapsed</li>
-    <li>onItemExpanded</li>
-    <li>on</li>
-    <li>getListNodes</li>
-    <li>getPluginOptions</li>
+    <li><pre><code>PublicPlugin onParseJson(callback)</code></pre>
+    <p>Fires after the <code>parseJson()</code> call.</p></li>
+    <li><pre><code>PublicPlugin onToJson(callback)</code></pre>
+    <p>Fires after a <code>toJson()</code> call.</p></li>
+    <li><pre><code>PublicPlugin onSaveEditBoxInput(callback)</code></pre>
+    <p>Fires after the input fields are saved just before exiting the <code>edit mode</code>. The <code>callback</code> takes <code>jQueryCollection $item</code>
+    of the item being edited and <code>array inputCollection</code> containing input fields of the item being edited as arguments.</p></li>
+    <li><pre><code>PublicPlugin onItemDrag(callback)</code></pre>
+    <p>Fires after an item has been dragged. The <code>callback</code> takes <code>jQueryCollection $item</code> of the item being dragged as argument.</p></li>
+    <li><pre><code>PublicPlugin onItemDrop(callback)</code></pre>
+      <p>Fires after an item has been dropped. The <code>callback</code> takes <code>jQueryCollection $item</code> of the item being dropped as argument.</p></li>
+    </li>
+    <li><pre><code>PublicPlugin onItemAdded(callback)</code></pre>
+      <p>Fires after an item has been added. The <code>callback</code> takes <code>jQueryCollection $item</code> of the added item as argument.</p></li>
+    </li>
+    <li><pre><code>PublicPlugin onItemRemoved(callback)</code></pre>
+      <p>Fires after an item has been removed. The <code>callback</code> takes <code>jQueryCollection $item</code> of the removed item as argument.</p></li>
+    </li>
+    <li><pre><code>PublicPlugin onItemStartEdit(callback)</code></pre>
+      <p>Fires after an item has entered the <code>edit mode</code>. The <code>callback</code> takes <code>jQueryCollection $item</code> of the item in <code>edit mode</code> as argument.</p></li>
+    </li>
+    <li><pre><code>PublicPlugin onItemEndEdit(callback)</code></pre
+      <p>Fires after an item has exited the <code>edit mode</code>. The <code>callback</code> takes <code>jQueryCollection $item</code> of the item exiting <code>edit mode</code> as argument.</p></li>
+    </li>
+    <li><pre><code>PublicPlugin onItemAddChildItem</code></pre>
+      <p>Fires after an item has added an item. The <code>callback</code> takes <code>jQueryCollection $item</code> of the added item as argument.</p></li>
+    </li>
+    <li><pre><code>PublicPlugin onCreateItem(callback)</code></pre>
+      <p>Fires just before an item has been created. The <code>callback</code> takes <code>jQueryCollection $item</code> of the item which is being created as argument.</p></li>
+    </li>
+    <li><pre><code>PublicPlugin onItemCollapsed(callback)</code></pre>
+      <p>Fires after an item has been collapsed. The <code>callback</code> takes <code>jQueryCollection $item</code> of the item which has been collapsed as argument.</p></li>
+    </li>
+    <li><pre><code>PublicPlugin onItemExpanded(callback)</code></pre>
+      <p>Fires after an item has been expanded. The <code>callback</code> takes <code>jQueryCollection $item</code> of the item which has been expanded as argument.</p></li>
+    </li>
+    <li><pre><code>on(eventBag, callback)</code></pre>
+      <p>Allows you to setup a callback for multiple events. <code>string || array || '*' eventBag</code> carries the name of the events you want the <code>callback</code> to
+      be subscribed to. <code>'*'</code> will subscribe the callback for all events. <code>function callback</code> the function to be applied on the subscribed set of events after an event fires.</p>
+    </li>
+    <li><pre><code>array getListNodes()</code></pre>
+      <p>Returns all elements within the doMenu instance of type <code>listNodeName</code></p>
+    </li>
+    <li><pre><code>Object getPluginOptions()</code></pre>
+     <p>Returns the current set of options of a doMenu instance.</p>
+    </li>
   </ul>
 </section>
-  <section><p class="small">Copyright &copy; 2015 Mateusz Zawartka | MIT Licensed <br/>
+  <section style="margin-top: 150px;">
+    <a class="github-button" href="https://github.com/mechanicious/domenu" data-count-href="/mechanicious/domenu/stargazers" data-count-api="/repos/mechanicious/domenu#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star mechanicious/domenu on GitHub">Star</a>
+    <a class="github-button" href="https://github.com/mechanicious/domenu/fork" data-count-href="/mechanicious/domenu/network" data-count-api="/repos/mechanicious/domenu#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork mechanicious/domenu on GitHub">Fork</a>
+    <p class="small">Copyright &copy; 2015 Mateusz Zawartka (<a href="https://github.com/mechanicious">Github</a>
+    <a class="github-button" href="https://github.com/mechanicious" data-count-href="/mechanicious/followers" data-count-api="/users/mechanicious#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @mechanicious on GitHub">Follow @mechanicious</a>,
+    <a href="https://www.behance.net/mechanicious">Behance</a>) | MIT Licensed
+    <br/>
                             Build upon Nestable from <a href="http://dbushell.com/">David Bushell</a></p></section>
-<script src="jquery.domenu-0.48.53.js"></script>
+<script src="jquery.domenu-0.87.53.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>

@@ -23,9 +23,17 @@ html {
 body {
     font-size: 100%;
     margin: 50px;
-    font-family: Lato, sans-serif;
+    font-family: Lato, Helvetica, Arial sans-serif;
     margin: 0;
     padding: 0;
+}
+
+h1, h2 {
+    margin-left: -3%;
+}
+
+h3, h4 {
+    margin-left: -1%;
 }
 
 h1 {
@@ -33,8 +41,10 @@ h1 {
     margin: 0 0 0.6em 0;
     font-weight: 300;
 }
-
-h2, h3, h4 {
+h3 {
+    font-weight: 600;
+}
+h2, h4 {
     font-weight: 400;
 }
 
@@ -44,6 +54,7 @@ h2, h3, h4 {
 
 .header {
     padding: 20px 50px;
+    background-color: #fff;
 }
 
 .header h1 sub, .header h1 sup {
@@ -123,6 +134,24 @@ p {
 
 .large {
     font-size: 1.25em;
+}
+
+ul.quick-api {
+    margin: 0;
+    padding: 0;
+}
+
+ul.quick-api li {
+    list-style: none;
+}
+
+ul.quick-api li pre {
+    margin-bottom: 5px;
+}
+
+ul.quick-api li p {
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
 /**
