@@ -16,7 +16,7 @@ Are you having any suggestions, awesome ideas, or just would like to share what 
 --
 
 ### License & Credits
-Copyright © 2015 Mateusz Zawartka | BSD & MIT license
+Copyright © 2016 Mateusz Zawartka | BSD & MIT license
 
 Built upon Nestable from [David Bushell](http://dbushell.com/)
 
