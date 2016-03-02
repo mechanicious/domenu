@@ -27,14 +27,12 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
-
 </head>
 <body>
 <div class="header">
   <a href="#"><img class="logo" src="logo-domenu.png" alt=""></a>
     <h1>doMenu <sup>v0.87.53</sup></h1>
-    <div><a class="github-button" href="https://github.com/mechanicious/domenu" data-count-href="/mechanicious/domenu/stargazers" data-count-api="/repos/mechanicious/domenu#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star mechanicious/domenu on GitHub">Star</a>
-      <a class="github-button" href="https://github.com/mechanicious/domenu/fork" data-count-href="/mechanicious/domenu/network" data-count-api="/repos/mechanicious/domenu#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork mechanicious/domenu on GitHub">Fork</a></div>
+    <!-- public: github-buttons -->
     <p>Customized version of Nestable for back-end hierarchical menu creation </p>
   <div class="menu-container">
     <ul class="menu">
@@ -363,7 +361,7 @@ $(document).ready(function() {
       });
 
       $clearLocalStorage.click(function() {
-        if(true) window.localStorage.clear();
+        window.localStorage.clear();
         if(!window.localStorage.length) $clearLocalStorage.hide();
         // Part of the reset demo routine
         window.location.reload();
@@ -539,9 +537,10 @@ $(document).ready(function() {
   </ul>
 </section>
   <section style="margin-top: 150px;">
-    <a class="github-button" href="https://github.com/mechanicious/domenu" data-count-href="/mechanicious/domenu/stargazers" data-count-api="/repos/mechanicious/domenu#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star mechanicious/domenu on GitHub">Star</a>
-    <a class="github-button" href="https://github.com/mechanicious/domenu/fork" data-count-href="/mechanicious/domenu/network" data-count-api="/repos/mechanicious/domenu#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork mechanicious/domenu on GitHub">Fork</a>
-    <p class="small">Copyright &copy; 2015 Mateusz Zawartka (<a href="https://github.com/mechanicious">Github</a>
+    <!-- public: github-buttons -->
+    <br><br>
+    <!-- public: donate-button -->
+    <p class="small">Copyright &copy; 2016 Mateusz Zawartka (<a href="https://github.com/mechanicious">Github</a>
     <a class="github-button" href="https://github.com/mechanicious" data-count-href="/mechanicious/followers" data-count-api="/users/mechanicious#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @mechanicious on GitHub">Follow @mechanicious</a>,
     <a href="https://www.behance.net/mechanicious">Behance</a>) | MIT Licensed
     <br/>
