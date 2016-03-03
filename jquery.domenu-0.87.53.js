@@ -147,7 +147,7 @@
     itemNameClass:          'item-name',
     data:                   '',
     // false or an array with ids of instances from which accept list merging
-    allowListMerging:       false,
+    allowListMerging:       true,
     /**
      * @dev-since 0.24.53
      * @version-control +0.5.0  enhancement select2 support
@@ -876,7 +876,9 @@
         lastDirX: 0,
         lastDirY: 0,
         distAxX:  0,
-        distAxY:  0
+        distAxY:  0,
+        distXtotal: 0,
+        distYtotal: 0
       };
       this.isTouch    = false;
       this.moving     = false;
@@ -1069,6 +1071,7 @@
       this.options.event.onItemDrag.forEach(function(cb, i) {
         cb($(dragItem), e);
       });
+      console.log(mouse.distX);
     },
     dragStop:         function(e) {
       var el = this.dragEl.children(this.options.itemNodeName).first(),
@@ -1084,7 +1087,8 @@
       }
       this.reset();
 
-      _this.options.threshold = 20;
+      this.mouse.distXtotal = 0;
+      this.mouse.distYtotal = 0;
 
       // Call end drag event listeners
       this.options.event.onItemDrop.forEach(function(cb, i) {
@@ -1110,6 +1114,35 @@
           opt   = this.options,
           mouse = this.mouse;
 
+      /**
+       * @dev-since 0.87.53
+       * @version-control +0.0.5 fix ghost first movement
+       * @type {number|Number}
+       */
+        // mouse position last events
+      mouse.lastX    = mouse.nowX || e.pageX;
+      mouse.lastY    = mouse.nowY || e.pageY;
+
+      // mouse position this events
+      mouse.nowX     = e.pageX;
+      mouse.nowY     = e.pageY;
+      // distance mouse moved between events
+      mouse.distX    = mouse.nowX - mouse.lastX;
+      mouse.distY    = mouse.nowY - mouse.lastY;
+
+      /**
+       * @dev-since 0.87.53
+       * @version-control 0.0.5 fix telepathic child dragging
+       * @type {number}
+       */
+      // placeELSP – placeholder pixel strand, how far removed is the dragEl from placeEL in pixels?
+      // placeELSEF – placeholder elastic strand factor, how far removed is the dragEl from placeEL in elastic units?
+      var placeElSPX = Math.abs(this.placeEl.offset().top - this.dragEl.offset().top),
+          placeElSPY = Math.abs(this.placeEl.offset().left - this.dragEl.offset().left),
+          placeElSEF = (2/Math.PI) * Math.atan((Math.PI/2)*(placeElSPY+placeElSPX)*0.1/opt.threshold);
+
+      console.log(placeElSEF);
+
       // Placeholder will be dragged around, the member list will actually
       // hide itself and replace the placeholder on dragStop
       this.dragEl.css({
@@ -1124,17 +1157,28 @@
         'top':  e.pageY - mouse.offsetY
       });
 
-      mouse.phaseX = 0;
+      this.pointEl = $(document.elementFromPoint(e.pageX - document.body.scrollLeft, e.pageY - (window.pageYOffset || document.documentElement.scrollTop)));
 
-      // mouse position last events
-      mouse.lastX    = mouse.nowX;
-      mouse.lastY    = mouse.nowY;
-      // mouse position this events
-      mouse.nowX     = e.pageX;
-      mouse.nowY     = e.pageY;
-      // distance mouse moved between events
-      mouse.distX    = mouse.nowX - mouse.lastX;
-      mouse.distY    = mouse.nowY - mouse.lastY;
+      // find parent list of item under cursor
+      pointElRoot = this.pointEl.closest(opt.rootClass.dot());
+      isNewRoot   = this.dragRootEl.data('domenu-id') !== pointElRoot.data('domenu-id');
+
+      if(pointElRoot.length && ! isNewRoot) {
+        this.placeEl.css({
+          'opacity': 1
+        });
+      } else {
+        this.placeEl.css({
+          'opacity': 1 - placeElSEF
+        });
+      }
+
+      console.log(placeElSEF)
+      if(! pointElRoot.length && placeElSEF > 0.4) return;
+
+      mouse.distXtotal += mouse.distX;
+      mouse.distYtotal += mouse.distY;
+
       // direction mouse was moving
       mouse.lastDirX = mouse.dirX;
       mouse.lastDirY = mouse.dirY;
@@ -1144,7 +1188,7 @@
       mouse.dirY = mouse.distY === 0 ? 0 : mouse.distY > 0 ? 1 : -1;
 
       // axis mouse is now moving on
-      var newAx = Math.abs(mouse.distX) > Math.abs(mouse.distY) ? 1 : 0;
+      var newAx = Math.abs(mouse.distX) > Math.abs(mouse.distY) && Math.abs(mouse.distX-mouse.distY) > 2 ? 1 : 0;
 
       // do nothing on first move
       if(!mouse.moving) {
@@ -1174,7 +1218,7 @@
       /**
        * move horizontal only to right
        */
-      if(mouse.dirAx && mouse.distAxX >= opt.threshold ) {
+      if(mouse.dirAx && mouse.distAxX >= opt.threshold) {
         // reset move distance on x-axis for new phase
         mouse.distAxX = 0;
         // this.placeEl placeholder element
@@ -1199,21 +1243,6 @@
             }
           }
         }
-        // decrease horizontal level
-        if(mouse.distX < 0) {
-          // we can't decrease a level if an item proceeds the current one
-          next = this.placeEl.next(opt.itemNodeName);
-          if(next.length) {
-            this.placeEl.before(next);
-          }
-          if(!next.length) {
-            parent = this.placeEl.parent();
-            this.placeEl.closest(opt.itemNodeName).after(this.placeEl);
-            if(!parent.children().length) {
-              this.unsetEmptyParent(parent.parent());
-            }
-          }
-        }
       }
 
       // find list item under cursor
@@ -1221,27 +1250,24 @@
         this.dragEl[0].style.visibility = 'hidden';
       }
 
-      this.pointEl = $(document.elementFromPoint(e.pageX - document.body.scrollLeft, e.pageY - (window.pageYOffset || document.documentElement.scrollTop)));
 
-      // find parent list of item under cursor
-      pointElRoot = this.pointEl.closest(opt.rootClass.dot());
-      isNewRoot   = this.dragRootEl.data('domenu-id') !== pointElRoot.data('domenu-id');
 
       /**
        * @dev-since 0.87.53
        * @version-control +0.0.5 fix disappearing list when mixing items from multiple instances
        */
-      // if( ! this.el.children(this.options.listClass.dot()).length) {
-      //   this.el.append($('<' + this.options.listNodeName + '/>').attr('class', this.options.listClass));
-      // }
+      if( ! this.el.children(this.options.listClass.dot()).length) {
+        this.el.append($('<' + this.options.listNodeName + '/>').attr('class', this.options.listClass));
+      }
 
       /**
        * @dev-since 0.87.53
        * @version-control +0.1.0 feature restrict list merging
        */
-      if(isNewRoot && this.options.allowListMerging === false) return;
-      else if(isNewRoot && pointElRoot.data('domenu') && pointElRoot.data('domenu').options.allowListMerging.indexOf(this.el.attr('id')) === -1) return;
-
+      if(this.options.allowListMerging !== true) {
+        if(isNewRoot && this.options.allowListMerging === false) return;
+        else if(isNewRoot && pointElRoot.data('domenu') && pointElRoot.data('domenu').options.allowListMerging.indexOf(this.el.attr('id')) === -1) return;
+      }
       /**
        * @dev-since 0.48.59
        * @version-control +0.1.0 fix snapping items to an empty list  (multiple instances)
@@ -1270,7 +1296,7 @@
       /**
        * move vertical
        */
-      if(!mouse.dirAx || isNewRoot || isEmpty) {
+      if((!mouse.dirAx || isNewRoot || isEmpty)) {
         // check if groups match if dragging over new root
         if(isNewRoot && opt.group !== pointElRoot.data('domenu-group')) {
           return;
@@ -1305,11 +1331,6 @@
         if(isNewRoot) {
           this.dragRootEl = pointElRoot;
           this.hasNewRoot = this.el[0] !== this.dragRootEl[0];
-        }
-
-        // Math.abs(mouse.distY);
-        if(opt.threshold < 21) {
-          opt.threshold += Math.abs(mouse.distX);
         }
       }
     }
@@ -1547,7 +1568,7 @@
      * @callback-context PublicPlugin
      * @param callback
      * @dev-since 0.87.53
-     * @version-control +0.1.0 feature listen for onItemCollapsed events
+     * @version-control +0.1.0 feature listen for onItemMaxDepth events
      * @returns {PublicPlugin}
      */
     onItemMaxDepth: function(callback) {
