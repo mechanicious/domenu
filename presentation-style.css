@@ -48,6 +48,10 @@ h2, h4 {
     font-weight: 400;
 }
 
+pre > code {
+    text-shadow: none;
+}
+
 .output-preview-container textarea {
     border: none;
 }
@@ -140,10 +144,27 @@ ul.quick-api {
     margin: 0;
     padding: 0;
 }
-
+ul.quick-api h4 {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
 ul.quick-api li {
     list-style: none;
+    margin-top: 30px;
 }
+
+ul.quick-api li > * {
+    margin-left: 2%;
+}
+
+ul.quick-api li > h3 {
+    margin: 0 0 15px 0;
+}
+
+ul.quick-api li > pre:first-of-type {
+    margin: 0 0 8px 0;
+}
+
 
 ul.quick-api li pre {
     margin-bottom: 5px;
@@ -151,7 +172,6 @@ ul.quick-api li pre {
 
 ul.quick-api li p {
     margin-top: 0;
-    margin-bottom: 20px;
 }
 
 /**

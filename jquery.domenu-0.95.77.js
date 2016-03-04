@@ -1,6 +1,6 @@
 /**
  * @license Copyright © 2015 Mateusz Zawartka
- * @version 0.87.53
+ * @version 0.95.77
  * MIT license
  */
 
@@ -113,13 +113,19 @@
    * @version-control +0.1.0 option expandBtnClass
    * @version-control +0.1.0 option collapseBtnClass
    * @version-control +0.1.0 option event
-   * @version-control +0.5.0 deprecated option onItemExpanded
-   * @version-control +0.5.0 deprecated option onItemCollapsed
+   * @version-control +0.5.0 deprecated option onItemExpand
+   * @version-control +0.5.0 deprecated option onItemCollapse
    * @version-control +0.1.0 option onItemExpanded
    * @version-control +0.1.0 option onItemCollapsed
    * @version-control +0.1.0 option paramsDataKey
+   * @version-control +0.0.0 fix commenting typos
+   * @dev-since 0.87.53
+   * @version-control +0.1.0 deprecated option group (see option allowListMerging)
+   * @version-control +0.1.0 option onItemMaxDepth
+   * @version-control +0.1.0 option onItemSetParent
+   * @version-control +0.1.0 option onItemUnsetParent
    */
-  var defaults = {
+  var defaults =     {
     listNodeName:           'ol',
     itemNodeName:           'li',
     rootClass:              'dd',
@@ -130,40 +136,37 @@
     handleClass:            'dd-handle',
     collapsedClass:         'dd-collapsed',
     placeClass:             'dd-placeholder',
-    noDragClass:            'dd-nodrag',
+    noDragClass:            'dd-nodrag', // Items with this class will be undraggable
     emptyClass:             'dd-empty',
     contentClass:           'dd3-content',
     itemAddBtnClass:        'item-add',
     removeBtnClass:         'item-remove',
-    addBtnSelector:         '',
+    addBtnSelector:         '', // Provide a global selector for an add button
     addBtnClass:            'dd-new-item',
     editBoxClass:           'dd-edit-box',
-    inputSelector:          'input, select, textarea',
+    inputSelector:          'input, select, textarea', // Selects input fields to serialize to JSON
     collapseBtnClass:       'collapse',
     expandBtnClass:         'expand',
     endEditBtnClass:        'end-edit',
     itemBtnContainerClass:  'dd-button-container',
     itemNameClass:          'item-name',
-    data:                   '',
-    /**
-     * @dev-since 0.24.53
-     * @version-control +0.5.0  enhancement select2 support
-     * Just include select2 css and js files, doMenu will do the rest
-     */
-    select2:                {
-      support:     false,
-      // Any CSS-supported value is valid
-      selectWidth: '45%',
-      params: {}
+    data:                   '', // JSON data to build an instance from (don't forget to call parseJson)
+    allowListMerging:       true,  // Accept incoming items from foreign lists e.g:
+                                    // true – accept all
+                                    // false – deny all
+                                    // ['domenu-2'] – accept from instances matching #domenu-2
+    select2: {
+
+      support:     false, // Enable Select2 support
+      selectWidth: '45%', // Any CSS-supported value is valid
+      params:      {}     // Provide Select2 params
     },
     slideAnimationDuration: 0,
-    group:                  0,
-    maxDepth:               20,
-    threshold:              20,
-    refuseConfirmDelay:     2000,
-    // Set 0 for no fadeIn effect
-    newItemFadeIn: 350,
-    event:         {
+    maxDepth:               5,    // Item nesting limit
+    threshold:              20,   // Dragging sensitivity
+    refuseConfirmDelay:     2000, // Time (in ms) to wait on confirmation of an item removal
+    newItemFadeIn:          350,  // Set 0 for no fadeIn effect
+    event:                  {
       onToJson:           [],
       onParseJson:        [],
       onSaveEditBoxInput: [],
@@ -176,10 +179,12 @@
       onItemRemoved:      [],
       onItemStartEdit:    [],
       onItemEndEdit:      [],
-      onCreateItem:       []
+      onCreateItem:       [],
+      onItemMaxDepth:     [],
+      onItemSetParent:    [],
+      onItemUnsetParent:  []
     },
-    // The property under which domenu settings will be serialized
-    paramsDataKey: '__domenu_params'
+    paramsDataKey:          '__domenu_params' // The property under which internal settings will be serialized
   };
 
   /**
@@ -206,11 +211,6 @@
           opt  = this.options;
 
       list.reset();
-
-      // el = jQuery object
-      // assign to el domenu-group the value user supplied as group property
-      list.el.data('domenu-group', this.options.group);
-
 
       list.placeEl = $('<div class="' + list.options.placeClass + '"/>');
 
@@ -473,7 +473,7 @@
       inputCollection.each(function(c, input) {
         var itemDataValue     = $(input).parents(opt.itemClass.dot().join(',').join(opt.itemBlueprintClass.dot())).first().data(input.getAttribute('name')),
             inputDefaultValue = $(input).data('default-value') || '';
-            $item             = $(input).parents(opt.itemClass.dot()).first();
+        $item                 = $(input).parents(opt.itemClass.dot()).first();
         if(!(itemDataValue || input.value)) var tokenizedDefault = _this.resolveToken(inputDefaultValue, $(input));
         $item.data(input.getAttribute('name'), $(input).val() || itemDataValue || tokenizedDefault);
       });
@@ -499,9 +499,7 @@
           edtBox          = item.find(opt.editBoxClass.dot()).first(),
           inputCollection = item.find(opt.inputSelector),
           spn             = item.find('span').first(),
-          removeBtn       = item.find(opt.removeBtnClass.dot()).first(),
-          btnContainer    = item.find(opt.itemBtnContainerClass.dot()).first(),
-          addBtn          = item.find(opt.itemAddBtnClass.dot()).first();
+          btnContainer    = item.find(opt.itemBtnContainerClass.dot()).first();
 
       // Listen only to the Enter key, unless you'll forced otherwise
       if(event.keyCode !== 13 && !(event.data && event.data.forced && event.data.forced === true)) return;
@@ -596,8 +594,7 @@
      * @returns {*}
      */
     createNewListItem:                function(data) {
-      var id              = typeof id !== 'undefined' ? id : this.getHighestId() + 1,
-          _this           = this,
+      var _this           = this,
           el              = this.el,
           opt             = this.options,
           blueprint       = el.find(opt.itemBlueprintClass.dot()).first().clone(),
@@ -618,10 +615,25 @@
         });
       };
 
+      blueprint.setParameter = function(key, value) {
+        blueprint.data(opt.paramsDataKey, $.extend(true, blueprint.data(opt.paramsDataKey), {key: value}));
+      };
+
+      blueprint.getParameter = function(key) {
+        return blueprint.data(key);
+      };
+
       // Use user supplied JSON data to fill the data fields
       $.each(data || {}, function(key, value) {
         blueprint.data(key, value);
       });
+
+
+      /**
+       * @dev-since 0.87.53
+       * @version-control +0.0.5 fix item id #19
+       */
+      blueprint.data('id', blueprint.data('id') || _this.getHighestId() + 1);
 
       // Set the item-class
       /*
@@ -692,7 +704,7 @@
       });
 
       // Setup editing; on every mouse click clickStartEditEventHandler will be called
-      blueprint.find('span').first().get(0).addEventListener('click', this.clickStartEditEventHandler.bind(this));
+      blueprint.find('span').first().get(0).addEventListener('click', _this.clickStartEditEventHandler.bind(this));
 
       if(_this.options.select2.support) {
         blueprint.find('select').css('width', _this.options.select2.selectWidth);
@@ -710,18 +722,32 @@
       // Give back a ready itemClass element
       return blueprint;
     },
-    itemAddChildItem:                 function(parentElement) {
+    /**
+     * @dev-since 0.87.53
+     * @version-control +0.0.1 fix max depth item add child item
+     * @version-control +0.0.3 fix stuck last child item
+     */
+    itemAddChildItem:                 function($parentElement) {
       var _this         = this,
           opt           = _this.options,
-          parentElement = $(parentElement),
-          listElement   = $('<' + opt.listNodeName + '/>').addClass(opt.listClass),
-          newItem       = _this.createNewListItem();
-
-      if(!newItem) return;
-
-      listElement.append(newItem);
-      parentElement.append(listElement);
-      _this.setParent(parentElement);
+          listElement,
+          $newItem       = _this.createNewListItem();
+      
+      if( ! $newItem) return;
+      else if($parentElement.parents(opt.listClass.dot()).length > opt.maxDepth - 1) {
+        opt.event.onItemMaxDepth.forEach(function(cb, i) {
+          cb();
+        });
+        return;
+      }
+      
+      if($parentElement.children(opt.listClass.dot()).length) $parentElement.children(opt.listClass.dot()).first().append($newItem);
+      else {
+        listElement = $('<' + opt.listNodeName + '/>').addClass(opt.listClass);
+        listElement.append($newItem);
+        $parentElement.append(listElement);
+      }
+      _this.setParent($parentElement);
     },
     getHighestId:                     function() {
       var opt = this.options,
@@ -844,7 +870,9 @@
         lastDirX: 0,
         lastDirY: 0,
         distAxX:  0,
-        distAxY:  0
+        distAxY:  0,
+        distXtotal: 0,
+        distYtotal: 0
       };
       this.isTouch    = false;
       this.moving     = false;
@@ -882,9 +910,9 @@
     },
 
     expandAll:        function(cb) {
-      var list = this,
+      var list            = this,
           recursiveExpand = function($item) {
-            if(! cb || ! cb($item)) return;
+            if(!cb || !cb($item)) return;
             list.expandItem($item);
             var listBag = $item.children(list.options.listNodeName);
             if(listBag.length) {
@@ -903,9 +931,9 @@
      * @param cb
      */
     collapseAll:      function(cb) {
-      var list = this,
+      var list              = this,
           recursiveCollapse = function($item) {
-            if(! cb || ! cb($item)) return;
+            if(!cb || !cb($item)) return;
             var listBag = $item.children(list.options.listNodeName);
             if(listBag.length) {
               list.collapseItem($item);
@@ -925,10 +953,10 @@
      * @param li
      * @param force
      */
-    setParent:        function(li, force) {
+    setParent:        function($item, force) {
       var opt = this.options;
       // If the specified selector targets any element
-      if(li.children(this.options.listNodeName).length || force) {
+      if($item.children(this.options.listNodeName).length || force) {
         // LI STRUCTURE
         // <li class="dd-item dd3-item" data-id="15">
         //  <button data-action="collapse" type="button">Collapse</button>
@@ -946,29 +974,41 @@
         //         </li>
         //     </ol>
         // </li>
-        li.children('[data-action="collapse"]').show();
+        $item.children('[data-action="collapse"]').show();
         // make sure handle is the first element
-        var handle = li.find(this.options.handleClass.dot()).first().clone();
-        li.find(this.options.handleClass.dot()).first().remove();
-        li.prepend(handle);
+        var handle = $item.find(this.options.handleClass.dot()).first().clone();
+        $item.find(this.options.handleClass.dot()).first().remove();
+        $item.prepend(handle);
       }
       // If the selector gets targeted within the li element
       // hide it
-      li.children('[data-action="expand"]').hide();
+      $item.children('[data-action="expand"]').hide();
+
+      // Call start edit event listeners
+      opt.event.onItemSetParent.forEach(function(cb, i) {
+        cb($item);
+      });
     },
     /**
      * @dev-since 0.13.29
      * @version-control +0.1.0 fix clean item data when unsetting a parent #4
      * @dev-since 0.48.53
      * @version-control +0.1.0 fix disappearing lists on unsetParent with multiple list instances
-     * @param parent
+     * @param $item
      */
-    unsetParent:      function(parent) {
-      parent.removeClass(this.options.collapsedClass);
+    unsetParent: function($item) {
+      var opt = this.options;
+
+      $item.removeClass(this.options.collapsedClass);
       // Clear collapse/expand controls from the parent
-      parent.children('[data-action]').hide();
-      parent.children(this.options.listNodeName).remove();
-      parent.removeData('children');
+      $item.children('[data-action]').hide();
+      $item.children(this.options.listNodeName).remove();
+      $item.removeData('children');
+
+      // Call start edit event listeners
+      opt.event.onItemUnsetParent.forEach(function(cb, i) {
+        cb($item, event);
+      });
     },
     /**
      * @dev-since 0.13.29
@@ -1037,7 +1077,9 @@
       });
     },
     dragStop:         function(e) {
-      var el = this.dragEl.children(this.options.itemNodeName).first();
+      var el = this.dragEl.children(this.options.itemNodeName).first(),
+          _this = this;
+
       el[0].parentNode.removeChild(el[0]);
       this.placeEl.replaceWith(el);
 
@@ -1048,11 +1090,13 @@
       }
       this.reset();
 
+      this.mouse.distXtotal = 0;
+      this.mouse.distYtotal = 0;
+
       // Call end drag event listeners
       this.options.event.onItemDrop.forEach(function(cb, i) {
         cb($(el), e);
       });
-
 
       if($(el).parents(this.options.rootClass).data('domenu-id') !== $(this.el).data('domenu-id')) {
         $(el).parents(this.options.rootClass.dot()).domenu()._plugin.options.event.onItemDrop.forEach(function(cb, i) {
@@ -1068,9 +1112,46 @@
      * @version-control +0.3.0  fix unsetting parents
      */
     dragMove: function(e) {
-      var list, parent, prev, next, depth,
+      var list, parent, prev, next, depth, pointElRoot, isNewRoot,
+          isEmpty = false,
           opt   = this.options,
           mouse = this.mouse;
+
+      /**
+       * @dev-since 0.87.53
+       * @version-control +0.0.5 fix ghost first movement
+       * @type {number|Number}
+       */
+        // mouse position last events
+      mouse.lastX    = mouse.nowX || e.pageX;
+      mouse.lastY    = mouse.nowY || e.pageY;
+
+      // mouse position this events
+      mouse.nowX     = e.pageX;
+      mouse.nowY     = e.pageY;
+      // distance mouse moved between events
+      mouse.distX    = mouse.nowX - mouse.lastX;
+      mouse.distY    = mouse.nowY - mouse.lastY;
+
+      // direction mouse was moving
+      mouse.lastDirX = mouse.dirX;
+      mouse.lastDirY = mouse.dirY;
+
+      // direction mouse is now moving (on both axis)
+      mouse.dirX = mouse.distX === 0 ? 0 : mouse.distX > 0 ? 1 : -1;
+      mouse.dirY = mouse.distY === 0 ? 0 : mouse.distY > 0 ? 1 : -1;
+
+      /**
+       * @dev-since 0.87.53
+       * @version-control 0.0.5 fix telepathic child dragging
+       * @type {number}
+       */
+        // placeELSP – placeholder pixel strand, how far removed is the dragEl from placeEL in pixels?
+        // placeELSEF – placeholder elastic strand factor, how far removed is the dragEl from placeEL in elastic units?
+
+      var placeElSPY = Math.abs(this.placeEl.offset().top - this.dragEl.offset().top),
+          placeElSPX = Math.abs(this.placeEl.offset().left - this.dragEl.offset().left),
+          placeElSEF = (2/Math.PI) * Math.atan((Math.PI/2)*(placeElSPY+placeElSPX)*0.1/opt.threshold);
 
       // Placeholder will be dragged around, the member list will actually
       // hide itself and replace the placeholder on dragStop
@@ -1086,25 +1167,26 @@
         'top':  e.pageY - mouse.offsetY
       });
 
-      // mouse position last events
-      mouse.lastX    = mouse.nowX;
-      mouse.lastY    = mouse.nowY;
-      // mouse position this events
-      mouse.nowX     = e.pageX;
-      mouse.nowY     = e.pageY;
-      // distance mouse moved between events
-      mouse.distX    = mouse.nowX - mouse.lastX;
-      mouse.distY    = mouse.nowY - mouse.lastY;
-      // direction mouse was moving
-      mouse.lastDirX = mouse.dirX;
-      mouse.lastDirY = mouse.dirY;
+      this.pointEl = $(document.elementFromPoint(e.pageX - document.body.scrollLeft, e.pageY - (window.pageYOffset || document.documentElement.scrollTop)));
 
-      // direction mouse is now moving (on both axis)
-      mouse.dirX = mouse.distX === 0 ? 0 : mouse.distX > 0 ? 1 : -1;
-      mouse.dirY = mouse.distY === 0 ? 0 : mouse.distY > 0 ? 1 : -1;
+      // find parent list of item under cursor
+      pointElRoot = this.pointEl.closest(opt.rootClass.dot());
+      isNewRoot   = this.dragRootEl.data('domenu-id') !== pointElRoot.data('domenu-id');
+
+      if(pointElRoot.length && ! isNewRoot) {
+        this.placeEl.css({
+          'opacity': 1
+        });
+      } else {
+        this.placeEl.css({
+          'opacity': 1 - placeElSEF
+        });
+      }
+      
+      if(! pointElRoot.length && placeElSEF > 0.4) return;
 
       // axis mouse is now moving on
-      var newAx = Math.abs(mouse.distX) > Math.abs(mouse.distY) ? 1 : 0;
+      var newAx = Math.abs(mouse.distX) > Math.abs(mouse.distY) && Math.abs(mouse.distX-mouse.distY) > 2 ? 1 : 0;
 
       // do nothing on first move
       if(!mouse.moving) {
@@ -1157,34 +1239,37 @@
               list = prev.children(opt.listNodeName).last();
               list.append(this.placeEl);
             }
-          }
-        }
-        // decrease horizontal level
-        if(mouse.distX < 0) {
-          // we can't decrease a level if an item proceeds the current one
-          next = this.placeEl.next(opt.itemNodeName);
-          if(next.length) {
-            this.placeEl.before(next);
-          }
-          if(!next.length) {
-            parent = this.placeEl.parent();
-            this.placeEl.closest(opt.itemNodeName).after(this.placeEl);
-            if(!parent.children().length) {
-              this.unsetEmptyParent(parent.parent());
-            }
+          } else if (depth + this.dragDepth > opt.maxDepth) {
+            opt.event.onItemMaxDepth.forEach(function(cb, i) {
+              cb(prev);
+            });
           }
         }
       }
-
-      var isEmpty = false;
 
       // find list item under cursor
       if(!hasPointerEvents) {
         this.dragEl[0].style.visibility = 'hidden';
       }
 
-      this.pointEl = $(document.elementFromPoint(e.pageX - document.body.scrollLeft, e.pageY - (window.pageYOffset || document.documentElement.scrollTop)));
 
+
+      /**
+       * @dev-since 0.87.53
+       * @version-control +0.0.5 fix disappearing list when mixing items from multiple instances
+       */
+      if( ! this.el.children(this.options.listClass.dot()).length) {
+        this.el.append($('<' + this.options.listNodeName + '/>').attr('class', this.options.listClass));
+      }
+
+      /**
+       * @dev-since 0.87.53
+       * @version-control +0.1.0 feature restrict list merging
+       */
+      if(this.options.allowListMerging !== true) {
+        if(isNewRoot && this.options.allowListMerging === false) return;
+        else if(isNewRoot && pointElRoot.data('domenu') && pointElRoot.data('domenu').options.allowListMerging.indexOf(this.el.attr('id')) === -1) return;
+      }
       /**
        * @dev-since 0.48.59
        * @version-control +0.1.0 fix snapping items to an empty list  (multiple instances)
@@ -1194,7 +1279,6 @@
       if(!this.pointEl.parents(opt.rootClass.dot()).length || this.pointEl.hasClass(opt.listClass) || this.pointEl.hasClass(opt.placeClass)) return;
 
       if(!this.pointEl.hasClass(opt.itemClass)) this.pointEl = $(this.pointEl).parents(opt.itemClass.dot()).first();
-
 
       if(!hasPointerEvents) {
         this.dragEl[0].style.visibility = 'visible';
@@ -1206,30 +1290,28 @@
         isEmpty = true;
       }
       // When no pointer element has been found or when the pointer element has no options.itemClass
-      else if(!this.pointEl.length || ! this.pointEl.hasClass(opt.itemClass)) {
+      else if(!this.pointEl.length || !this.pointEl.hasClass(opt.itemClass)) {
         return;
       }
-
-      // find parent list of item under cursor
-      var pointElRoot = this.pointEl.closest(opt.rootClass.dot()),
-          isNewRoot   = this.dragRootEl.data('domenu-id') !== pointElRoot.data('domenu-id');
 
 
       /**
        * move vertical
        */
-      if(!mouse.dirAx || isNewRoot || isEmpty) {
+      if((!mouse.dirAx || isNewRoot || isEmpty)) {
         // check if groups match if dragging over new root
-        if(isNewRoot && opt.group !== pointElRoot.data('domenu-group')) {
+        if(isNewRoot) {
           return;
         }
         // check depth limit
         depth = this.dragDepth - 1 + this.pointEl.parents(opt.listNodeName).length;
+        parent     = this.placeEl.parent();
         if(depth > opt.maxDepth) {
-          return;
+          opt.event.onItemMaxDepth.forEach(function(cb, i) {
+            cb(this.dragEl);
+          });
         }
         var before = e.pageY < (this.pointEl.offset().top + this.pointEl.height() / 2);
-        parent     = this.placeEl.parent();
         // if empty create new list to replace empty placeholder
         if(isEmpty) {
           list = $(document.createElement(opt.listNodeName)).addClass(opt.listClass);
@@ -1256,7 +1338,6 @@
         }
       }
     }
-
   };
 
   /**
@@ -1295,8 +1376,24 @@
       });
       return this;
     },
+    /**
+     * @desc Expand items one by one. If callback returns then the item will be expanded.
+     * @callback-params $item
+     * @param cb
+     * @returns {PublicPlugin}
+     */
     expand:             function(cb) {
       this._plugin.expandAll(cb);
+      return this;
+    },
+    /**
+     * @desc Collapse items one by one. If callback returns then the item will be expanded.
+     * @callback-params $item
+     * @param cb
+     * @returns {PublicPlugin}
+     */
+    collapse:           function(cb) {
+      this._plugin.collapseAll(cb);
       return this;
     },
     /**
@@ -1313,9 +1410,33 @@
       _this._plugin.options.event.onParseJson.push(callback.bind(_this));
       return _this;
     },
-    collapse:           function(cb) {
-      this._plugin.collapseAll(cb);
-      return this;
+    /**
+     * @desc  Fires after an item becomes a parent
+     * @callback-params $item
+     * @callback-context PublicPlugin
+     * @param callback
+     * @dev-since 0.87.53
+     * @version-control +0.1.0 feature onItemSetParent event listener
+     * @returns {PublicPlugin}
+     */
+    onItemSetParent: function(callback) {
+      var _this = this;
+      _this._plugin.options.event.onItemSetParent.push(callback.bind(_this));
+      return _this;
+    },
+    /**
+     * @desc  Fires after a parent is unset
+     * @callback-params $parent
+     * @callback-context PublicPlugin
+     * @param callback
+     * @dev-since 0.87.53
+     * @version-control +0.1.0 feature onItemSetParent event listener
+     * @returns {PublicPlugin}
+     */
+    onItemUnsetParent: function(callback) {
+      var _this = this;
+      _this._plugin.options.event.onItemUnsetParent.push(callback.bind(_this));
+      return _this;
     },
     /**
      * @desc Listen to toJson calls
@@ -1484,6 +1605,21 @@
       this._plugin.options.event.onItemExpanded.push(callback.bind(_this));
       return _this;
     },
+  
+    /**
+     * @desc Fires when the max depth of an item prevents nesting additional children
+     * @callback-params jQueryCollection parentElement
+     * @callback-context PublicPlugin
+     * @param callback
+     * @dev-since 0.87.53
+     * @version-control +0.1.0 feature listen for onItemMaxDepth events
+     * @returns {PublicPlugin}
+     */
+    onItemMaxDepth: function(callback) {
+      var _this = this;
+      this._plugin.options.event.onItemMaxDepth.push(callback.bind(_this));
+      return _this;
+    },
 
     /**
      * @desc Setup a callback for multiple events
@@ -1533,17 +1669,17 @@
    * @version-control +0.0.5 random key generation improvements
    */
   $.fn.domenu = function(params) {
-    var lists  = this.first(),
+    var lists   = this.first(),
         domenu  = $(this),
         plugin  = domenu.data("domenu") || new Plugin(this, params),
         pPlugin = new PublicPlugin(plugin, lists);
 
-        if(params) plugin.options = $.extend(true, {}, defaults, params);
-        if( ! domenu.data("domenu") || params) domenu.data("domenu", plugin);
-        if( ! domenu.data("domenu-id")) {
-          var pseudoRandomNumericKey = Math.random().toString().replace(/\D/g, '');
-          domenu.data('domenu-id', pseudoRandomNumericKey);
-        }
+    if(params) plugin.options = $.extend(true, {}, defaults, params);
+    if(!domenu.data("domenu") || params) domenu.data("domenu", plugin);
+    if(!domenu.data("domenu-id")) {
+      var pseudoRandomNumericKey = Math.random().toString().replace(/\D/g, '');
+      domenu.data('domenu-id', pseudoRandomNumericKey);
+    }
 
     return pPlugin || plugin;
 
