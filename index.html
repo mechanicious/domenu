@@ -181,6 +181,7 @@
 
     $domenu.domenu({
         slideAnimationDuration: 0,
+        allowListMerging: true,
         select2:                {
           support: true,
           params:  {
@@ -349,6 +350,7 @@
         $clearLocalStorage = $outputContainer.find('.clearLocalStorage');
 
     $('#domenu-2').domenu({
+        allowListMerging: true,
         slideAnimationDuration: 0,
         data:                   window.localStorage.getItem('domenu-2Json') || '[{"id":11,"title":"Another list","http":"","superselect":"2","customSelect":"select something...","children":[{"id":10,"title":"News","http":"","superselect":"1","customSelect":"select something..."},{"id":9,"title":"Categories","http":"","superselect":"1","customSelect":"2"}]},{"title":"Check","customSelect":"select something..."},{"title":"New","customSelect":"select something..."}]'
       })
