@@ -4,6 +4,13 @@ Specialized version of Nestable plugin, for back-end hierahical menu creation.
 
 --
 
+### Installation
+Bower: `bower install domenu`
+
+NPM: `npm install domenu`
+
+--
+
 ### Official Documentation
 You can find documentation for this project on [doMenu website](http://mechanicious.github.io/domenu/) or browse through the branches to find out about the earlier versions.
 
