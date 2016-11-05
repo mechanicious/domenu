@@ -1,6 +1,7 @@
 {
   "name": "domenu",
   "description": "Customized version of Nestable for wordpress-like back-end hierarchical menu creation",
+  "version": "0.99.77",
   "main": "jquery.domenu-0.99.77.js",
   "authors": [
     "Mateusz Zawartka"
