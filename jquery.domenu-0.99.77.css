@@ -1,5 +1,6 @@
 /**
- * doMenu
+ * @license Copyright © 2016 Mateusz Zawartka
+ * @version 0.99.77
  */
 .dd {
   position: relative;
@@ -12,7 +13,6 @@
   font-size:   13px;
   line-height: 20px;
 }
-
 
 .dd-edit-box input,
   /*.dd-edit-box select,*/
@@ -254,6 +254,11 @@
   border: 1px dashed #6C9AB1;
   box-sizing:      border-box;
   -moz-box-sizing: border-box;
+}
+
+.dd-placeholder.max-depth {
+  background: #ffb3b7;
+  border: 1px dashed #b14444;
 }
 
 .dd-empty {
