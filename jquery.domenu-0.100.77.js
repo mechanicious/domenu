@@ -1,6 +1,6 @@
 /**
  * @license Copyright © 2016 Mateusz Zawartka
- * @version 0.99.77
+ * @version 0.100.77
  * MIT license
  */
 
@@ -606,13 +606,17 @@
        * @version-control +0.1.0 fix ghost parent elements
        * @dev-since 0.24.53
        * @version-control +0.1.0 fix onItemRemoved event listener
+       * @dev-since 0.99.77
+       * @version-control +0.1.0 feature added id as second argument to the callback
        */
       blueprint.remove = function () {
         var parent = blueprint.parents(_this.options.itemClass.dot()).first();
+        var id = blueprint.data("id");
+
         jQuery(this).remove();
         _this.unsetEmptyParent(parent);
         jQuery.each(opt.event.onItemRemoved, function (i, cb) {
-          cb(blueprint);
+          cb(blueprint, id);
         });
       };
 
