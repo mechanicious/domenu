@@ -23,11 +23,6 @@ Are you having any suggestions, awesome ideas, or just would like to share what 
 ---
 
 ### License & Credits
-Copyright © 2016 Mateusz Zawartka | BSD & MIT license
+Copyright © 2018 Mateusz Zawartka | BSD & MIT license
 
 Built upon Nestable from [David Bushell](http://dbushell.com/)
-
----
-
-<a href='https://pledgie.com/campaigns/31198'><img alt='Click here to lend your support to: doMenu Donations and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/31198.png?skin_name=chrome' border='0' ></a>
-
